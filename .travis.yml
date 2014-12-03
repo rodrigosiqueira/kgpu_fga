@@ -4,7 +4,7 @@ install:
 - sudo apt-get install make build-essential
 - wget http://googletest.googlecode.com/files/gtest-1.7.0.zip
 - unzip gtest-1.7.0.zip
-- cd gtest-1.7.01
+- cd gtest-1.7.0
 - mkdir mybuild
 - cd mybuild
 - cmake -DBUILD_SHARED_LIBS=ON -Dgtest_build_samples=ON -G"Unix Makefiles" ..
