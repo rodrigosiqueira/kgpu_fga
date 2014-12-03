@@ -5,6 +5,7 @@ install:
 - wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1204/x86_64/cuda-repo-ubuntu1204_6.5-14_amd64.deb
 - sudo dpkg -i cuda-repo-ubuntu1204_6.5-14_amd64.deb
 - rm cuda-repo-ubuntu1204_6.5-14_amd64.deb
+- sudo apt-get install -s linux-headers
 - sudo apt-get update
 - sudo apt-get install -y cuda
 - wget http://googletest.googlecode.com/files/gtest-1.7.0.zip
@@ -22,7 +23,6 @@ install:
 
 before_script:
 - uname -a 
-- sudo apt-get install -s linux-headers
 - ls /lib/modules -R
 - sudo apt-get install linux-headers-2.6.32
 - sudo ldconfig -v | grep gtest
