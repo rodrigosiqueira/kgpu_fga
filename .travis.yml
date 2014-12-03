@@ -7,7 +7,6 @@ install:
 - rm cuda-repo-ubuntu1204_6.5-14_amd64.deb
 - sudo apt-get update
 - sudo apt-get install -y cuda
-- sudo apt-get install cuda nvidia-current nvidia-current-dev nvidia-modprobe nvidia-settings
 - wget http://googletest.googlecode.com/files/gtest-1.7.0.zip
 - unzip gtest-1.7.0.zip
 - cd gtest-1.7.0
