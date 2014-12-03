@@ -17,11 +17,12 @@ install:
 - sudo cp lib*.so /usr/lib 
 - cd ..
 - sudo cp -a include/gtest /usr/include
-- sudo ldconfig -v | grep gtest
 - cd ..
 - rm gtest-1.7.0.zip
 
 before_script:
+- sudo ldconfig -v | grep gtest
+- uname -a
 - cd kgpu && make all
 
 script:
