@@ -14,4 +14,4 @@ install:
 - sudo cp -a include/gtest /usr/include
 - sudo ldconfig -v | grep gtest
 - cd ..
-- rm gtest-1.7.01 
+- rm gtest-1.7.0 
