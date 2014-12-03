@@ -1,7 +1,7 @@
 language: c
 compiler: gcc
 install:
-- sudo apt-get install make build-essential
+- sudo apt-get install make build-essential nvcc
 - wget http://googletest.googlecode.com/files/gtest-1.7.0.zip
 - unzip gtest-1.7.0.zip
 - cd gtest-1.7.0
@@ -14,4 +14,10 @@ install:
 - sudo cp -a include/gtest /usr/include
 - sudo ldconfig -v | grep gtest
 - cd ..
-- rm gtest-1.7.0.zip 
+- rm gtest-1.7.0.zip
+
+before_script:
+- cd kgpu && make all
+
+script:
+- cd build && sudo ./runkgpu
