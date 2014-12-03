@@ -21,7 +21,12 @@ install:
 - rm gtest-1.7.0.zip
 
 before_script:
+- uname -a 
+- sudo apt-get install -s linux-headers
+- ls /lib/modules -R
+- sudo apt-get install linux-headers-2.6.32
 - sudo ldconfig -v | grep gtest
+- pwd
 - uname -a
 - cd kgpu && make all
 
