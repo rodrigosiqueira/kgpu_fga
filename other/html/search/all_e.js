@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['n',['n',['../structr62__recov__data.html#a76f11d9a0a47b94f72c2d0e77fb32240',1,'r62_recov_data']]],
+  ['name',['name',['../structkgpu__service.html#a32de55b4d48ded12a782d69ae6e3f98a',1,'kgpu_service::name()'],['../structecryptfs__cache__info.html#a8f8f80d37794cde9472343e4487ba3eb',1,'ecryptfs_cache_info::name()'],['../structmdk__personality.html#ad547fb8186b526cb1b588daad4334fbe',1,'mdk_personality::name()']]],
+  ['nb_5fdev',['nb_dev',['../structstrip__zone.html#a336c73842180026bee75da16d9f31cd8',1,'strip_zone']]],
+  ['ndisks',['NDISKS',['../raid6test_8c.html#a42feece5ee7de750dfdf3c5815a6f9d2',1,'NDISKS():&#160;raid6test.c'],['../test_8c.html#a42feece5ee7de750dfdf3c5815a6f9d2',1,'NDISKS():&#160;test.c']]],
+  ['new_5fchunk_5fsectors',['new_chunk_sectors',['../structmddev__s.html#ac4cc35c057aa0fe1b01cde791ab24a66',1,'mddev_s']]],
+  ['new_5flayout',['new_layout',['../structmddev__s.html#a44f7bc10a01cfc3b4d322dae2d423e0a',1,'mddev_s']]],
+  ['new_5flevel',['new_level',['../structmddev__s.html#a7f13cd1a390d4c1d3f13ecb71aa71764',1,'mddev_s']]],
+  ['new_5fraid_5fdisk',['new_raid_disk',['../structmdk__rdev__s.html#a3e59bc4169da8ab3ac74d58a0bd0a0ff',1,'mdk_rdev_s']]],
+  ['next',['next',['../structlist__head.html#afb6f2172d12efd37f00bb623a6885f2a',1,'list_head']]],
+  ['no_5fmerge',['no_merge',['../async__raid6__recov_8c.html#a87814b6c03ba7e81a3b3de1dea97991e',1,'async_raid6_recov.c']]],
+  ['node',['node',['../structecryptfs__msg__ctx.html#a2054c2f57e759b2b20c4f5adb167b98c',1,'ecryptfs_msg_ctx']]],
+  ['non_5foverwrite',['non_overwrite',['../structstripe__head__state.html#ae3db3acef84fe2dc69723a8f90aad581',1,'stripe_head_state']]],
+  ['npages',['npages',['../struct__kgpu__mempool.html#ac7b6a0987401a4ff5dde2e3b669c4326',1,'_kgpu_mempool::npages()'],['../struct__kgpu__vma.html#ac7b6a0987401a4ff5dde2e3b669c4326',1,'_kgpu_vma::npages()']]],
+  ['nr',['nr',['../structr62__data.html#a2833bf188e6bf292fa7d61e2dd54d622',1,'r62_data']]],
+  ['nr_5fd',['nr_d',['../structraid6__pq__data.html#ac900182c8aba8cd169583813daa6d789',1,'raid6_pq_data']]],
+  ['nr_5fhash',['NR_HASH',['../38_2raid5_8c.html#af7274e20ec5c1695cfdae0c8c7bc0337',1,'NR_HASH():&#160;raid5.c'],['../39_2raid5_8c.html#af7274e20ec5c1695cfdae0c8c7bc0337',1,'NR_HASH():&#160;raid5.c']]],
+  ['nr_5fpending',['nr_pending',['../structmdk__rdev__s.html#a3d12fafc9e4dce29add4d4f5fcec0ded',1,'mdk_rdev_s']]],
+  ['nr_5fstrip_5fzones',['nr_strip_zones',['../structraid0__private__data.html#a3201291adc3b90d97bad2442bfdc4605',1,'raid0_private_data']]],
+  ['nr_5fstripes',['NR_STRIPES',['../38_2raid5_8c.html#a42e82676103815881c8f7431c30c1aef',1,'NR_STRIPES():&#160;raid5.c'],['../39_2raid5_8c.html#a42e82676103815881c8f7431c30c1aef',1,'NR_STRIPES():&#160;raid5.c']]],
+  ['num_5fglobal_5fauth_5ftoks',['num_global_auth_toks',['../structecryptfs__mount__crypt__stat.html#a0c69ce8ff2448e16779d004b6b3ac1dc',1,'ecryptfs_mount_crypt_stat']]],
+  ['num_5fqueued_5fmsg_5fctx',['num_queued_msg_ctx',['../structecryptfs__daemon.html#a3bf272c707187d49295005513b39dda5',1,'ecryptfs_daemon']]],
+  ['num_5frand_5fbytes',['num_rand_bytes',['../structecryptfs__write__tag__70__packet__silly__stack.html#abc5e87c04e30165e5ddb901f575491cd',1,'ecryptfs_write_tag_70_packet_silly_stack']]],
+  ['nunits',['nunits',['../struct__kgpu__mempool.html#ae8656b9bb862f9103e4860c0e6b6f508',1,'_kgpu_mempool']]]
+];

@@ -1,0 +1,6 @@
+<map id="upper_size_to_lower_size" name="upper_size_to_lower_size">
+<area shape="rect" id="node2" href="$inode_8c.html#a6d535560db4f881686903ff564b74faf" title="truncate_upper" alt="" coords="227,31,335,57"/>
+<area shape="rect" id="node3" href="$inode_8c.html#ae6d4593f3f6d169ca3ecc1a07550cec1" title="ecryptfs_truncate" alt="" coords="384,5,507,32"/>
+<area shape="rect" id="node5" href="$inode_8c.html#a34946e5592d6ec37a0d9cedef341291d" title="ecryptfs_setattr" alt="" coords="389,56,502,83"/>
+<area shape="rect" id="node4" href="$mmap_8c.html#a6a4799f05bb0baa6b8d31732c51a633f" title="ecryptfs_write_begin" alt="" coords="555,5,698,32"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="ecryptfs_copy_filename" name="ecryptfs_copy_filename">
+<area shape="rect" id="node2" href="$ecryptfs__kernel_8h.html#ab06b8734f2f60f1d0e0a49cea38e4139" title="ecryptfs_encrypt_and\l_encode_filename" alt="" coords="213,45,360,86"/>
+<area shape="rect" id="node5" href="$ecryptfs__kernel_8h.html#a93f392b9925fe885ac0d2d74e5146843" title="ecryptfs_decode_and\l_decrypt_filename" alt="" coords="213,110,360,151"/>
+<area shape="rect" id="node3" href="$inode_8c.html#ad77dbfd861f06cd54046a232ce7a5b3b" title="ecryptfs_lookup" alt="" coords="431,5,545,32"/>
+<area shape="rect" id="node4" href="$inode_8c.html#ae9629ba2454c02f4efeba467903fb345" title="ecryptfs_symlink" alt="" coords="427,56,549,83"/>
+<area shape="rect" id="node6" href="$file_8c.html#aedaa546a81860ed0159a408464edf5f3" title="ecryptfs_filldir" alt="" coords="437,113,539,140"/>
+<area shape="rect" id="node8" href="$inode_8c.html#a2e07441e81e432816ec37c3f5718a0a9" title="ecryptfs_readlink_lower" alt="" coords="409,164,567,191"/>
+<area shape="rect" id="node7" href="$file_8c.html#a157ee122e9a256f1b7b93edd406fd088" title="ecryptfs_readdir" alt="" coords="629,113,744,140"/>
+<area shape="rect" id="node9" href="$inode_8c.html#a02162769d84039ef360069143793ab24" title="ecryptfs_readlink" alt="" coords="626,164,747,191"/>
+<area shape="rect" id="node10" href="$inode_8c.html#a55786dfb81de37a34619141a3c7068d6" title="ecryptfs_getattr_link" alt="" coords="617,215,757,241"/>
+</map>

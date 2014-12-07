@@ -1,0 +1,6 @@
+<map id="write_ecryptfs_marker" name="write_ecryptfs_marker">
+<area shape="rect" id="node2" href="$crypto_8c.html#a726219be3d26c0f5d0cd3764aaf1dc10" title="ecryptfs_write_headers_virt" alt="" coords="206,5,389,32"/>
+<area shape="rect" id="node3" href="$ecryptfs__kernel_8h.html#aebe428f37c6e93d1e18cdc4a7b40e1f6" title="ecryptfs_write_metadata" alt="" coords="437,5,603,32"/>
+<area shape="rect" id="node4" href="$inode_8c.html#aa3e69b4fc3ab260970b7852e00b63ac1" title="ecryptfs_initialize_file" alt="" coords="651,5,797,32"/>
+<area shape="rect" id="node5" href="$inode_8c.html#a2b00e2205459387d2f180e8f055fbaa6" title="ecryptfs_create" alt="" coords="845,5,957,32"/>
+</map>

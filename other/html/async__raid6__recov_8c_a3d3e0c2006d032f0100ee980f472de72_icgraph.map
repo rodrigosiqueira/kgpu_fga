@@ -1,0 +1,31 @@
+<map id="sim_gpu_call" name="sim_gpu_call">
+<area shape="rect" id="node2" href="$async__raid6__recov_8c.html#ad1d19c03054fd28260011822d68ea1b4" title="process_r62_requests" alt="" coords="153,56,303,83"/>
+<area shape="rect" id="node3" href="$async__raid6__recov_8c.html#a115b4e6aa26debed6ba1326e22ae6dff" title="r62d" alt="" coords="415,31,462,57"/>
+<area shape="rect" id="node6" href="$async__raid6__recov_8c.html#ab281345817cabd93265bf345291c34f3" title="gpu_async_raid6_2drecov" alt="" coords="352,81,525,108"/>
+<area shape="rect" id="node4" href="$async__raid6__recov_8c.html#a50cec7c3eae9fbe9d7f8b98e80d9e52a" title="init_gpu_system" alt="" coords="600,31,717,57"/>
+<area shape="rect" id="node5" href="$async__raid6__recov_8c.html#a0a8b152da4029d9b4080dcb34d53fe0d" title="r62_recov_module_init" alt="" coords="792,31,944,57"/>
+<area shape="rect" id="node7" href="$async__raid6__recov_8c.html#a9751129451c5226c497d5abb73517eff" title="async_raid6_2data_recov" alt="" coords="573,81,744,108"/>
+<area shape="rect" id="node30" href="$async__raid6__recov_8c.html#a736e26848329226a643d258f2d6506c3" title="async_gpu" alt="" coords="616,132,701,159"/>
+<area shape="rect" id="node8" href="$raid6test_8c.html#a8da31090899a7d491f6611a359b20af9" title="raid6_dual_recov" alt="" coords="808,81,928,108"/>
+<area shape="rect" id="node12" href="$38_2raid5_8c.html#a72205228b2b1dcd6a28bb0f00bdfec6c" title="ops_run_compute6_2" alt="" coords="795,132,941,159"/>
+<area shape="rect" id="node9" href="$raid6test_8c.html#aef2e41711aedff998d624896dcdb8435" title="test_disks" alt="" coords="1007,81,1089,108"/>
+<area shape="rect" id="node10" href="$raid6test_8c.html#ad8da55163e5e13cedbca5b9d7fdc8e68" title="test" alt="" coords="1186,81,1230,108"/>
+<area shape="rect" id="node11" href="$raid6test_8c.html#a4f66df991099d758aa6e054b05bedb58" title="raid6_test" alt="" coords="1321,81,1399,108"/>
+<area shape="rect" id="node13" href="$38_2raid5_8c.html#a915a6d2bbe651f93bf1498eee36fdcc9" title="__raid_run_ops" alt="" coords="993,132,1103,159"/>
+<area shape="rect" id="node14" href="$38_2raid5_8c.html#aafeac6a27f55e280f3c0aa0b0ad59976" title="async_run_ops" alt="" coords="1153,132,1263,159"/>
+<area shape="rect" id="node15" href="$38_2raid5_8c.html#a8330e0848e29e0949479c5978a28fa14" title="raid_run_ops" alt="" coords="1312,132,1408,159"/>
+<area shape="rect" id="node16" href="$38_2raid5_8c.html#ad1a1866a8035d74edc85b75269f41f5c" title="handle_stripe5" alt="" coords="1456,107,1563,133"/>
+<area shape="rect" id="node29" href="$38_2raid5_8c.html#ab639a0fe45f4b35706481f223e9fc131" title="handle_stripe6" alt="" coords="1456,157,1563,184"/>
+<area shape="rect" id="node17" href="$38_2raid5_8c.html#aee91fab8150394951b41382f58714a92" title="handle_stripe" alt="" coords="1611,132,1709,159"/>
+<area shape="rect" id="node18" href="$38_2raid5_8c.html#aebcb98aff6b5ab38fa330fd11fafbbdd" title="sync_request" alt="" coords="1771,81,1871,108"/>
+<area shape="rect" id="node19" href="$38_2raid5_8c.html#a78d5fc880ac15f467e7c1842c87fb6ed" title="retry_aligned_read" alt="" coords="1757,132,1885,159"/>
+<area shape="rect" id="node20" href="$38_2raid5_8c.html#a9e4a3e96c3d933bf4e660a623220f20f" title="raid5d" alt="" coords="1934,157,1991,184"/>
+<area shape="rect" id="node21" href="$38_2raid5_8c.html#a75d3f6689ba524bab9d3327922fe7fc4" title="setup_conf" alt="" coords="2041,157,2127,184"/>
+<area shape="rect" id="node22" href="$38_2raid5_8c.html#adbfb965a5a562874828a870f76e59d03" title="run" alt="" coords="2231,5,2271,32"/>
+<area shape="rect" id="node23" href="$38_2raid5_8c.html#af6bbdd785e2eb280f81cfc7aedd03460" title="raid45_takeover_raid0" alt="" coords="2176,208,2325,235"/>
+<area shape="rect" id="node24" href="$38_2raid5_8c.html#a5d096edffef8893c205346c1511c3443" title="raid5_takeover" alt="" coords="2373,132,2480,159"/>
+<area shape="rect" id="node25" href="$38_2raid5_8c.html#ae20dd7c63ce7a719eeaef541c6d7e654" title="raid4_takeover" alt="" coords="2373,233,2480,260"/>
+<area shape="rect" id="node26" href="$38_2raid5_8c.html#a7d16982b1bb962183d784e48abec2671" title="raid5_takeover_raid1" alt="" coords="2179,107,2322,133"/>
+<area shape="rect" id="node27" href="$38_2raid5_8c.html#aca2e5fb87731e12f5a6756bae42d285c" title="raid5_takeover_raid6" alt="" coords="2179,157,2322,184"/>
+<area shape="rect" id="node28" href="$38_2raid5_8c.html#a5340faac7f92a991e46f79c3ce9c1087" title="raid6_takeover" alt="" coords="2197,309,2304,336"/>
+</map>

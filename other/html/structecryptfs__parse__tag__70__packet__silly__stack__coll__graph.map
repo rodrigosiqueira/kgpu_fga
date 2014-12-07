@@ -1,0 +1,6 @@
+<map id="ecryptfs_parse_tag_70_packet_silly_stack" name="ecryptfs_parse_tag_70_packet_silly_stack">
+<area shape="rect" id="node2" href="$structecryptfs__auth__tok.html" title="{ecryptfs_auth_tok\n|+ version\l+ token_type\l+ flags\l+ reserved\l+ token\l|}" alt="" coords="210,264,336,400"/>
+<area shape="rect" id="node3" href="$structecryptfs__private__key.html" title="{ecryptfs_private_key\n|+ key_size\l+ data_len\l+ signature\l+ pki_type\l+ data\l|}" alt="" coords="5,35,147,171"/>
+<area shape="rect" id="node4" href="$structecryptfs__password.html" title="{ecryptfs_password\n|+ password_bytes\l+ hash_algo\l+ hash_iterations\l+ session_key_encryption\l_key_bytes\l+ flags\l+ session_key_encryption_key\l+ signature\l+ salt\l|}" alt="" coords="172,5,375,200"/>
+<area shape="rect" id="node5" href="$structecryptfs__session__key.html" title="{ecryptfs_session_key\n|+ flags\l+ encrypted_key_size\l+ decrypted_key_size\l+ encrypted_key\l+ decrypted_key\l|}" alt="" coords="399,35,549,171"/>
+</map>

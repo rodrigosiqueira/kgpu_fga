@@ -1,0 +1,8 @@
+<map id="ecryptfs_exorcise_daemon" name="ecryptfs_exorcise_daemon">
+<area shape="rect" id="node2" href="$messaging_8c.html#a5428ad7552af9e79835622bdff57c5db" title="ecryptfs_process_quit" alt="" coords="251,5,402,32"/>
+<area shape="rect" id="node3" href="$messaging_8c.html#a83a551f817e776aaea301bb9191199f9" title="ecryptfs_release_messaging" alt="" coords="233,56,421,83"/>
+<area shape="rect" id="node7" href="$miscdev_8c.html#aee0657f6ed112e3782c08c30c07af319" title="ecryptfs_miscdev_release" alt="" coords="239,107,414,133"/>
+<area shape="rect" id="node4" href="$services_2gaes_2ecryptfs_2main_8c.html#abe6d03208b49def9b19a36c8a79373b9" title="ecryptfs_init" alt="" coords="680,56,773,83"/>
+<area shape="rect" id="node5" href="$services_2gaes_2ecryptfs_2main_8c.html#aa32ace6b7c319adb175778c357041568" title="ecryptfs_exit" alt="" coords="502,56,599,83"/>
+<area shape="rect" id="node6" href="$messaging_8c.html#a6babe1511f5e89350b70a7dd6adcbf90" title="ecryptfs_init_messaging" alt="" coords="469,107,632,133"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="kgpu_ioctl" name="kgpu_ioctl">
+<area shape="rect" id="node2" href="$kgpu_2main_8c.html#a8bdeaf81f8e2105990a909c02b41a981" title="set_gpu_mempool" alt="" coords="149,5,277,32"/>
+<area shape="rect" id="node4" href="$kgpu_2main_8c.html#a3ee00a88f4a8f0803cd1ae9d716ad34f" title="dump_gpu_bufs" alt="" coords="156,56,271,83"/>
+<area shape="rect" id="node5" href="$kgpu_2main_8c.html#a3eddb4f60a70ceea84d09ba4b629ce95" title="terminate_all_requests" alt="" coords="137,107,290,133"/>
+<area shape="rect" id="node3" href="$kgpu__kutils_8c.html#a8a1495a939fc6fe4781e8cd3b9b8130e" title="kgpu_v2page" alt="" coords="339,5,437,32"/>
+</map>

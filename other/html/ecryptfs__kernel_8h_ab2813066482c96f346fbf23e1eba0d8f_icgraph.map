@@ -1,0 +1,22 @@
+<map id="ecryptfs_lower_header_size" name="ecryptfs_lower_header_size">
+<area shape="rect" id="node2" href="$crypto_8c.html#a740d9efeadec638412712e946d489058" title="ecryptfs_lower_offset\l_for_extent" alt="" coords="251,181,397,222"/>
+<area shape="rect" id="node17" href="$ecryptfs__kernel_8h.html#a9ea5ca17a37e818f2bb40976b23adb9c" title="ecryptfs_encrypt_pages2" alt="" coords="240,322,408,348"/>
+<area shape="rect" id="node20" href="$ecryptfs__kernel_8h.html#a8ebf9f9d953fc4f0f1e464ab16e9773d" title="ecryptfs_decrypt_pages" alt="" coords="459,263,621,290"/>
+<area shape="rect" id="node21" href="$inode_8c.html#ad709eee5a6c6b811313d07f3c325a131" title="upper_size_to_lower_size" alt="" coords="238,52,410,79"/>
+<area shape="rect" id="node3" href="$ecryptfs__kernel_8h.html#a26de129ca477fc9762d6750b5020914f" title="ecryptfs_encrypt_page" alt="" coords="463,116,617,143"/>
+<area shape="rect" id="node14" href="$ecryptfs__kernel_8h.html#a8f0e0486293ab97cca8219ee1fee7f4b" title="ecryptfs_decrypt_page" alt="" coords="463,188,617,215"/>
+<area shape="rect" id="node4" href="$mmap_8c.html#a1c709c67cbb144bffe29cff5a7ac0f8c" title="ecryptfs_writepage" alt="" coords="670,127,802,154"/>
+<area shape="rect" id="node5" href="$mmap_8c.html#aba2c17cca4323636c254626963421f3f" title="ecryptfs_write_end" alt="" coords="670,26,802,52"/>
+<area shape="rect" id="node6" href="$read__write_8c.html#a1f6fb7e71433ccea976b2cba69741f2a" title="ecryptfs_write" alt="" coords="684,76,788,103"/>
+<area shape="rect" id="node7" href="$inode_8c.html#a01b49555f54fc75f2ce9382cee60155e" title="grow_file" alt="" coords="881,90,956,116"/>
+<area shape="rect" id="node10" href="$inode_8c.html#a6d535560db4f881686903ff564b74faf" title="truncate_upper" alt="" coords="865,39,973,66"/>
+<area shape="rect" id="node8" href="$inode_8c.html#aa3e69b4fc3ab260970b7852e00b63ac1" title="ecryptfs_initialize_file" alt="" coords="1035,115,1181,142"/>
+<area shape="rect" id="node9" href="$inode_8c.html#a2b00e2205459387d2f180e8f055fbaa6" title="ecryptfs_create" alt="" coords="1245,115,1357,142"/>
+<area shape="rect" id="node11" href="$inode_8c.html#ae6d4593f3f6d169ca3ecc1a07550cec1" title="ecryptfs_truncate" alt="" coords="1047,14,1169,40"/>
+<area shape="rect" id="node13" href="$inode_8c.html#a34946e5592d6ec37a0d9cedef341291d" title="ecryptfs_setattr" alt="" coords="1051,64,1165,91"/>
+<area shape="rect" id="node12" href="$mmap_8c.html#a6a4799f05bb0baa6b8d31732c51a633f" title="ecryptfs_write_begin" alt="" coords="1230,171,1373,198"/>
+<area shape="rect" id="node15" href="$mmap_8c.html#a8f8e487f41eae0bd59f0f73483c8b0bd" title="ecryptfs_readpage" alt="" coords="671,228,801,255"/>
+<area shape="rect" id="node16" href="$mmap_8c.html#a817586e3c9558932635e84f23bbe3980" title="ecryptfs_readpages" alt="" coords="851,254,987,280"/>
+<area shape="rect" id="node18" href="$read__write_8c.html#a7069e6270fd6afd0bb49e7259cd74810" title="ecryptfs_write2" alt="" coords="485,326,595,352"/>
+<area shape="rect" id="node19" href="$file_8c.html#a728728ea4482c58bb7b9cabbc7bfcd3f" title="ecryptfs_file_write" alt="" coords="672,330,800,356"/>
+</map>

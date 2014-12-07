@@ -1,0 +1,5 @@
+<map id="ecryptfs_generate_new_key" name="ecryptfs_generate_new_key">
+<area shape="rect" id="node2" href="$ecryptfs__kernel_8h.html#a9a076756b4a12fe2b1913c58313bed8f" title="ecryptfs_new_file_context" alt="" coords="241,5,415,32"/>
+<area shape="rect" id="node3" href="$inode_8c.html#aa3e69b4fc3ab260970b7852e00b63ac1" title="ecryptfs_initialize_file" alt="" coords="464,5,611,32"/>
+<area shape="rect" id="node4" href="$inode_8c.html#a2b00e2205459387d2f180e8f055fbaa6" title="ecryptfs_create" alt="" coords="659,5,771,32"/>
+</map>

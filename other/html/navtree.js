@@ -1,11 +1,46 @@
 var NAVTREE =
 [
-  [ "KGPU", "index.html", ]
+  [ "KGPU", "index.html", [
+    [ "containing plaintext data extent to encrypt", "_page.html", null ],
+    [ "of a ``virtual'' representation of the encrypted lower", "_sort.html", null ],
+    [ "eCryptfs page", "_the.html", null ],
+    [ "Data Structures", null, [
+      [ "Data Structures", "annotated.html", "annotated" ],
+      [ "Data Structure Index", "classes.html", null ],
+      [ "Data Fields", "functions.html", [
+        [ "All", "functions.html", "functions_dup" ],
+        [ "Variables", "functions_vars.html", "functions_vars" ]
+      ] ]
+    ] ],
+    [ "Files", null, [
+      [ "File List", "files.html", "files" ],
+      [ "Globals", "globals.html", [
+        [ "All", "globals.html", "globals_dup" ],
+        [ "Functions", "globals_func.html", "globals_func" ],
+        [ "Variables", "globals_vars.html", null ],
+        [ "Typedefs", "globals_type.html", null ],
+        [ "Enumerations", "globals_enum.html", null ],
+        [ "Enumerator", "globals_eval.html", null ],
+        [ "Macros", "globals_defs.html", "globals_defs" ]
+      ] ]
+    ] ]
+  ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"index.html"
+"38_2bitmap_8h.html",
+"38_2raid5_8c.html#ae3137b76eb8688b05514ba3be1c0fd8a",
+"39_2raid5_8c.html#a4cdde13d7d5cd1b1fea7f1316c775ea2",
+"async__raid6__recov_8c.html#a9751129451c5226c497d5abb73517eff",
+"dm-crypt_8c.html#abbdf5e2cfac36b04b4497ff01b3dfd06",
+"ecryptfs__kernel_8h.html#ace536cf7c7631408e72c93ca228c4e64",
+"globals_b.html",
+"keystore_8c.html#a9b8a7767d3634e57b9fbe484cc680ad0",
+"service_8c.html#af8654257be7398f452c98dab9a8014bd",
+"structecryptfs__crypt__stat.html#a4091e902ff412d8b891fbf27602878cb",
+"structkgpu__service__request.html#a9e76e500429dc76784eb5f12256113c3",
+"structraid5__private__data.html#acee47046cc231536c6188d983ec4d70c"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

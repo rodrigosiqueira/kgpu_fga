@@ -1,0 +1,6 @@
+<map id="ecryptfs_read_and_validate_xattr_region" name="ecryptfs_read_and_validate_xattr_region">
+<area shape="rect" id="node2" href="$crypto_8c.html#a0328356e623d00183afc5c85cc63e932" title="ecryptfs_read_xattr\l_region" alt="" coords="254,23,389,65"/>
+<area shape="rect" id="node5" href="$crypto_8c.html#a6351e3152155696288917740cc9c849d" title="contains_ecryptfs_marker" alt="" coords="235,89,407,116"/>
+<area shape="rect" id="node3" href="$ecryptfs__kernel_8h.html#a5240470a17155c25d11458eb2504a7ab" title="ecryptfs_inode_to_private" alt="" coords="456,5,627,32"/>
+<area shape="rect" id="node4" href="$ecryptfs__kernel_8h.html#a0db90fed68f8445f1edba3136bc2b11a" title="ecryptfs_getxattr_lower" alt="" coords="462,56,621,83"/>
+</map>

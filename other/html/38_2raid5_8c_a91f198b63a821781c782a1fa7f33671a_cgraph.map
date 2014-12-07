@@ -1,0 +1,26 @@
+<map id="handle_stripe_expansion" name="handle_stripe_expansion">
+<area shape="rect" id="node2" href="$38_2raid5_8c.html#a5d7855155488ec1b3807a9f3712420a1" title="compute_blocknr" alt="" coords="817,107,938,133"/>
+<area shape="rect" id="node3" href="$38_2raid5_8c.html#a3c713e9d04e1a50d9196a2bccff5a674" title="raid5_compute_sector" alt="" coords="990,56,1141,83"/>
+<area shape="rect" id="node5" href="$38_2raid5_8c.html#a2c5723a03a2ca544d41f021b020da33c" title="get_active_stripe" alt="" coords="219,259,341,285"/>
+<area shape="rect" id="node24" href="$38_2raid5_8c.html#a61a56e1833249a0333c6b432df860d78" title="release_stripe" alt="" coords="229,397,331,424"/>
+<area shape="rect" id="node4" href="$38_2md_8h.html#ad9929b063dc44105365cfebc8912000b" title="mdname" alt="" coords="1029,107,1101,133"/>
+<area shape="rect" id="node6" href="$38_2raid5_8c.html#af0b604d5c4895a4ffaad5460d88b0d0f" title="__find_stripe" alt="" coords="424,183,520,209"/>
+<area shape="rect" id="node7" href="$38_2raid5_8c.html#ac2d5b9e20ad0ea6a9dbadadf21706f7f" title="get_free_stripe" alt="" coords="418,284,526,311"/>
+<area shape="rect" id="node8" href="$list_8h.html#a6601e54d8f27ab290ee6819f7e2127b7" title="list_empty" alt="" coords="836,436,919,463"/>
+<area shape="rect" id="node10" href="$38_2raid5_8c.html#a9fcc78f931a615dcc92e3625bb90d1e4" title="md_raid5_unplug_device" alt="" coords="389,613,555,640"/>
+<area shape="rect" id="node19" href="$38_2raid5_8c.html#a931a6351979cfae38213abb015cfe7a3" title="init_stripe" alt="" coords="433,233,511,260"/>
+<area shape="rect" id="node9" href="$38_2raid5_8c.html#a4d1f9b6f771df384d33ec9a25e98ff16" title="remove_hash" alt="" coords="634,259,734,285"/>
+<area shape="rect" id="node11" href="$38_2md_8h.html#ac73b7c22d1b47c2cc3575455344034f7" title="plugger_remove_plug" alt="" coords="611,613,757,640"/>
+<area shape="rect" id="node12" href="$38_2raid5_8c.html#a357c0e91a480bba1cdb4beb6f254edd2" title="raid5_activate_delayed" alt="" coords="607,664,761,691"/>
+<area shape="rect" id="node16" href="$38_2md_8h.html#a080b2ad0ffa283bf0ecb735f1734f47f" title="md_wakeup_thread" alt="" coords="617,563,751,589"/>
+<area shape="rect" id="node17" href="$38_2raid5_8c.html#ac650026ee26aa0bb8c00a96e2e34ca47" title="unplug_slaves" alt="" coords="631,715,737,741"/>
+<area shape="rect" id="node13" href="$list_8h.html#a588bec046f1e9797b33a5c5ab250f447" title="list_add_tail" alt="" coords="832,588,923,615"/>
+<area shape="rect" id="node15" href="$38_2md_8h.html#a86d79b6b8c73089da2ad45fa2a0ae868" title="plugger_set_plug" alt="" coords="817,765,937,792"/>
+<area shape="rect" id="node14" href="$list_8h.html#a8a28f150a191624bf6923a48cdace7e3" title="__list_add" alt="" coords="1025,588,1106,615"/>
+<area shape="rect" id="node18" href="$38_2md_8h.html#a1fb60050f400e286ce751ed5ca0f3883" title="rdev_dec_pending" alt="" coords="814,715,941,741"/>
+<area shape="rect" id="node20" href="$38_2raid5_8c.html#a35fc4015c0525024844dd1e76ed54fc2" title="stripe_operations_active" alt="" coords="603,309,765,336"/>
+<area shape="rect" id="node21" href="$38_2raid5_8c.html#a94eddd2957f27120ac4302a2403f8ca1" title="stripe_set_idx" alt="" coords="826,5,929,32"/>
+<area shape="rect" id="node22" href="$38_2raid5_8c.html#a4cdde13d7d5cd1b1fea7f1316c775ea2" title="raid5_build_block" alt="" coords="623,208,745,235"/>
+<area shape="rect" id="node23" href="$38_2raid5_8c.html#ad46ca9739955fbe1117bbca441e43d39" title="insert_hash" alt="" coords="639,157,729,184"/>
+<area shape="rect" id="node25" href="$38_2raid5_8c.html#a76e49e0063b9157e80040b7ea9aa52d4" title="__release_stripe" alt="" coords="413,487,531,513"/>
+</map>

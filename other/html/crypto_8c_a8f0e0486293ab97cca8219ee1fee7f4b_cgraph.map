@@ -1,0 +1,10 @@
+<map id="ecryptfs_decrypt_page" name="ecryptfs_decrypt_page">
+<area shape="rect" id="node2" href="$ecryptfs__kernel_8h.html#a5240470a17155c25d11458eb2504a7ab" title="ecryptfs_inode_to_private" alt="" coords="425,5,596,32"/>
+<area shape="rect" id="node3" href="$crypto_8c.html#a740d9efeadec638412712e946d489058" title="ecryptfs_lower_offset\l_for_extent" alt="" coords="216,82,363,123"/>
+<area shape="rect" id="node5" href="$ecryptfs__kernel_8h.html#a7a8f9447eb75e1878c99de4166fdd6fb" title="ecryptfs_read_lower" alt="" coords="220,31,359,57"/>
+<area shape="rect" id="node6" href="$crypto_8c.html#af6d633b806e115227b076c421479e4ca" title="ecryptfs_decrypt_extent" alt="" coords="208,148,371,175"/>
+<area shape="rect" id="node4" href="$ecryptfs__kernel_8h.html#ab2813066482c96f346fbf23e1eba0d8f" title="ecryptfs_lower_header_size" alt="" coords="419,89,603,116"/>
+<area shape="rect" id="node7" href="$debug_8c.html#a045879c3d789610d64a216956beeaf09" title="ecryptfs_dump_hex" alt="" coords="443,144,579,171"/>
+<area shape="rect" id="node8" href="$crypto_8c.html#a78a26bcd3062c8d4780d955d563b4f69" title="ecryptfs_decrypt_page\l_offset" alt="" coords="433,195,588,237"/>
+<area shape="rect" id="node9" href="$crypto_8c.html#a70334db0e206d80e643be63f141a4ab9" title="decrypt_scatterlist" alt="" coords="651,203,781,229"/>
+</map>

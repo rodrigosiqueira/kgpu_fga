@@ -1,0 +1,36 @@
+<map id="ops_run_compute6_2" name="ops_run_compute6_2">
+<area shape="rect" id="node2" href="$38_2raid5_8c.html#a6342706fa8a99236f183b2a1658ccd07" title="raid6_d0" alt="" coords="470,107,541,133"/>
+<area shape="rect" id="node3" href="$38_2raid5_8c.html#a4bb6399b9a00c70be5320d22d0cb710f" title="raid6_idx_to_slot" alt="" coords="445,157,565,184"/>
+<area shape="rect" id="node4" href="$38_2raid5_8c.html#a397b3937dcd807be19931b19a2ccb13f" title="raid6_next_disk" alt="" coords="449,208,562,235"/>
+<area shape="rect" id="node5" href="$38_2raid5_8c.html#ad904bdeb9613475656648c3a3e2f3228" title="ops_complete_compute" alt="" coords="205,309,365,336"/>
+<area shape="rect" id="node15" href="$38_2raid5_8c.html#a3d9d27c287a448417e747f8ff6d6c412" title="to_addr_conv" alt="" coords="235,487,335,513"/>
+<area shape="rect" id="node16" href="$38_2raid5_8c.html#a1eebda955b2ed8432c9ebc9668c7f494" title="set_syndrome_sources" alt="" coords="207,157,364,184"/>
+<area shape="rect" id="node17" href="$async__raid6__recov_8c.html#ade906b89bd9ba6db72d4529d2790ab60" title="async_raid6_datap_recov" alt="" coords="200,436,371,463"/>
+<area shape="rect" id="node19" href="$async__raid6__recov_8c.html#a9751129451c5226c497d5abb73517eff" title="async_raid6_2data_recov" alt="" coords="200,385,371,412"/>
+<area shape="rect" id="node6" href="$38_2raid5_8c.html#aee07e5a4c5ebe98a75cb5b395a47a2a3" title="mark_target_uptodate" alt="" coords="431,259,579,285"/>
+<area shape="rect" id="node7" href="$38_2raid5_8c.html#a61a56e1833249a0333c6b432df860d78" title="release_stripe" alt="" coords="454,309,557,336"/>
+<area shape="rect" id="node8" href="$38_2raid5_8c.html#a76e49e0063b9157e80040b7ea9aa52d4" title="__release_stripe" alt="" coords="657,132,775,159"/>
+<area shape="rect" id="node9" href="$list_8h.html#a6601e54d8f27ab290ee6819f7e2127b7" title="list_empty" alt="" coords="880,5,963,32"/>
+<area shape="rect" id="node10" href="$list_8h.html#a588bec046f1e9797b33a5c5ab250f447" title="list_add_tail" alt="" coords="1069,259,1160,285"/>
+<area shape="rect" id="node12" href="$38_2md_8h.html#a86d79b6b8c73089da2ad45fa2a0ae868" title="plugger_set_plug" alt="" coords="861,107,981,133"/>
+<area shape="rect" id="node13" href="$38_2md_8h.html#a080b2ad0ffa283bf0ecb735f1734f47f" title="md_wakeup_thread" alt="" coords="854,157,989,184"/>
+<area shape="rect" id="node14" href="$38_2raid5_8c.html#a35fc4015c0525024844dd1e76ed54fc2" title="stripe_operations_active" alt="" coords="840,208,1003,235"/>
+<area shape="rect" id="node11" href="$list_8h.html#a8a28f150a191624bf6923a48cdace7e3" title="__list_add" alt="" coords="1227,259,1309,285"/>
+<area shape="rect" id="node18" href="$async__raid6__recov_8c.html#a4d1e1631bb3ddf725b95b40624c2dff5" title="async_mult" alt="" coords="671,563,761,589"/>
+<area shape="rect" id="node20" href="$async__raid6__recov_8c.html#ab281345817cabd93265bf345291c34f3" title="gpu_async_raid6_2drecov" alt="" coords="419,360,592,387"/>
+<area shape="rect" id="node32" href="$async__raid6__recov_8c.html#af1dca01d4123fb118a805c975a189ec4" title="__2data_recov_4" alt="" coords="445,411,566,437"/>
+<area shape="rect" id="node34" href="$async__raid6__recov_8c.html#a12a1316b4df2083f5892649664266169" title="__2data_recov_5" alt="" coords="445,512,566,539"/>
+<area shape="rect" id="node35" href="$async__raid6__recov_8c.html#a139be10188f8a38bd15fe43de10bb5ee" title="__2data_recov_n" alt="" coords="445,461,566,488"/>
+<area shape="rect" id="node21" href="$list_8h.html#aea85dd50b9129ddaa3e3c67ed55804e4" title="INIT_LIST_HEAD" alt="" coords="1051,360,1179,387"/>
+<area shape="rect" id="node22" href="$async__raid6__recov_8c.html#ad1d19c03054fd28260011822d68ea1b4" title="process_r62_requests" alt="" coords="641,461,791,488"/>
+<area shape="rect" id="node23" href="$kgpu_2main_8c.html#a2dd5472e4d16f3486edd193b8dba1819" title="kgpu_vmalloc" alt="" coords="870,411,973,437"/>
+<area shape="rect" id="node24" href="$kgpu_2main_8c.html#ad0383c619cf5e7a0c24e6c2cd213deb3" title="kgpu_alloc_request" alt="" coords="854,461,989,488"/>
+<area shape="rect" id="node25" href="$async__raid6__recov_8c.html#a3d3e0c2006d032f0100ee980f472de72" title="sim_gpu_call" alt="" coords="872,512,971,539"/>
+<area shape="rect" id="node26" href="$kgpu_2main_8c.html#a90fde0176e3fec290fb4a510b4c16b6c" title="kgpu_call_sync" alt="" coords="865,309,977,336"/>
+<area shape="rect" id="node28" href="$list_8h.html#ab1708206f0f7e0a56550b35372203ba5" title="list_del" alt="" coords="890,563,953,589"/>
+<area shape="rect" id="node30" href="$kgpu_2main_8c.html#a3b9b492636a1696df676e0c2f454ba38" title="kgpu_vfree" alt="" coords="878,613,965,640"/>
+<area shape="rect" id="node31" href="$kgpu_2main_8c.html#aa99dfe2368736d359a0d42474661bf65" title="kgpu_free_request" alt="" coords="857,664,986,691"/>
+<area shape="rect" id="node27" href="$kgpu_2main_8c.html#aea7d0dd7d6f9eb0dc649299db18386c6" title="sync_callback" alt="" coords="1062,309,1167,336"/>
+<area shape="rect" id="node29" href="$list_8h.html#a24b474717d65a296695e8b79b4adefda" title="__list_del" alt="" coords="1076,563,1153,589"/>
+<area shape="rect" id="node33" href="$async__raid6__recov_8c.html#a7cd1c48f605bcc2a37a6017122f4f614" title="async_sum_product" alt="" coords="647,512,785,539"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="lookup_kgpu_sitem" name="lookup_kgpu_sitem">
+<area shape="rect" id="node2" href="$service_8c.html#a6d156c1687a48a5a92cf0d1beec9cdc1" title="kh_lookup_service" alt="" coords="199,16,329,43"/>
+<area shape="rect" id="node7" href="$service_8c.html#af8654257be7398f452c98dab9a8014bd" title="kh_unregister_service" alt="" coords="189,71,339,97"/>
+<area shape="rect" id="node9" href="$service_8c.html#a66cfb932845d4bf7afb231a0a653d125" title="kh_unload_service" alt="" coords="608,121,739,148"/>
+<area shape="rect" id="node3" href="$helper_8c.html#abca40b4eacfa5e54adbff84d83fba4d9" title="kh_init_service_request" alt="" coords="387,15,546,41"/>
+<area shape="rect" id="node4" href="$helper_8c.html#a2d341d6ffe33bb64febdc8fc73d7eb09" title="kh_get_next_service\l_request" alt="" coords="602,5,745,46"/>
+<area shape="rect" id="node5" href="$helper_8c.html#a1b90500e5182d24edff1989d034a3d87" title="kh_main_loop" alt="" coords="801,12,903,39"/>
+<area shape="rect" id="node6" href="$helper_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="952,12,1003,39"/>
+<area shape="rect" id="node8" href="$service_8c.html#a227c3dbbf5aa72338268cb75818ab22c" title="__unload_service" alt="" coords="405,71,528,97"/>
+<area shape="rect" id="node10" href="$service_8c.html#a62fdcfe4c64401bc24cabb1e1ddc82bd" title="kh_unload_all_services" alt="" coords="595,71,752,97"/>
+</map>

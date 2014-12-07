@@ -1,0 +1,10 @@
+<map id="ecryptfs_copy_up_encrypted_with_header" name="ecryptfs_copy_up_encrypted_with_header">
+<area shape="rect" id="node2" href="$crypto_8c.html#a0328356e623d00183afc5c85cc63e932" title="ecryptfs_read_xattr\l_region" alt="" coords="251,6,386,47"/>
+<area shape="rect" id="node5" href="$mmap_8c.html#adc61f37e04f31bbf3dce9ad8b242108e" title="strip_xattr_flag" alt="" coords="265,72,373,99"/>
+<area shape="rect" id="node7" href="$crypto_8c.html#a897cc3b03edffb1e113ad7aa251cd365" title="ecryptfs_write_header\l_metadata" alt="" coords="243,123,394,165"/>
+<area shape="rect" id="node8" href="$ecryptfs__kernel_8h.html#a2348e4afee0be4d429778964b8943d2c" title="ecryptfs_read_lower\l_page_segment" alt="" coords="249,189,388,230"/>
+<area shape="rect" id="node3" href="$ecryptfs__kernel_8h.html#a5240470a17155c25d11458eb2504a7ab" title="ecryptfs_inode_to_private" alt="" coords="651,72,821,99"/>
+<area shape="rect" id="node4" href="$ecryptfs__kernel_8h.html#a0db90fed68f8445f1edba3136bc2b11a" title="ecryptfs_getxattr_lower" alt="" coords="443,39,602,65"/>
+<area shape="rect" id="node6" href="$crypto_8c.html#a50ad608c942c06e27fb6759d031cb1bc" title="ecryptfs_write_crypt\l_stat_flags" alt="" coords="453,90,593,131"/>
+<area shape="rect" id="node9" href="$read__write_8c.html#a7a8f9447eb75e1878c99de4166fdd6fb" title="ecryptfs_read_lower" alt="" coords="453,176,592,203"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="md_allow_write" name="md_allow_write">
+<area shape="rect" id="node2" href="$38_2raid5_8c.html#a3b424af67322844da18411476891215a" title="resize_stripes" alt="" coords="189,33,291,60"/>
+<area shape="rect" id="node6" href="$39_2raid5_8h.html#ab29e43353656b2878ce3e67cebd346d7" title="raid5_set_cache_size" alt="" coords="166,85,314,112"/>
+<area shape="rect" id="node3" href="$38_2raid5_8c.html#a3da2a65565e0d2fcac06afdf08148931" title="check_reshape" alt="" coords="370,31,481,57"/>
+<area shape="rect" id="node4" href="$38_2raid5_8c.html#a5fbed7019f525253c892743b6ca5a62d" title="raid5_check_reshape" alt="" coords="537,5,682,32"/>
+<area shape="rect" id="node5" href="$38_2raid5_8c.html#a64bfd986510152bdf37fba2bb32cec21" title="raid6_check_reshape" alt="" coords="537,56,682,83"/>
+<area shape="rect" id="node7" href="$38_2raid5_8c.html#aca6e06781056c3ac0aa64ffa1eaae691" title="raid5_store_stripe\l_cache_size" alt="" coords="363,82,488,123"/>
+</map>

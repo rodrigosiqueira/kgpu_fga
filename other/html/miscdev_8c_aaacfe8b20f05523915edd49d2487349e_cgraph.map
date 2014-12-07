@@ -1,0 +1,8 @@
+<map id="ecryptfs_miscdev_read" name="ecryptfs_miscdev_read">
+<area shape="rect" id="node2" href="$ecryptfs__kernel_8h.html#a785e6d04b5b757664a8c0d7e48bbf5ee" title="ecryptfs_find_daemon\l_by_euid" alt="" coords="215,5,366,46"/>
+<area shape="rect" id="node3" href="$list_8h.html#a6601e54d8f27ab290ee6819f7e2127b7" title="list_empty" alt="" coords="249,71,332,97"/>
+<area shape="rect" id="node4" href="$ecryptfs__kernel_8h.html#a58141bba8fe1839782991135894cc340" title="ecryptfs_write_packet\l_length" alt="" coords="215,122,366,163"/>
+<area shape="rect" id="node5" href="$list_8h.html#ab1708206f0f7e0a56550b35372203ba5" title="list_del" alt="" coords="259,188,322,215"/>
+<area shape="rect" id="node7" href="$ecryptfs__kernel_8h.html#afa5f0c6e4ccfb9753a323ff2c5ae993c" title="ecryptfs_msg_ctx_alloc\l_to_free" alt="" coords="211,239,371,281"/>
+<area shape="rect" id="node6" href="$list_8h.html#a24b474717d65a296695e8b79b4adefda" title="__list_del" alt="" coords="419,188,496,215"/>
+</map>

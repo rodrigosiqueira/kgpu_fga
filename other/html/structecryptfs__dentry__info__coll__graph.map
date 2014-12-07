@@ -1,0 +1,5 @@
+<map id="ecryptfs_dentry_info" name="ecryptfs_dentry_info">
+<area shape="rect" id="node2" href="$structecryptfs__crypt__stat.html" title="{ecryptfs_crypt_stat\n|+ flags\l+ file_version\l+ iv_bytes\l+ metadata_size\l+ extent_size\l+ key_size\l+ extent_shift\l+ extent_mask\l+ tfm\l+ hash_tfm\land 7 more...\l|}" alt="" coords="7,435,141,659"/>
+<area shape="rect" id="node3" href="$structlist__head.html" title="{list_head\n||}" alt="" coords="77,5,151,83"/>
+<area shape="rect" id="node4" href="$structecryptfs__mount__crypt__stat.html" title="{ecryptfs_mount_crypt_stat\n|+ flags\l+ global_auth_tok_list\l_mutex\l+ num_global_auth_toks\l+ global_default_cipher\l_key_size\l+ global_default_fn_cipher\l_key_bytes\l+ global_default_cipher_name\l+ global_default_fn_cipher_name\l+ global_default_fnek_sig\l|}" alt="" coords="152,147,365,371"/>
+</map>

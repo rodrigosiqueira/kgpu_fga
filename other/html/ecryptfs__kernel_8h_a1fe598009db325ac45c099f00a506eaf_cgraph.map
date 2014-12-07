@@ -1,0 +1,5 @@
+<map id="ecryptfs_read_and_validate_header_region" name="ecryptfs_read_and_validate_header_region">
+<area shape="rect" id="node2" href="$ecryptfs__kernel_8h.html#a5240470a17155c25d11458eb2504a7ab" title="ecryptfs_inode_to_private" alt="" coords="456,5,627,32"/>
+<area shape="rect" id="node3" href="$ecryptfs__kernel_8h.html#a7a8f9447eb75e1878c99de4166fdd6fb" title="ecryptfs_read_lower" alt="" coords="252,31,391,57"/>
+<area shape="rect" id="node4" href="$crypto_8c.html#a6351e3152155696288917740cc9c849d" title="contains_ecryptfs_marker" alt="" coords="235,81,407,108"/>
+</map>

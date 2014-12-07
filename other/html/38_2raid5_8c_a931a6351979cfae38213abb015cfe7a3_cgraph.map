@@ -1,0 +1,10 @@
+<map id="init_stripe" name="init_stripe">
+<area shape="rect" id="node2" href="$38_2raid5_8c.html#a35fc4015c0525024844dd1e76ed54fc2" title="stripe_operations_active" alt="" coords="133,5,296,32"/>
+<area shape="rect" id="node3" href="$38_2raid5_8c.html#a4d1f9b6f771df384d33ec9a25e98ff16" title="remove_hash" alt="" coords="165,56,265,83"/>
+<area shape="rect" id="node4" href="$38_2raid5_8c.html#a94eddd2957f27120ac4302a2403f8ca1" title="stripe_set_idx" alt="" coords="354,107,457,133"/>
+<area shape="rect" id="node6" href="$38_2raid5_8c.html#a4cdde13d7d5cd1b1fea7f1316c775ea2" title="raid5_build_block" alt="" coords="153,157,276,184"/>
+<area shape="rect" id="node9" href="$38_2raid5_8c.html#ad46ca9739955fbe1117bbca441e43d39" title="insert_hash" alt="" coords="170,208,259,235"/>
+<area shape="rect" id="node5" href="$38_2raid5_8c.html#a3c713e9d04e1a50d9196a2bccff5a674" title="raid5_compute_sector" alt="" coords="515,107,666,133"/>
+<area shape="rect" id="node7" href="$38_2raid5_8c.html#a5d7855155488ec1b3807a9f3712420a1" title="compute_blocknr" alt="" coords="345,157,466,184"/>
+<area shape="rect" id="node8" href="$38_2md_8h.html#ad9929b063dc44105365cfebc8912000b" title="mdname" alt="" coords="555,157,627,184"/>
+</map>

@@ -1,0 +1,19 @@
+<map id="gpq_gen_syndrome" name="gpq_gen_syndrome">
+<area shape="rect" id="node2" href="$gpq_8c.html#a6755774d07bd90fe4e22d50bb4e73084" title="multi_gpu_gen_syndrome" alt="" coords="189,208,360,235"/>
+<area shape="rect" id="node3" href="$gpq_8c.html#a419d6509fc3142819c629d9371de0500" title="__multi_gpu_gen_syndrome" alt="" coords="408,208,592,235"/>
+<area shape="rect" id="node4" href="$gpq_8c.html#a88e0eac4152f7660b1b9b89c9ea13264" title="gpu_gen_syndrome" alt="" coords="641,183,775,209"/>
+<area shape="rect" id="node17" href="$gpq_8c.html#ad0afc6fcbc0d53c38cf5532efb9750a0" title="decide_gpu_load" alt="" coords="215,309,334,336"/>
+<area shape="rect" id="node18" href="$gpq_8c.html#a6e6bb953a6dec3665d720a8bba375e75" title="cpu_gen_syndrome" alt="" coords="207,360,342,387"/>
+<area shape="rect" id="node5" href="$kgpu_2main_8c.html#a2dd5472e4d16f3486edd193b8dba1819" title="kgpu_vmalloc" alt="" coords="843,5,946,32"/>
+<area shape="rect" id="node6" href="$kgpu_2main_8c.html#ad0383c619cf5e7a0c24e6c2cd213deb3" title="kgpu_alloc_request" alt="" coords="827,56,962,83"/>
+<area shape="rect" id="node7" href="$gpq_8c.html#aa10a51e0eb981dc397bc8e8f2be7cccb" title="async_gpu_callback" alt="" coords="825,157,965,184"/>
+<area shape="rect" id="node8" href="$gpq_8c.html#a30ffb3ca02e36f6feddbf086ec6a2c8c" title="end_syndrome_gen" alt="" coords="1014,113,1149,140"/>
+<area shape="rect" id="node9" href="$kgpu_2main_8c.html#a3b9b492636a1696df676e0c2f454ba38" title="kgpu_vfree" alt="" coords="1038,189,1125,216"/>
+<area shape="rect" id="node10" href="$kgpu_2main_8c.html#aa99dfe2368736d359a0d42474661bf65" title="kgpu_free_request" alt="" coords="1017,252,1146,279"/>
+<area shape="rect" id="node11" href="$kgpu_2main_8c.html#aa6c53aa55eb10b07b598337717c6c39a" title="kgpu_call_async" alt="" coords="835,309,954,336"/>
+<area shape="rect" id="node15" href="$kgpu_2main_8c.html#a90fde0176e3fec290fb4a510b4c16b6c" title="kgpu_call_sync" alt="" coords="839,360,951,387"/>
+<area shape="rect" id="node12" href="$list_8h.html#aea85dd50b9129ddaa3e3c67ed55804e4" title="INIT_LIST_HEAD" alt="" coords="1017,309,1145,336"/>
+<area shape="rect" id="node13" href="$list_8h.html#a588bec046f1e9797b33a5c5ab250f447" title="list_add_tail" alt="" coords="1036,360,1127,387"/>
+<area shape="rect" id="node14" href="$list_8h.html#a8a28f150a191624bf6923a48cdace7e3" title="__list_add" alt="" coords="1198,360,1279,387"/>
+<area shape="rect" id="node16" href="$kgpu_2main_8c.html#aea7d0dd7d6f9eb0dc649299db18386c6" title="sync_callback" alt="" coords="1029,411,1134,437"/>
+</map>

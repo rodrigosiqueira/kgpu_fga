@@ -1,0 +1,12 @@
+<map id="ecryptfs_exit" name="ecryptfs_exit">
+<area shape="rect" id="node2" href="$crypto_8c.html#a22bc0a20db49562fe153dd763d2c583b" title="ecryptfs_destroy_crypto" alt="" coords="397,5,560,32"/>
+<area shape="rect" id="node5" href="$ecryptfs__kernel_8h.html#a83a551f817e776aaea301bb9191199f9" title="ecryptfs_release_messaging" alt="" coords="153,56,341,83"/>
+<area shape="rect" id="node9" href="$ecryptfs__kernel_8h.html#ad407ea288b06b83bf8b62fa4986b2946" title="ecryptfs_destroy_kthread" alt="" coords="162,107,331,133"/>
+<area shape="rect" id="node10" href="$services_2gaes_2ecryptfs_2main_8c.html#a12d023054fb31de35e5a4449d5fc2e79" title="do_sysfs_unregistration" alt="" coords="167,157,327,184"/>
+<area shape="rect" id="node11" href="$services_2gaes_2ecryptfs_2main_8c.html#a49ea9099e55d490cd7110bfe9ffccacf" title="ecryptfs_free_kmem\l_caches" alt="" coords="176,209,317,250"/>
+<area shape="rect" id="node3" href="$list_8h.html#ab1708206f0f7e0a56550b35372203ba5" title="list_del" alt="" coords="665,5,727,32"/>
+<area shape="rect" id="node4" href="$list_8h.html#a24b474717d65a296695e8b79b4adefda" title="__list_del" alt="" coords="824,5,901,32"/>
+<area shape="rect" id="node6" href="$messaging_8c.html#a2f2b66714d779ad0e2c9347f7c412da4" title="ecryptfs_exorcise_daemon" alt="" coords="389,56,568,83"/>
+<area shape="rect" id="node8" href="$ecryptfs__kernel_8h.html#aa5d62a4fd16cf95e9322d432653b7c59" title="ecryptfs_destroy_ecryptfs\l_miscdev" alt="" coords="392,107,565,149"/>
+<area shape="rect" id="node7" href="$messaging_8c.html#afa5f0c6e4ccfb9753a323ff2c5ae993c" title="ecryptfs_msg_ctx_alloc\l_to_free" alt="" coords="616,57,776,98"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="end_syndrome_gen" name="end_syndrome_gen">
+<area shape="rect" id="node2" href="$gpq_8c.html#aa10a51e0eb981dc397bc8e8f2be7cccb" title="async_gpu_callback" alt="" coords="190,56,330,83"/>
+<area shape="rect" id="node3" href="$gpq_8c.html#a88e0eac4152f7660b1b9b89c9ea13264" title="gpu_gen_syndrome" alt="" coords="379,81,514,108"/>
+<area shape="rect" id="node4" href="$gpq_8c.html#a419d6509fc3142819c629d9371de0500" title="__multi_gpu_gen_syndrome" alt="" coords="563,56,747,83"/>
+<area shape="rect" id="node6" href="$gpq_8c.html#abe00d8d357cdfec5ec087cf3b587d07a" title="gpq_gen_syndrome" alt="" coords="1014,56,1149,83"/>
+<area shape="rect" id="node5" href="$gpq_8c.html#a6755774d07bd90fe4e22d50bb4e73084" title="multi_gpu_gen_syndrome" alt="" coords="795,5,965,32"/>
+</map>

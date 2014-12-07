@@ -1,0 +1,19 @@
+<map id="resize_stripes" name="resize_stripes">
+<area shape="rect" id="node2" href="$38_2md_8h.html#a27eed6b0a49a99fa8875318ce0f09dd9" title="md_allow_write" alt="" coords="157,5,269,32"/>
+<area shape="rect" id="node3" href="$list_8h.html#a0373c4b3c8ce51a451a569ad978b32e1" title="list_add" alt="" coords="348,56,415,83"/>
+<area shape="rect" id="node5" href="$list_8h.html#a6601e54d8f27ab290ee6819f7e2127b7" title="list_empty" alt="" coords="533,233,616,260"/>
+<area shape="rect" id="node6" href="$list_8h.html#ab1708206f0f7e0a56550b35372203ba5" title="list_del" alt="" coords="182,157,245,184"/>
+<area shape="rect" id="node8" href="$38_2raid5_8c.html#ac650026ee26aa0bb8c00a96e2e34ca47" title="unplug_slaves" alt="" coords="161,208,266,235"/>
+<area shape="rect" id="node10" href="$38_2raid5_8c.html#ac2d5b9e20ad0ea6a9dbadadf21706f7f" title="get_free_stripe" alt="" coords="159,259,267,285"/>
+<area shape="rect" id="node12" href="$38_2raid5_8c.html#ad17ae80d77d6cda5c1ea52b1e7821172" title="scribble_len" alt="" coords="168,309,259,336"/>
+<area shape="rect" id="node13" href="$38_2raid5_8c.html#a61a56e1833249a0333c6b432df860d78" title="release_stripe" alt="" coords="162,360,265,387"/>
+<area shape="rect" id="node4" href="$list_8h.html#a8a28f150a191624bf6923a48cdace7e3" title="__list_add" alt="" coords="705,203,786,229"/>
+<area shape="rect" id="node7" href="$list_8h.html#a24b474717d65a296695e8b79b4adefda" title="__list_del" alt="" coords="343,157,420,184"/>
+<area shape="rect" id="node9" href="$38_2md_8h.html#a1fb60050f400e286ce751ed5ca0f3883" title="rdev_dec_pending" alt="" coords="318,208,445,235"/>
+<area shape="rect" id="node11" href="$38_2raid5_8c.html#a4d1f9b6f771df384d33ec9a25e98ff16" title="remove_hash" alt="" coords="331,309,431,336"/>
+<area shape="rect" id="node14" href="$38_2raid5_8c.html#a76e49e0063b9157e80040b7ea9aa52d4" title="__release_stripe" alt="" coords="323,360,440,387"/>
+<area shape="rect" id="node15" href="$list_8h.html#a588bec046f1e9797b33a5c5ab250f447" title="list_add_tail" alt="" coords="529,284,620,311"/>
+<area shape="rect" id="node16" href="$38_2md_8h.html#a86d79b6b8c73089da2ad45fa2a0ae868" title="plugger_set_plug" alt="" coords="515,335,635,361"/>
+<area shape="rect" id="node17" href="$38_2md_8h.html#a080b2ad0ffa283bf0ecb735f1734f47f" title="md_wakeup_thread" alt="" coords="507,385,642,412"/>
+<area shape="rect" id="node18" href="$38_2raid5_8c.html#a35fc4015c0525024844dd1e76ed54fc2" title="stripe_operations_active" alt="" coords="493,436,656,463"/>
+</map>

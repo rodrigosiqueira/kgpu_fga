@@ -1,0 +1,9 @@
+<map id="raid0_private_data" name="raid0_private_data">
+<area shape="rect" id="node2" href="$structstrip__zone.html" title="{strip_zone\n|+ zone_end\l+ dev_start\l+ nb_dev\l|}" alt="" coords="5,795,96,901"/>
+<area shape="rect" id="node3" href="$structmdk__rdev__s.html" title="{mdk_rdev_s\n|+ sectors\l+ last_events\l+ meta_bdev\l+ bdev\l+ sb_page\l+ sb_loaded\l+ sb_events\l+ data_offset\l+ sb_start\l+ sb_size\land 15 more...\l|}" alt="" coords="120,736,227,960"/>
+<area shape="rect" id="node4" href="$structlist__head.html" title="{list_head\n||}" alt="" coords="193,5,267,83"/>
+<area shape="rect" id="node5" href="$structmddev__s.html" title="{mddev_s\n|+ private\l+ unit\l+ md_minor\l+ flags\l+ suspended\l+ active_io\l+ ro\l+ sysfs_active\l+ ready\l+ gendisk\land 84 more...\l|}" alt="" coords="274,435,381,659"/>
+<area shape="rect" id="node6" href="$structmdk__personality.html" title="{mdk_personality\n|+ name\l+ level\l+ owner\l+ make_request\l+ run\l+ stop\l+ status\l+ error_handler\l+ hot_add_disk\l+ hot_remove_disk\land 9 more...\l|}" alt="" coords="333,147,467,371"/>
+<area shape="rect" id="node7" href="$structmdk__thread__s.html" title="{mdk_thread_s\n|+ run\l+ wqueue\l+ flags\l+ tsk\l+ timeout\l|}" alt="" coords="272,780,376,916"/>
+<area shape="rect" id="node8" href="$structplug__handle.html" title="{plug_handle\n|+ unplug_fn\l+ unplug_timer\l+ unplug_work\l+ unplug_flag\l|}" alt="" coords="491,198,599,319"/>
+</map>

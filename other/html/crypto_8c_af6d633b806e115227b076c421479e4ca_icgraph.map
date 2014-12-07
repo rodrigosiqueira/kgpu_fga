@@ -1,0 +1,6 @@
+<map id="ecryptfs_decrypt_extent" name="ecryptfs_decrypt_extent">
+<area shape="rect" id="node2" href="$ecryptfs__kernel_8h.html#a8f0e0486293ab97cca8219ee1fee7f4b" title="ecryptfs_decrypt_page" alt="" coords="216,31,371,57"/>
+<area shape="rect" id="node3" href="$mmap_8c.html#a8f8e487f41eae0bd59f0f73483c8b0bd" title="ecryptfs_readpage" alt="" coords="426,5,555,32"/>
+<area shape="rect" id="node5" href="$mmap_8c.html#a6a4799f05bb0baa6b8d31732c51a633f" title="ecryptfs_write_begin" alt="" coords="419,56,562,83"/>
+<area shape="rect" id="node4" href="$mmap_8c.html#a817586e3c9558932635e84f23bbe3980" title="ecryptfs_readpages" alt="" coords="611,5,747,32"/>
+</map>

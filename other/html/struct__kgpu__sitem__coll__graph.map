@@ -1,0 +1,4 @@
+<map id="_kgpu_sitem" name="_kgpu_sitem">
+<area shape="rect" id="node2" href="$structlist__head.html" title="{list_head\n||}" alt="" coords="5,43,79,120"/>
+<area shape="rect" id="node3" href="$structkgpu__service.html" title="{kgpu_service\n|+ name\l+ sid\l+ compute_size\l+ launch\l+ prepare\l+ post\l|}" alt="" coords="165,6,280,157"/>
+</map>

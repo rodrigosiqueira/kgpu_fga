@@ -1,0 +1,8 @@
+<map id="ecryptfs_init_persistent_file" name="ecryptfs_init_persistent_file">
+<area shape="rect" id="node2" href="$ecryptfs__kernel_8h.html#a5240470a17155c25d11458eb2504a7ab" title="ecryptfs_inode_to_private" alt="" coords="235,5,405,32"/>
+<area shape="rect" id="node3" href="$ecryptfs__kernel_8h.html#ae68237515879c1ac49347f1260ec5322" title="ecryptfs_dentry_to\l_lower_mnt" alt="" coords="255,57,385,98"/>
+<area shape="rect" id="node4" href="$ecryptfs__kernel_8h.html#ac2ee045a66c2ebc91f8a5dbc00570d95" title="ecryptfs_dentry_to\l_lower" alt="" coords="255,122,385,163"/>
+<area shape="rect" id="node5" href="$ecryptfs__kernel_8h.html#a54ccee3232169d97ce54f748b4f4be54" title="ecryptfs_privileged_open" alt="" coords="237,188,403,215"/>
+<area shape="rect" id="node6" href="$list_8h.html#a588bec046f1e9797b33a5c5ab250f447" title="list_add_tail" alt="" coords="453,188,544,215"/>
+<area shape="rect" id="node7" href="$list_8h.html#a8a28f150a191624bf6923a48cdace7e3" title="__list_add" alt="" coords="593,188,674,215"/>
+</map>

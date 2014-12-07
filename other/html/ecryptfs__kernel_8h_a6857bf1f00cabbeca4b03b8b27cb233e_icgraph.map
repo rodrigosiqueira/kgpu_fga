@@ -1,0 +1,13 @@
+<map id="ecryptfs_superblock_to_lower" name="ecryptfs_superblock_to_lower">
+<area shape="rect" id="node2" href="$services_2gaes_2ecryptfs_2main_8c.html#a863a29f0f0a149b65cd1e8e602440107" title="ecryptfs_get_inode" alt="" coords="193,173,325,200"/>
+<area shape="rect" id="node3" href="$services_2gaes_2ecryptfs_2main_8c.html#a91e141103ef1b3a8eca0f4449e47d16c" title="ecryptfs_interpose" alt="" coords="374,148,503,175"/>
+<area shape="rect" id="node12" href="$services_2gaes_2ecryptfs_2main_8c.html#aa971f29739b630fd4439bee2feb73003" title="ecryptfs_mount" alt="" coords="383,199,495,225"/>
+<area shape="rect" id="node4" href="$inode_8c.html#a26d62e5d30427a781725b8df578c6f8f" title="ecryptfs_do_create" alt="" coords="557,5,691,32"/>
+<area shape="rect" id="node6" href="$inode_8c.html#ad1f58d0fd3b46f3063934fe8f6513f45" title="ecryptfs_lookup_and\l_interpose_lower" alt="" coords="553,57,695,98"/>
+<area shape="rect" id="node8" href="$inode_8c.html#a1c0f35e7eacc4a93afcb62b0e00db8af" title="ecryptfs_link" alt="" coords="576,123,672,149"/>
+<area shape="rect" id="node9" href="$inode_8c.html#ae9629ba2454c02f4efeba467903fb345" title="ecryptfs_symlink" alt="" coords="563,173,685,200"/>
+<area shape="rect" id="node10" href="$inode_8c.html#aa4ec09ea4871f30a0ce148c9cf1cd5dc" title="ecryptfs_mkdir" alt="" coords="570,224,678,251"/>
+<area shape="rect" id="node11" href="$inode_8c.html#a9f1bb8710245c20fd43f9f338679152a" title="ecryptfs_mknod" alt="" coords="567,275,681,301"/>
+<area shape="rect" id="node5" href="$inode_8c.html#a2b00e2205459387d2f180e8f055fbaa6" title="ecryptfs_create" alt="" coords="745,5,857,32"/>
+<area shape="rect" id="node7" href="$inode_8c.html#ad77dbfd861f06cd54046a232ce7a5b3b" title="ecryptfs_lookup" alt="" coords="744,64,859,91"/>
+</map>

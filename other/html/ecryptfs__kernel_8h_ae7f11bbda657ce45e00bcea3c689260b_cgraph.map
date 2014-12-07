@@ -1,0 +1,6 @@
+<map id="ecryptfs_write_inode_size_to_metadata" name="ecryptfs_write_inode_size_to_metadata">
+<area shape="rect" id="node2" href="$ecryptfs__kernel_8h.html#a5240470a17155c25d11458eb2504a7ab" title="ecryptfs_inode_to_private" alt="" coords="581,30,752,57"/>
+<area shape="rect" id="node3" href="$mmap_8c.html#a528f4af2fcdb491f72647ffc136b862a" title="ecryptfs_write_inode\l_size_to_xattr" alt="" coords="390,23,533,64"/>
+<area shape="rect" id="node4" href="$mmap_8c.html#a0b74e0ca76af820971547c9fca1d36d9" title="ecryptfs_write_inode\l_size_to_header" alt="" coords="198,81,341,123"/>
+<area shape="rect" id="node5" href="$ecryptfs__kernel_8h.html#abcca60d451f0a0e8ae33d8738d662fd7" title="ecryptfs_write_lower" alt="" coords="390,89,533,115"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="_kgpu_dev" name="_kgpu_dev">
+<area shape="rect" id="node2" href="$structlist__head.html" title="{list_head\n||}" alt="" coords="5,49,79,127"/>
+<area shape="rect" id="node3" href="$struct__kgpu__vma.html" title="{_kgpu_vma\n|+ vma\l+ start\l+ end\l+ npages\l+ alloc_sz\l+ bitmap\l|}" alt="" coords="166,13,255,163"/>
+<area shape="rect" id="node4" href="$struct__kgpu__mempool.html" title="{_kgpu_mempool\n|+ uva\l+ kva\l+ pages\l+ npages\l+ nunits\l+ bitmap\l+ alloc_sz\l|}" alt="" coords="280,5,396,171"/>
+</map>

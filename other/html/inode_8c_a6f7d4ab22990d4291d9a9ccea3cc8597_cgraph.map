@@ -1,0 +1,7 @@
+<map id="ecryptfs_unlink" name="ecryptfs_unlink">
+<area shape="rect" id="node2" href="$ecryptfs__kernel_8h.html#ac2ee045a66c2ebc91f8a5dbc00570d95" title="ecryptfs_dentry_to\l_lower" alt="" coords="181,5,312,46"/>
+<area shape="rect" id="node3" href="$ecryptfs__kernel_8h.html#a113da429d81deb7cc5d4c4536e72a92c" title="ecryptfs_inode_to_lower" alt="" coords="165,71,328,97"/>
+<area shape="rect" id="node5" href="$inode_8c.html#a6a36af9be383e7cbabb89162ff8af440" title="lock_parent" alt="" coords="202,121,291,148"/>
+<area shape="rect" id="node6" href="$inode_8c.html#a479b2cdc67b7d9c807fafd0aafba3245" title="unlock_dir" alt="" coords="206,172,287,199"/>
+<area shape="rect" id="node4" href="$ecryptfs__kernel_8h.html#a5240470a17155c25d11458eb2504a7ab" title="ecryptfs_inode_to_private" alt="" coords="376,71,547,97"/>
+</map>

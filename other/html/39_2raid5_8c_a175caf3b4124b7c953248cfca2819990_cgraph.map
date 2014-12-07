@@ -1,0 +1,7 @@
+<map id="shrink_stripes" name="shrink_stripes">
+<area shape="rect" id="node2" href="$39_2raid5_8c.html#a6c737aa0ab2ff0d7a4bae6edc7fbbc15" title="drop_one_stripe" alt="" coords="157,56,272,83"/>
+<area shape="rect" id="node3" href="$39_2raid5_8c.html#ac2d5b9e20ad0ea6a9dbadadf21706f7f" title="get_free_stripe" alt="" coords="321,31,429,57"/>
+<area shape="rect" id="node6" href="$39_2raid5_8c.html#ac0f6514a3ada11b0f3fd192edbe08f60" title="shrink_buffers" alt="" coords="323,81,427,108"/>
+<area shape="rect" id="node4" href="$list_8h.html#a6601e54d8f27ab290ee6819f7e2127b7" title="list_empty" alt="" coords="487,5,569,32"/>
+<area shape="rect" id="node5" href="$39_2raid5_8c.html#a4d1f9b6f771df384d33ec9a25e98ff16" title="remove_hash" alt="" coords="478,56,578,83"/>
+</map>

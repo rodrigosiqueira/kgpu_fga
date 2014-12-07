@@ -1,0 +1,6 @@
+<map id="set_default_header_data" name="set_default_header_data">
+<area shape="rect" id="node2" href="$crypto_8c.html#a1971b0423a0e1cbe741f78712d319b20" title="ecryptfs_read_headers_virt" alt="" coords="219,31,397,57"/>
+<area shape="rect" id="node3" href="$ecryptfs__kernel_8h.html#a0f476d4db45796bb804042157fbd93fa" title="ecryptfs_read_metadata" alt="" coords="445,31,608,57"/>
+<area shape="rect" id="node4" href="$file_8c.html#ab77b53c00f24de64a0fcbb182f043f23" title="ecryptfs_open" alt="" coords="661,5,765,32"/>
+<area shape="rect" id="node5" href="$inode_8c.html#a34946e5592d6ec37a0d9cedef341291d" title="ecryptfs_setattr" alt="" coords="657,56,770,83"/>
+</map>

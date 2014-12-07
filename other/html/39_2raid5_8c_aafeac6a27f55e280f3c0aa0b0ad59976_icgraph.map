@@ -1,0 +1,17 @@
+<map id="async_run_ops" name="async_run_ops">
+<area shape="rect" id="node2" href="$39_2raid5_8c.html#a8330e0848e29e0949479c5978a28fa14" title="raid_run_ops" alt="" coords="165,132,261,159"/>
+<area shape="rect" id="node3" href="$39_2raid5_8c.html#ad1a1866a8035d74edc85b75269f41f5c" title="handle_stripe5" alt="" coords="309,107,416,133"/>
+<area shape="rect" id="node16" href="$39_2raid5_8c.html#ab639a0fe45f4b35706481f223e9fc131" title="handle_stripe6" alt="" coords="309,157,416,184"/>
+<area shape="rect" id="node4" href="$39_2raid5_8c.html#aee91fab8150394951b41382f58714a92" title="handle_stripe" alt="" coords="464,132,563,159"/>
+<area shape="rect" id="node5" href="$39_2raid5_8c.html#aebcb98aff6b5ab38fa330fd11fafbbdd" title="sync_request" alt="" coords="625,81,725,108"/>
+<area shape="rect" id="node6" href="$39_2raid5_8c.html#a78d5fc880ac15f467e7c1842c87fb6ed" title="retry_aligned_read" alt="" coords="611,132,739,159"/>
+<area shape="rect" id="node7" href="$39_2raid5_8c.html#a9e4a3e96c3d933bf4e660a623220f20f" title="raid5d" alt="" coords="787,157,845,184"/>
+<area shape="rect" id="node8" href="$39_2raid5_8c.html#a75d3f6689ba524bab9d3327922fe7fc4" title="setup_conf" alt="" coords="894,157,981,184"/>
+<area shape="rect" id="node9" href="$39_2raid5_8c.html#adbfb965a5a562874828a870f76e59d03" title="run" alt="" coords="1084,5,1124,32"/>
+<area shape="rect" id="node10" href="$39_2raid5_8c.html#af6bbdd785e2eb280f81cfc7aedd03460" title="raid45_takeover_raid0" alt="" coords="1029,208,1179,235"/>
+<area shape="rect" id="node11" href="$39_2raid5_8c.html#a5d096edffef8893c205346c1511c3443" title="raid5_takeover" alt="" coords="1227,132,1333,159"/>
+<area shape="rect" id="node12" href="$39_2raid5_8c.html#ae20dd7c63ce7a719eeaef541c6d7e654" title="raid4_takeover" alt="" coords="1227,233,1333,260"/>
+<area shape="rect" id="node13" href="$39_2raid5_8c.html#a7d16982b1bb962183d784e48abec2671" title="raid5_takeover_raid1" alt="" coords="1033,107,1175,133"/>
+<area shape="rect" id="node14" href="$39_2raid5_8c.html#aca2e5fb87731e12f5a6756bae42d285c" title="raid5_takeover_raid6" alt="" coords="1033,157,1175,184"/>
+<area shape="rect" id="node15" href="$39_2raid5_8c.html#a5340faac7f92a991e46f79c3ce9c1087" title="raid6_takeover" alt="" coords="1051,309,1157,336"/>
+</map>

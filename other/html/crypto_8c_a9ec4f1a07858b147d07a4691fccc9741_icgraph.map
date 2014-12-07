@@ -1,0 +1,16 @@
+<map id="ecryptfs_cipher_code_to_string" name="ecryptfs_cipher_code_to_string">
+<area shape="rect" id="node2" href="$keystore_8c.html#a09ab4784796d57d0e2ab0ff611cc6eee" title="ecryptfs_parse_tag\l_70_packet" alt="" coords="211,38,344,79"/>
+<area shape="rect" id="node9" href="$keystore_8c.html#a5cd91ea24b792d9718c66c4f930ef730" title="decrypt_pki_encrypted\l_session_key" alt="" coords="201,103,354,145"/>
+<area shape="rect" id="node15" href="$keystore_8c.html#a32c87c3d9f5f82f8e86006f94b9130d3" title="parse_tag_3_packet" alt="" coords="208,169,347,196"/>
+<area shape="rect" id="node3" href="$ecryptfs__kernel_8h.html#a93f392b9925fe885ac0d2d74e5146843" title="ecryptfs_decode_and\l_decrypt_filename" alt="" coords="419,38,565,79"/>
+<area shape="rect" id="node4" href="$file_8c.html#aedaa546a81860ed0159a408464edf5f3" title="ecryptfs_filldir" alt="" coords="667,5,770,32"/>
+<area shape="rect" id="node6" href="$inode_8c.html#a2e07441e81e432816ec37c3f5718a0a9" title="ecryptfs_readlink_lower" alt="" coords="639,56,798,83"/>
+<area shape="rect" id="node5" href="$file_8c.html#a157ee122e9a256f1b7b93edd406fd088" title="ecryptfs_readdir" alt="" coords="880,5,995,32"/>
+<area shape="rect" id="node7" href="$inode_8c.html#a02162769d84039ef360069143793ab24" title="ecryptfs_readlink" alt="" coords="877,56,998,83"/>
+<area shape="rect" id="node8" href="$inode_8c.html#a55786dfb81de37a34619141a3c7068d6" title="ecryptfs_getattr_link" alt="" coords="867,107,1007,133"/>
+<area shape="rect" id="node10" href="$keystore_8c.html#a44ad4f9a58b735c6d9891a06df838671" title="ecryptfs_parse_packet_set" alt="" coords="403,163,581,189"/>
+<area shape="rect" id="node11" href="$crypto_8c.html#a1971b0423a0e1cbe741f78712d319b20" title="ecryptfs_read_headers_virt" alt="" coords="629,163,808,189"/>
+<area shape="rect" id="node12" href="$ecryptfs__kernel_8h.html#a0f476d4db45796bb804042157fbd93fa" title="ecryptfs_read_metadata" alt="" coords="856,163,1019,189"/>
+<area shape="rect" id="node13" href="$file_8c.html#ab77b53c00f24de64a0fcbb182f043f23" title="ecryptfs_open" alt="" coords="1072,137,1176,164"/>
+<area shape="rect" id="node14" href="$inode_8c.html#a34946e5592d6ec37a0d9cedef341291d" title="ecryptfs_setattr" alt="" coords="1067,188,1181,215"/>
+</map>

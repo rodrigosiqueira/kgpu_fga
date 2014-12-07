@@ -1,0 +1,5 @@
+<map id="ecryptfs_keyring_auth_tok_for_sig" name="ecryptfs_keyring_auth_tok_for_sig">
+<area shape="rect" id="node2" href="$keystore_8c.html#a8e375031494d4e18494b23647b117360" title="process_request_key_err" alt="" coords="225,5,393,32"/>
+<area shape="rect" id="node3" href="$ecryptfs__kernel_8h.html#a17cb5e0da33b0a3da45e14fb4085ad6a" title="ecryptfs_get_key_payload_data" alt="" coords="206,56,413,83"/>
+<area shape="rect" id="node4" href="$keystore_8c.html#a51fbc3dfa25435572fbb4c39efb8b515" title="ecryptfs_verify_version" alt="" coords="231,107,388,133"/>
+</map>

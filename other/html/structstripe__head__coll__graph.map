@@ -1,0 +1,13 @@
+<map id="stripe_head" name="stripe_head">
+<area shape="rect" id="node2" href="$structlist__head.html" title="{list_head\n||}" alt="" coords="104,5,177,83"/>
+<area shape="rect" id="node4" href="$structraid5__private__data.html" title="{raid5_private_data\n|+ stripe_hashtbl\l+ chunk_sectors\l+ level\l+ algorithm\l+ max_degraded\l+ raid_disks\l+ max_nr_stripes\l+ reshape_progress\l+ reshape_safe\l+ previous_raid_disks\land 26 more...\l|}" alt="" coords="208,1253,356,1477"/>
+<area shape="rect" id="node6" href="$structmdk__rdev__s.html" title="{mdk_rdev_s\n|+ sectors\l+ last_events\l+ meta_bdev\l+ bdev\l+ sb_page\l+ sb_loaded\l+ sb_events\l+ data_offset\l+ sb_start\l+ sb_size\land 15 more...\l|}" alt="" coords="139,795,245,1019"/>
+<area shape="rect" id="node7" href="$structmddev__s.html" title="{mddev_s\n|+ private\l+ unit\l+ md_minor\l+ flags\l+ suspended\l+ active_io\l+ ro\l+ sysfs_active\l+ ready\l+ gendisk\land 84 more...\l|}" alt="" coords="273,435,380,659"/>
+<area shape="rect" id="node8" href="$structmdk__personality.html" title="{mdk_personality\n|+ name\l+ level\l+ owner\l+ make_request\l+ run\l+ stop\l+ status\l+ error_handler\l+ hot_add_disk\l+ hot_remove_disk\land 9 more...\l|}" alt="" coords="305,147,439,371"/>
+<area shape="rect" id="node3" href="$structstripe__head_1_1r5dev.html" title="{r5dev\n|+ req\l+ vec\l+ page\l+ toread\l+ read\l+ towrite\l+ written\l+ sector\l+ flags\l|}" alt="" coords="382,1268,455,1463"/>
+<area shape="rect" id="node5" href="$structdisk__info.html" title="{disk_info\n||}" alt="" coords="164,1091,237,1168"/>
+<area shape="rect" id="node9" href="$structmdk__thread__s.html" title="{mdk_thread_s\n|+ run\l+ wqueue\l+ flags\l+ tsk\l+ timeout\l|}" alt="" coords="320,839,424,975"/>
+<area shape="rect" id="node10" href="$structplug__handle.html" title="{plug_handle\n|+ unplug_fn\l+ unplug_timer\l+ unplug_work\l+ unplug_flag\l|}" alt="" coords="463,198,571,319"/>
+<area shape="rect" id="node11" href="$structraid5__private__data_1_1raid5__percpu.html" title="{raid5_percpu\n|+ spare_page\l+ scribble\l|}" alt="" coords="547,1083,648,1175"/>
+<area shape="rect" id="node12" href="$structstripe__head_1_1stripe__operations.html" title="{stripe_operations\n|+ target\l+ target2\l+ zero_sum_result\l+ request\l+ wait_for_ops\l|}" alt="" coords="480,1297,609,1433"/>
+</map>

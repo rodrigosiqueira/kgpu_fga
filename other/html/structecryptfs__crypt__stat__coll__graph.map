@@ -1,0 +1,4 @@
+<map id="ecryptfs_crypt_stat" name="ecryptfs_crypt_stat">
+<area shape="rect" id="node2" href="$structlist__head.html" title="{list_head\n||}" alt="" coords="75,5,148,83"/>
+<area shape="rect" id="node3" href="$structecryptfs__mount__crypt__stat.html" title="{ecryptfs_mount_crypt_stat\n|+ flags\l+ global_auth_tok_list\l_mutex\l+ num_global_auth_toks\l+ global_default_cipher\l_key_size\l+ global_default_fn_cipher\l_key_bytes\l+ global_default_cipher_name\l+ global_default_fn_cipher_name\l+ global_default_fnek_sig\l|}" alt="" coords="149,147,363,371"/>
+</map>

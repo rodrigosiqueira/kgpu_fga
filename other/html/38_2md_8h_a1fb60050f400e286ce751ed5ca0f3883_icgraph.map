@@ -1,0 +1,33 @@
+<map id="rdev_dec_pending" name="rdev_dec_pending">
+<area shape="rect" id="node2" href="$38_2raid5_8c.html#a91f6f0e445dad897b83b532442701db9" title="raid5_end_read_request" alt="" coords="183,52,343,79"/>
+<area shape="rect" id="node4" href="$38_2raid5_8c.html#ad1a1866a8035d74edc85b75269f41f5c" title="handle_stripe5" alt="" coords="996,356,1103,383"/>
+<area shape="rect" id="node17" href="$38_2raid5_8c.html#ab639a0fe45f4b35706481f223e9fc131" title="handle_stripe6" alt="" coords="996,306,1103,332"/>
+<area shape="rect" id="node18" href="$38_2raid5_8c.html#a113c917f8a0e1103f02ff23a04efa728" title="raid5_end_write_request" alt="" coords="181,103,344,130"/>
+<area shape="rect" id="node19" href="$38_2raid5_8c.html#ac650026ee26aa0bb8c00a96e2e34ca47" title="unplug_slaves" alt="" coords="210,520,315,547"/>
+<area shape="rect" id="node31" href="$38_2raid5_8c.html#a8f1cd236ac5ea6a00424ba6dbd627c71" title="raid5_align_endio" alt="" coords="201,204,324,231"/>
+<area shape="rect" id="node32" href="$38_2raid5_8c.html#a7f27c0866bdef1019441898294276537" title="chunk_aligned_read" alt="" coords="406,204,543,231"/>
+<area shape="rect" id="node3" href="$38_2raid5_8c.html#a389b6ca864dbc103ec99fc8a5d35f00c" title="ops_run_io" alt="" coords="432,78,517,104"/>
+<area shape="rect" id="node5" href="$38_2raid5_8c.html#aee91fab8150394951b41382f58714a92" title="handle_stripe" alt="" coords="1157,382,1256,408"/>
+<area shape="rect" id="node6" href="$38_2raid5_8c.html#aebcb98aff6b5ab38fa330fd11fafbbdd" title="sync_request" alt="" coords="1318,559,1418,586"/>
+<area shape="rect" id="node7" href="$38_2raid5_8c.html#a78d5fc880ac15f467e7c1842c87fb6ed" title="retry_aligned_read" alt="" coords="1304,432,1432,459"/>
+<area shape="rect" id="node8" href="$38_2raid5_8c.html#a9e4a3e96c3d933bf4e660a623220f20f" title="raid5d" alt="" coords="1521,407,1578,434"/>
+<area shape="rect" id="node9" href="$38_2raid5_8c.html#a75d3f6689ba524bab9d3327922fe7fc4" title="setup_conf" alt="" coords="1667,439,1754,466"/>
+<area shape="rect" id="node10" href="$38_2raid5_8c.html#adbfb965a5a562874828a870f76e59d03" title="run" alt="" coords="1857,610,1897,636"/>
+<area shape="rect" id="node11" href="$38_2raid5_8c.html#af6bbdd785e2eb280f81cfc7aedd03460" title="raid45_takeover_raid0" alt="" coords="1803,395,1952,422"/>
+<area shape="rect" id="node12" href="$38_2raid5_8c.html#a5d096edffef8893c205346c1511c3443" title="raid5_takeover" alt="" coords="2000,471,2107,498"/>
+<area shape="rect" id="node13" href="$38_2raid5_8c.html#ae20dd7c63ce7a719eeaef541c6d7e654" title="raid4_takeover" alt="" coords="2000,344,2107,371"/>
+<area shape="rect" id="node14" href="$38_2raid5_8c.html#a7d16982b1bb962183d784e48abec2671" title="raid5_takeover_raid1" alt="" coords="1806,547,1949,574"/>
+<area shape="rect" id="node15" href="$38_2raid5_8c.html#aca2e5fb87731e12f5a6756bae42d285c" title="raid5_takeover_raid6" alt="" coords="1806,446,1949,472"/>
+<area shape="rect" id="node16" href="$38_2raid5_8c.html#a5340faac7f92a991e46f79c3ce9c1087" title="raid6_takeover" alt="" coords="1824,344,1931,371"/>
+<area shape="rect" id="node20" href="$38_2raid5_8c.html#a3b424af67322844da18411476891215a" title="resize_stripes" alt="" coords="423,762,526,788"/>
+<area shape="rect" id="node24" href="$38_2raid5_8h.html#a9fcc78f931a615dcc92e3625bb90d1e4" title="md_raid5_unplug_device" alt="" coords="392,520,557,547"/>
+<area shape="rect" id="node21" href="$38_2raid5_8c.html#a3da2a65565e0d2fcac06afdf08148931" title="check_reshape" alt="" coords="611,762,722,788"/>
+<area shape="rect" id="node22" href="$38_2raid5_8c.html#a5fbed7019f525253c892743b6ca5a62d" title="raid5_check_reshape" alt="" coords="786,762,931,788"/>
+<area shape="rect" id="node23" href="$38_2raid5_8c.html#a64bfd986510152bdf37fba2bb32cec21" title="raid6_check_reshape" alt="" coords="786,812,931,839"/>
+<area shape="rect" id="node25" href="$38_2raid5_8c.html#a2c5723a03a2ca544d41f021b020da33c" title="get_active_stripe" alt="" coords="606,432,727,459"/>
+<area shape="rect" id="node27" href="$38_2raid5_8c.html#a6d3a35ae83d640f6e6b476242e22d8cb" title="make_request" alt="" coords="807,255,911,282"/>
+<area shape="rect" id="node29" href="$38_2raid5_8c.html#abdf81e49ff9eb5562cd5871446c75ef5" title="raid5_unplug" alt="" coords="1159,660,1254,687"/>
+<area shape="rect" id="node30" href="$38_2raid5_8c.html#aa4739ec8e826f376b246f96da07d0b9d" title="raid5_unplug_queue" alt="" coords="1481,610,1618,636"/>
+<area shape="rect" id="node26" href="$38_2raid5_8c.html#a91f198b63a821781c782a1fa7f33671a" title="handle_stripe_expansion" alt="" coords="776,356,941,383"/>
+<area shape="rect" id="node28" href="$38_2raid5_8c.html#af3d9c375483f55242d9b0538af644a4e" title="reshape_request" alt="" coords="990,508,1109,535"/>
+</map>

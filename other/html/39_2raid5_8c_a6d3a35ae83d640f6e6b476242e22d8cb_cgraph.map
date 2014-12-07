@@ -1,0 +1,34 @@
+<map id="make_request" name="make_request">
+<area shape="rect" id="node2" href="$38_2md_8h.html#aaa10c4250402ab35ea132a4b1039e8ab" title="md_flush_request" alt="" coords="192,93,317,120"/>
+<area shape="rect" id="node3" href="$38_2md_8h.html#aaaf8d2a1be078e97d54295ed0c114dc4" title="md_write_start" alt="" coords="201,144,309,171"/>
+<area shape="rect" id="node4" href="$39_2raid5_8c.html#a7f27c0866bdef1019441898294276537" title="chunk_aligned_read" alt="" coords="186,195,323,221"/>
+<area shape="rect" id="node10" href="$38_2md_8h.html#a080b2ad0ffa283bf0ecb735f1734f47f" title="md_wakeup_thread" alt="" coords="827,296,962,323"/>
+<area shape="rect" id="node11" href="$39_2raid5_8c.html#a3c713e9d04e1a50d9196a2bccff5a674" title="raid5_compute_sector" alt="" coords="1011,632,1162,659"/>
+<area shape="rect" id="node13" href="$39_2md_8h.html#a0c782a00681cd93cef15d5c36699ef1b" title="mddev_check_plugged" alt="" coords="177,600,332,627"/>
+<area shape="rect" id="node14" href="$39_2raid5_8c.html#a2c5723a03a2ca544d41f021b020da33c" title="get_active_stripe" alt="" coords="194,499,315,525"/>
+<area shape="rect" id="node26" href="$39_2raid5_8c.html#a61a56e1833249a0333c6b432df860d78" title="release_stripe" alt="" coords="203,423,306,449"/>
+<area shape="rect" id="node30" href="$39_2raid5_8c.html#a5a76d780ee876f30f82cf21eedddf30c" title="add_stripe_bio" alt="" coords="201,651,308,677"/>
+<area shape="rect" id="node31" href="$39_2raid5_8c.html#aa9f069fb84e6fd5117c618030f74409b" title="raid5_dec_bi_phys_segments" alt="" coords="157,701,352,728"/>
+<area shape="rect" id="node33" href="$38_2md_8h.html#aa88fa16c00e058e6a67e1657b2917438" title="md_write_end" alt="" coords="203,752,306,779"/>
+<area shape="rect" id="node5" href="$39_2raid5_8c.html#a6751339d67a578177ac7f7e587a4e288" title="in_chunk_boundary" alt="" coords="417,93,551,120"/>
+<area shape="rect" id="node6" href="$38_2md_8h.html#a6ad5658c7d556bb720c6f87adf0b7e3a" title="bio_clone_mddev" alt="" coords="423,144,545,171"/>
+<area shape="rect" id="node7" href="$39_2raid5_8c.html#a8f1cd236ac5ea6a00424ba6dbd627c71" title="raid5_align_endio" alt="" coords="423,245,545,272"/>
+<area shape="rect" id="node8" href="$38_2md_8h.html#a1fb60050f400e286ce751ed5ca0f3883" title="rdev_dec_pending" alt="" coords="634,195,761,221"/>
+<area shape="rect" id="node12" href="$39_2raid5_8c.html#ab9032c094fa06e5d16d1424632d6f85c" title="bio_fits_rdev" alt="" coords="436,43,532,69"/>
+<area shape="rect" id="node9" href="$39_2raid5_8c.html#a8f5f5612cf5604af9d9155577bb8ccf3" title="add_bio_to_retry" alt="" coords="638,245,757,272"/>
+<area shape="rect" id="node15" href="$39_2raid5_8c.html#af0b604d5c4895a4ffaad5460d88b0d0f" title="__find_stripe" alt="" coords="436,549,532,576"/>
+<area shape="rect" id="node16" href="$39_2raid5_8c.html#ac2d5b9e20ad0ea6a9dbadadf21706f7f" title="get_free_stripe" alt="" coords="430,499,538,525"/>
+<area shape="rect" id="node17" href="$list_8h.html#a6601e54d8f27ab290ee6819f7e2127b7" title="list_empty" alt="" coords="656,448,739,475"/>
+<area shape="rect" id="node19" href="$39_2raid5_8c.html#a931a6351979cfae38213abb015cfe7a3" title="init_stripe" alt="" coords="445,600,523,627"/>
+<area shape="rect" id="node18" href="$39_2raid5_8c.html#a4d1f9b6f771df384d33ec9a25e98ff16" title="remove_hash" alt="" coords="647,549,747,576"/>
+<area shape="rect" id="node20" href="$39_2raid5_8c.html#a35fc4015c0525024844dd1e76ed54fc2" title="stripe_operations_active" alt="" coords="616,499,779,525"/>
+<area shape="rect" id="node21" href="$39_2raid5_8c.html#a94eddd2957f27120ac4302a2403f8ca1" title="stripe_set_idx" alt="" coords="843,625,946,652"/>
+<area shape="rect" id="node22" href="$39_2raid5_8c.html#a4cdde13d7d5cd1b1fea7f1316c775ea2" title="raid5_build_block" alt="" coords="636,701,759,728"/>
+<area shape="rect" id="node25" href="$39_2raid5_8c.html#ad46ca9739955fbe1117bbca441e43d39" title="insert_hash" alt="" coords="653,651,742,677"/>
+<area shape="rect" id="node23" href="$39_2raid5_8c.html#a5d7855155488ec1b3807a9f3712420a1" title="compute_blocknr" alt="" coords="834,695,955,721"/>
+<area shape="rect" id="node24" href="$38_2md_8h.html#ad9929b063dc44105365cfebc8912000b" title="mdname" alt="" coords="1051,695,1123,721"/>
+<area shape="rect" id="node27" href="$39_2raid5_8c.html#a76e49e0063b9157e80040b7ea9aa52d4" title="__release_stripe" alt="" coords="425,397,543,424"/>
+<area shape="rect" id="node28" href="$list_8h.html#a588bec046f1e9797b33a5c5ab250f447" title="list_add_tail" alt="" coords="652,397,743,424"/>
+<area shape="rect" id="node29" href="$list_8h.html#a8a28f150a191624bf6923a48cdace7e3" title="__list_add" alt="" coords="854,397,935,424"/>
+<area shape="rect" id="node32" href="$39_2raid5_8c.html#a06014c9225808d6bfc0645122788d3dd" title="raid5_bi_phys_segments" alt="" coords="401,701,567,728"/>
+</map>

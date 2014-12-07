@@ -1,0 +1,11 @@
+<map id="algorithm_valid_raid6" name="algorithm_valid_raid6">
+<area shape="rect" id="node2" href="$38_2raid5_8c.html#a75d3f6689ba524bab9d3327922fe7fc4" title="setup_conf" alt="" coords="227,157,314,184"/>
+<area shape="rect" id="node10" href="$38_2raid5_8c.html#a64bfd986510152bdf37fba2bb32cec21" title="raid6_check_reshape" alt="" coords="198,208,343,235"/>
+<area shape="rect" id="node3" href="$38_2raid5_8c.html#adbfb965a5a562874828a870f76e59d03" title="run" alt="" coords="447,5,487,32"/>
+<area shape="rect" id="node4" href="$38_2raid5_8c.html#af6bbdd785e2eb280f81cfc7aedd03460" title="raid45_takeover_raid0" alt="" coords="392,208,541,235"/>
+<area shape="rect" id="node5" href="$38_2raid5_8c.html#a5d096edffef8893c205346c1511c3443" title="raid5_takeover" alt="" coords="589,132,696,159"/>
+<area shape="rect" id="node6" href="$38_2raid5_8c.html#ae20dd7c63ce7a719eeaef541c6d7e654" title="raid4_takeover" alt="" coords="589,233,696,260"/>
+<area shape="rect" id="node7" href="$38_2raid5_8c.html#a7d16982b1bb962183d784e48abec2671" title="raid5_takeover_raid1" alt="" coords="395,107,538,133"/>
+<area shape="rect" id="node8" href="$38_2raid5_8c.html#aca2e5fb87731e12f5a6756bae42d285c" title="raid5_takeover_raid6" alt="" coords="395,157,538,184"/>
+<area shape="rect" id="node9" href="$38_2raid5_8c.html#a5340faac7f92a991e46f79c3ce9c1087" title="raid6_takeover" alt="" coords="413,309,520,336"/>
+</map>

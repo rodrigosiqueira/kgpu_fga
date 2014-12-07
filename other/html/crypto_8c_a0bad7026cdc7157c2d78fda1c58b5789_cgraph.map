@@ -1,0 +1,5 @@
+<map id="ecryptfs_generate_new_key" name="ecryptfs_generate_new_key">
+<area shape="rect" id="node2" href="$crypto_8c.html#a010c33619300979023e302badcdbd3b5" title="ecryptfs_compute_root_iv" alt="" coords="241,5,413,32"/>
+<area shape="rect" id="node4" href="$debug_8c.html#a045879c3d789610d64a216956beeaf09" title="ecryptfs_dump_hex" alt="" coords="259,56,395,83"/>
+<area shape="rect" id="node3" href="$crypto_8c.html#afe9ebb3f8af0e14969d856f179bccc8d" title="ecryptfs_calculate_md5" alt="" coords="461,5,621,32"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="_kgpu_sritem" name="_kgpu_sritem">
+<area shape="rect" id="node2" href="$structlist__head.html" title="{list_head\n||}" alt="" coords="4,295,77,372"/>
+<area shape="rect" id="node3" href="$structkgpu__service__request.html" title="{kgpu_service_request\n|+ id\l+ hin\l+ hout\l+ hdata\l+ din\l+ dout\l+ ddata\l+ insize\l+ outsize\l+ datasize\land 8 more...\l|}" alt="" coords="164,221,312,445"/>
+<area shape="rect" id="node4" href="$structkgpu__service.html" title="{kgpu_service\n|+ name\l+ sid\l+ compute_size\l+ launch\l+ prepare\l+ post\l|}" alt="" coords="181,6,296,157"/>
+</map>

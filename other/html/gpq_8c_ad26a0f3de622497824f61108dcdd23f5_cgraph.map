@@ -1,0 +1,6 @@
+<map id="raid6_gpq_init" name="raid6_gpq_init">
+<area shape="rect" id="node2" href="$gpq_8c.html#ae0e0de3bbd66eb7f03c2f691cdcb9b9d" title="make_load_policy" alt="" coords="158,5,285,32"/>
+<area shape="rect" id="node3" href="$gpq_8c.html#ad8c07eae2b3be394b487cfc704bd4ca4" title="do_benchmark" alt="" coords="168,56,275,83"/>
+<area shape="rect" id="node4" href="$gpq_8c.html#afd6a4d2b4fbd7b59052ea04918d65243" title="test_gpq" alt="" coords="333,31,405,57"/>
+<area shape="rect" id="node5" href="$gpq_8c.html#ab57acc67f6901492511ab26f034ca95d" title="test_pq" alt="" coords="454,56,519,83"/>
+</map>
