@@ -920,7 +920,7 @@ static int kgpu_mmap(struct file *filp, struct vm_area_struct *vma)
 	return -EINVAL;
     }
     vma->vm_ops = &kgpu_vm_ops;
-    vma->vm_flags |= VM_RESERVED;
+		vma->vm_flags |= (VM_IO | VM_LOCKED | (VM_DONTEXPAND | VM_DONTDUMP));
     set_vm(vma);
     return 0;
 }

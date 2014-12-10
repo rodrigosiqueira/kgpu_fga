@@ -28,5 +28,14 @@
 *.x86_64
 *.hex
 
+#vim files
+*.swp
+
+#others
+*.mod.c
+*.symvers
+*.o.cmd
+
 #Paths
 /other
+kgpu/.tmp_versions/
