@@ -25,7 +25,6 @@ install:
 before_script:
 - uname -a 
 - ls /lib/modules -R
-- sudo apt-get install linux-headers-2.6.32
 - sudo ldconfig -v | grep gtest
 - pwd
 - uname -a
