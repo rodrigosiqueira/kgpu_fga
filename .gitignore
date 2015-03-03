@@ -35,6 +35,11 @@
 *.mod.c
 *.symvers
 *.o.cmd
+build/
+kgpu/.kgpu.ko.cmd
+kgpu/helper
+kgpu/modules.order
+tags
 
 #Paths
 /other

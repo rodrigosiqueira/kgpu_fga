@@ -117,6 +117,7 @@ struct kgpu_service_request {
 #ifdef __KERNEL__
 
 #include <linux/list.h>
+#include <asm/page.h>
 
 struct kgpu_request;
 
