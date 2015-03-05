@@ -123,10 +123,17 @@ struct kgpu_request;
 
 typedef int (*kgpu_callback)(struct kgpu_request *req);
 
-struct kgpu_request {
+struct kgpu_request 
+{
     int id;
-    void *in, *out, *udata, *kdata;
-    unsigned long insize, outsize, udatasize, kdatasize;
+    void * in;
+    void * out;
+    void * udata;
+    void * kdata;
+    unsigned long insize;
+    unsigned long outsize;
+    unsigned long udatasize;
+    unsigned long kdatasize;
     char service_name[KGPU_SERVICE_NAME_SIZE];
     kgpu_callback callback;
     int errcode;

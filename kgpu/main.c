@@ -246,9 +246,10 @@ static void kgpu_request_constructor(void* data)
 
 struct kgpu_request* kgpu_alloc_request(void)
 {
-    struct kgpu_request *req =
-	kmem_cache_alloc(kgpu_request_cache, GFP_KERNEL);
-    return req;
+  struct kgpu_request * request;
+
+  request = kmem_cache_alloc(kgpu_request_cache, GFP_KERNEL);
+  return request;
 }
 EXPORT_SYMBOL_GPL(kgpu_alloc_request);
 
@@ -441,38 +442,38 @@ EXPORT_SYMBOL_GPL(kgpu_map_page);
 
 static void* map_page_units(void *units, int n, int is_page)
 {
-    unsigned long addr;
-    int i;
-    int ret;
+  unsigned long addr;
+  int i;
+  int ret;
 
-    addr = kgpu_alloc_mmap_area(n<<PAGE_SHIFT);
-    if (!addr) {
-	return NULL;
+  addr = kgpu_alloc_mmap_area(n << PAGE_SHIFT);
+  if (!addr)
+  {
+    return NULL;
+  }
+
+  down_write(&kgpudev.vm.vma->vm_mm->mmap_sem);
+
+  for (i=0; i<n; i++)
+  {
+    ret = vm_insert_page(kgpudev.vm.vma, addr + i * PAGE_SIZE,
+                          is_page ? ((struct page**)units)[i] : 
+                          pfn_to_page(((unsigned long*)units)[i]));
+
+    if (unlikely(ret < 0))
+    {
+      up_write(&kgpudev.vm.vma->vm_mm->mmap_sem);
+      kgpu_log(KGPU_LOG_ERROR, "can't remap pfn %lu, error code %d\n",
+                is_page ? page_to_pfn(((struct page**)units)[i]) :
+                ((unsigned long*)units)[i],
+                ret);
+      return NULL;
     }
+  }
 
-    down_write(&kgpudev.vm.vma->vm_mm->mmap_sem);
+  up_write(&kgpudev.vm.vma->vm_mm->mmap_sem);
 
-    for (i=0; i<n; i++) {
-	ret = vm_insert_page(
-	    kgpudev.vm.vma,
-	    addr+i*PAGE_SIZE,
-	    is_page? ((struct page**)units)[i] : pfn_to_page(((unsigned long*)units)[i])
-	    );
-	
-	if (unlikely(ret < 0)) {
-	    up_write(&kgpudev.vm.vma->vm_mm->mmap_sem);
-	    kgpu_log(KGPU_LOG_ERROR,
-		     "can't remap pfn %lu, error code %d\n",
-		     is_page ? page_to_pfn(((struct page**)units)[i]) : ((unsigned long*)units)[i],
-		     ret);
-	    return NULL;
-	}
-    }
-
-    up_write(&kgpudev.vm.vma->vm_mm->mmap_sem);
-
-    return (void*)addr;
-    
+  return (void*)addr;  
 }
 
 void *kgpu_map_pages(struct page **pages, int n)

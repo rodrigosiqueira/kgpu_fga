@@ -27,64 +27,67 @@
 #define dbg(...) g_log(KGPU_LOG_DEBUG, ##__VA_ARGS__)
 
 
-int mycb(struct kgpu_request *req)
+int mycb(struct kgpu_request * pRequest)
 {
-    g_log(KGPU_LOG_PRINT, "REQ ID: %d, RESP CODE: %d, %d\n",
-	   req->id, req->errcode,
-	   ((int*)(req->kdata))[0]);
+    g_log(KGPU_LOG_PRINT, "REQUEST ID: %d, RESPONSE CODE: %d, %d\n", 
+          pRequest->id, pRequest->errcode, ((int*)(pRequest->kdata))[0]);
 
-    kgpu_unmap_area(TO_UL(req->in));
-    free_page(TO_UL(req->kdata));
-    kgpu_free_request(req);
+    kgpu_unmap_area(TO_UL(pRequest->in));
+    free_page(TO_UL(pRequest->kdata));
+    kgpu_free_request(pRequest);
+
     return 0;
 }
 
 static int __init minit(void)
 {
-    struct kgpu_request* req;
-    char *buf;
-    unsigned long pfn;
-    void *ga;
+    struct kgpu_request * request;
+    char * buf;
+    unsigned long pfn;//Pointer function
+    void * ga;
     
-    g_log(KGPU_LOG_PRINT, "loaded\n");
+    g_log(KGPU_LOG_PRINT, "Loaded\n");
 
-    req = kgpu_alloc_request();
-    if (!req) {
-	g_log(KGPU_LOG_ERROR, "request null\n");
-	return 0;
+    request = kgpu_alloc_request();
+    if (!request) 
+    {
+      g_log(KGPU_LOG_ERROR, "request null\n");
+      return 0;
     }
     
     buf = (char*)__get_free_page(GFP_KERNEL);
-    if (!buf) {
-        g_log(KGPU_LOG_ERROR, "buffer null\n");
-	kgpu_free_request(req);
-	return 0;
+    if (!buf)
+    {
+      g_log(KGPU_LOG_ERROR, "Buffer null\n");
+      kgpu_free_request(request);
+      return 0;
     }
-    pfn = __pa(buf)>>PAGE_SHIFT;
+    pfn = __pa(buf) >> PAGE_SHIFT;
 
     ga = kgpu_map_pfns(&pfn, 1);
-    if (!ga) {
-	g_log(KGPU_LOG_ERROR, "mmap error\n");
-	kgpu_free_request(req);
-	free_page(TO_UL(buf));
-	return 0;
+    if (!ga)
+    {
+      g_log(KGPU_LOG_ERROR, "mmap error\n");
+      kgpu_free_request(request);
+      free_page(TO_UL(buf));
+      return 0;
     }
 
-    req->in = ga;
-    req->insize = 1024;
-    req->out = ga;/*+1024;*/
-    req->outsize = 1024;
-    req->udata = ga;
-    req->udatasize = 1024;
-    strcpy(req->service_name, "test_service");
-    req->callback = mycb;
+    request->in = ga;
+    request->insize = 1024;
+    request->out = ga; /*+1024;*/
+    request->outsize = 1024;
+    request->udata = ga;
+    request->udatasize = 1024;
+    strcpy(request->service_name, "test_service");
+    request->callback = mycb;
 
-    req->kdata = buf;
+    request->kdata = buf;
 
     ((int*)(buf))[0] = 100;
 
-    kgpu_call_async(req);
-    
+    kgpu_call_async(request);
+
     return 0;
 }
 
