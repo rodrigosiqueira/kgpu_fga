@@ -26,47 +26,52 @@
 #define g_log(level, ...) kgpu_do_log(level, "calg2", ##__VA_ARGS__)
 #define dbg(...) g_log(KGPU_LOG_DEBUG, ##__VA_ARGS__)
 
-int mycb(struct kgpu_request *req)
+int mycb(struct kgpu_request * request)
 {
-    g_log(KGPU_LOG_PRINT, "REQ ID: %d, RESP CODE: %d\n",
-	   req->id, req->errcode);
-    kgpu_vfree(req->in);
-    kgpu_free_request(req);
-    return 0;
+  g_log(KGPU_LOG_PRINT, "REQ ID: %d, RESP CODE: %d\n", 
+        request->id, request->errcode);
+
+  kgpu_vfree(request->in);
+  kgpu_free_request(request);
+
+  return 0;
 }
 
 static int __init minit(void)
 {
-    struct kgpu_request* req;
-    
-    g_log(KGPU_LOG_PRINT, "loaded\n");
+  struct kgpu_request * request;
 
-    req = kgpu_alloc_request();
-    if (!req) {
-	g_log(KGPU_LOG_ERROR, "request null\n");
-	return 0;
-    }
-    
-    req->in = kgpu_vmalloc(1024*2);
-    if (!req->in) {
-	g_log(KGPU_LOG_ERROR, "callgpu out of memory\n");
-	kgpu_free_request(req);
-	return 0;
-    }
-    req->insize = 1024;
-    req->out = (void*)((unsigned long)(req->in)+1024);
-    req->outsize = 1024;
-    strcpy(req->service_name, "nonexist service");
-    req->callback = mycb;
+  g_log(KGPU_LOG_PRINT, "loaded\n");
 
-    kgpu_call_async(req);
-    
+  request = kgpu_alloc_request();
+  if (!request) 
+  {
+    g_log(KGPU_LOG_ERROR, "request null\n");
     return 0;
+  }
+
+  request->in = kgpu_vmalloc(1024*2);
+  if (!request->in) 
+  {
+    g_log(KGPU_LOG_ERROR, "callgpu out of memory\n");
+    kgpu_free_request(request);
+    return 0;
+  }
+
+  request->insize = 1024;
+  request->out = (void*) ((unsigned long)(request->in) + 1024);
+  request->outsize = 1024;
+  strcpy(request->service_name, "nonexist service");
+  request->callback = mycb;
+
+  kgpu_call_async(request);
+
+  return 0;
 }
 
 static void __exit mexit(void)
 {
-    g_log(KGPU_LOG_PRINT, "unload\n");
+  g_log(KGPU_LOG_PRINT, "unload\n");
 }
 
 module_init(minit);

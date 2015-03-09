@@ -22,8 +22,8 @@
  * Buffer management stuff, put them here in case we may
  * create a kgpu_buf.c for buffer related functions.
  */
-#define KGPU_BUF_UNIT_SIZE (1024*1024)
-#define KGPU_BUF_NR_FRAMES_PER_UNIT (KGPU_BUF_UNIT_SIZE/PAGE_SIZE)
+#define KGPU_BUF_UNIT_SIZE (1024 * 1024)
+#define KGPU_BUF_NR_FRAMES_PER_UNIT (KGPU_BUF_UNIT_SIZE / PAGE_SIZE)
 
 /* memory ops */
 extern struct page *kgpu_v2page(unsigned long vaddr);

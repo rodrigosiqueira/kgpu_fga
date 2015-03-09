@@ -14,47 +14,55 @@
 
 #define TO_UL(v) ((unsigned long)(v))
 
-#define ADDR_WITHIN(pointer, base, size)		\
-    (TO_UL(pointer) >= TO_UL(base) &&			\
-     (TO_UL(pointer) < TO_UL(base)+TO_UL(size)))
+#define ADDR_WITHIN(pointer, base, size)      \
+  (TO_UL(pointer) >= TO_UL(base) &&			      \
+  (TO_UL(pointer) < TO_UL(base)+TO_UL(size)))
 
-#define ADDR_REBASE(dst_base, src_base, pointer)			\
-    (TO_UL(dst_base) + (						\
-	TO_UL(pointer)-TO_UL(src_base)))
+#define ADDR_REBASE(dst_base, src_base, pointer)  \
+  (TO_UL(dst_base) + (TO_UL(pointer)-TO_UL(src_base)))
 
-struct kgpu_gpu_mem_info {
-    void *uva;
+struct kgpu_gpu_mem_info 
+{
+    void * uva;
     unsigned long size;
 };
 
 #define KGPU_SERVICE_NAME_SIZE 32
-
-struct kgpu_ku_request {
-    int id;
-    char service_name[KGPU_SERVICE_NAME_SIZE];
-    void *in, *out, *data;
-    unsigned long insize, outsize, datasize;
+// TODO: Comment each field.
+struct kgpu_ku_request 
+{
+  int id;
+  char service_name[KGPU_SERVICE_NAME_SIZE];
+  void * in; 
+  void * out;
+  void * data;
+  unsigned long insize; 
+  unsigned long outsize; 
+  unsigned long datasize;
 };
 
 /* kgpu's errno */
+// TODO: Replace it for enum.
 #define KGPU_OK 0
 #define KGPU_NO_RESPONSE 1
 #define KGPU_NO_SERVICE 2
 #define KGPU_TERMINATED 3
 
-struct kgpu_ku_response {
-    int id;
-    int errcode;
+struct kgpu_ku_response 
+{
+  int id;
+  int errcode;
 };
 
-/*
+/* TODO: If it is available only for kernel code, create a specific header.
  * Only for kernel code or helper
  */
 #if defined __KERNEL__ || defined __KGPU__
 
 /* the NR will not be used */
 #define KGPU_BUF_NR 1
-#define KGPU_BUF_SIZE (1024*1024*1024)
+// TODO: This kind of configuration should be more "automatically".
+#define KGPU_BUF_SIZE (32*32*32)
 
 #define KGPU_MMAP_SIZE KGPU_BUF_SIZE
 
@@ -62,15 +70,17 @@ struct kgpu_ku_response {
 
 /* ioctl */
 #include <linux/ioctl.h>
-
+// TODO: Understand and comment all of this defines.
 #define KGPU_IOC_MAGIC 'g'
 
 #define KGPU_IOC_SET_GPU_BUFS \
-    _IOW(KGPU_IOC_MAGIC, 1, struct kgpu_gpu_mem_info[KGPU_BUF_NR])
+  _IOW(KGPU_IOC_MAGIC, 1, struct kgpu_gpu_mem_info[KGPU_BUF_NR])
+
 #define KGPU_IOC_GET_GPU_BUFS \
-    _IOR(KGPU_IOC_MAGIC, 2, struct kgpu_gpu_mem_info[KGPU_BUF_NR])
-#define KGPU_IOC_SET_STOP     _IO(KGPU_IOC_MAGIC, 3)
-#define KGPU_IOC_GET_REQS     _IOR(KGPU_IOC_MAGIC, 4, 
+  _IOR(KGPU_IOC_MAGIC, 2, struct kgpu_gpu_mem_info[KGPU_BUF_NR])
+
+#define KGPU_IOC_SET_STOP _IO(KGPU_IOC_MAGIC, 3)
+#define KGPU_IOC_GET_REQS _IOR(KGPU_IOC_MAGIC, 4, 
 
 #define KGPU_IOC_MAXNR 4
 
@@ -78,28 +88,39 @@ struct kgpu_ku_response {
 
 #endif /* __KERNEL__ || __KGPU__  */
 
-/*
+/* TODO: If it is necessary only for helper, put it in another header!
  * For helper and service providers
  */
 #ifndef __KERNEL__
 
 struct kgpu_service;
 
-struct kgpu_service_request {
-    int id;
-    void *hin, *hout, *hdata;
-    void *din, *dout, *ddata;
-    unsigned long insize, outsize, datasize;
-    int errcode;
-    struct kgpu_service *s;
-    int block_x, block_y;
-    int grid_x, grid_y;
-    int state;
-    int stream_id;
-    unsigned long stream;
+// TODO: Understand and comment each element.
+struct kgpu_service_request 
+{
+  int id;
+  void * hin;
+  void * hout;
+  void * hdata;
+  void * din;
+  void * dout; 
+  void * ddata;
+  unsigned long insize;
+  unsigned long outsize;
+  unsigned long datasize;
+  int errcode;
+  struct kgpu_service * s;
+  int block_x;
+  int block_y;
+  int grid_x;
+  int grid_y;
+  int state;
+  int stream_id;
+  unsigned long stream;
 };
 
-/* service request states: */
+// TODO: Create enum to replace it.
+/* Service request states: */
 #define KGPU_REQ_INIT 1
 #define KGPU_REQ_MEM_DONE 2
 #define KGPU_REQ_PREPARED 3
@@ -111,7 +132,7 @@ struct kgpu_service_request {
 
 #endif /* no __KERNEL__ */
 
-/*
+/* TODO: if it is needed only for kernel, put into a separated header.
  * For kernel code only
  */
 #ifdef __KERNEL__
@@ -139,22 +160,22 @@ struct kgpu_request
     int errcode;
 };
 
-extern int kgpu_call_sync(struct kgpu_request*);
-extern int kgpu_call_async(struct kgpu_request*);
+extern int kgpu_call_sync (struct kgpu_request * );
+extern int kgpu_call_async (struct kgpu_request * );
 
-extern int kgpu_next_request_id(void);
-extern struct kgpu_request* kgpu_alloc_request(void);
-extern void kgpu_free_request(struct kgpu_request*);
+extern int kgpu_next_request_id (void);
+extern struct kgpu_request * kgpu_alloc_request (void);
+extern void kgpu_free_request (struct kgpu_request * );
 
-extern void *kgpu_vmalloc(unsigned long nbytes);
-extern void kgpu_vfree(void* p);
+extern void * kgpu_vmalloc (unsigned long nbytes);
+extern void kgpu_vfree (void * p);
 
-extern void *kgpu_map_pfns(unsigned long *pfns, int n);
-extern void *kgpu_map_pages(struct page **pages, int n);
-extern void kgpu_unmap_area(unsigned long addr);
-extern int kgpu_map_page(struct page*, unsigned long);
-extern void kgpu_free_mmap_area(unsigned long);
-extern unsigned long kgpu_alloc_mmap_area(unsigned long);
+extern void * kgpu_map_pfns (unsigned long * pfns, int n);
+extern void * kgpu_map_pages (struct page ** pages, int n);
+extern void kgpu_unmap_area (unsigned long addr);
+extern int kgpu_map_page (struct page *, unsigned long);
+extern void kgpu_free_mmap_area (unsigned long);
+extern unsigned long kgpu_alloc_mmap_area (unsigned long);
 
 #endif /* __KERNEL__ */
 
