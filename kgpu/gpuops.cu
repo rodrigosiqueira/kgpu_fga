@@ -243,128 +243,137 @@ static int __merge_ranges (unsigned long ad[], unsigned long sz[], int n)
  *     service provider. This is fine since the data tend to be
  *     very tiny.
  */
-int gpu_alloc_device_mem(struct kgpu_service_request *sreq)
+int gpu_alloc_device_mem (struct kgpu_service_request * sreq)
 {
-    unsigned long pin_addr[3] = {0,0,0}, pin_sz[3] = {0,0,0};
-    int npins = 0, i;
-    
-    if (ADDR_WITHIN(sreq->hin, hostbuf.uva, hostbuf.size))
-	sreq->din =
-	    (void*)ADDR_REBASE(devbuf.uva, hostbuf.uva, sreq->hin);
-    else {
-	sreq->din =
-	    (void*)ADDR_REBASE(devbuf4vma.uva, hostvma.uva, sreq->hin);
+  unsigned long pin_addr[3] = {0,0,0}, pin_sz[3] = {0,0,0};
+  int npins = 0, i;
 
-	pin_addr[npins] = TO_UL(sreq->hin);
-	pin_sz[npins] = sreq->insize;
-	npins++;
-    }
+  if (ADDR_WITHIN(sreq->hin, hostbuf.uva, hostbuf.size))
+  {
+    sreq->din = (void*)ADDR_REBASE(devbuf.uva, hostbuf.uva, sreq->hin);
+  }
+  else
+  {
+    sreq->din = (void*)ADDR_REBASE (devbuf4vma.uva, hostvma.uva, sreq->hin);
+    pin_addr[npins] = TO_UL(sreq->hin);
+    pin_sz[npins] = sreq->insize;
+    npins++;
+  }
 
-    if (ADDR_WITHIN(sreq->hout, hostbuf.uva, hostbuf.size))
-	sreq->dout =
-	    (void*)ADDR_REBASE(devbuf.uva, hostbuf.uva, sreq->hout);
-    else {
-	sreq->dout =
-	    (void*)ADDR_REBASE(devbuf4vma.uva, hostvma.uva, sreq->hout);
+  if (ADDR_WITHIN(sreq->hout, hostbuf.uva, hostbuf.size))
+  {
+    sreq->dout = (void*)ADDR_REBASE(devbuf.uva, hostbuf.uva, sreq->hout);
+  }
+  else
+  {
+    sreq->dout = (void*)ADDR_REBASE(devbuf4vma.uva, hostvma.uva, sreq->hout);
+    pin_addr[npins] = TO_UL(sreq->hout);
+    pin_sz[npins] = sreq->outsize;
+    npins++;
+  }
 
-	pin_addr[npins] = TO_UL(sreq->hout);
-	pin_sz[npins] = sreq->outsize;
-	npins++;
-    }
+  if (ADDR_WITHIN(sreq->hdata, hostbuf.uva, hostbuf.size))
+  {
+    sreq->ddata = (void*)ADDR_REBASE(devbuf.uva, hostbuf.uva, sreq->hdata);
+  }
+  else if (ADDR_WITHIN(sreq->hdata, hostvma.uva, hostvma.size))
+  {
+    sreq->ddata = (void*)ADDR_REBASE(devbuf4vma.uva, hostvma.uva, sreq->hdata);
+    pin_addr[npins] = TO_UL(sreq->hdata);
+    pin_sz[npins] = sreq->datasize;
+    npins++;
+  }
 
-    if (ADDR_WITHIN(sreq->hdata, hostbuf.uva, hostbuf.size))
-	sreq->ddata =
-	    (void*)ADDR_REBASE(devbuf.uva, hostbuf.uva, sreq->hdata);
-    else if (ADDR_WITHIN(sreq->hdata, hostvma.uva, hostvma.size)){
-	sreq->ddata =
-	    (void*)ADDR_REBASE(devbuf4vma.uva, hostvma.uva, sreq->hdata);
+  npins = __merge_ranges(pin_addr, pin_sz, npins);
+  for (i = 0; i < npins; i++)
+  {
+    gpu_pin_mem((void*)pin_addr[i], pin_sz[i]);
+  }
 
-	pin_addr[npins] = TO_UL(sreq->hdata);
-	pin_sz[npins] = sreq->datasize;
-	npins++;
-    }
-    
-    npins = __merge_ranges(pin_addr, pin_sz, npins);
-    for (i=0; i<npins; i++) {
-    	gpu_pin_mem((void*)pin_addr[i], pin_sz[i]);
-    }
-
-    return 0;
+  return 0;
 }
 
-void gpu_free_device_mem(struct kgpu_service_request *sreq)
+void gpu_free_device_mem (struct kgpu_service_request * sreq)
 {
-    unsigned long pin_addr[3] = {0,0,0}, pin_sz[3] = {0,0,0};
-    int npins = 0, i;
-    
-    sreq->din = NULL;
-    sreq->dout = NULL;
-    sreq->ddata = NULL;   
-    
-    if (ADDR_WITHIN(sreq->hin, hostvma.uva, hostvma.size)) {
-    	pin_addr[npins] = TO_UL(sreq->hin);
-	pin_sz[npins] = sreq->insize;
-	npins++;
+  unsigned long pin_addr[3] = {0,0,0}, pin_sz[3] = {0,0,0};
+  int npins = 0, i;
+
+  sreq->din = NULL;
+  sreq->dout = NULL;
+  sreq->ddata = NULL;
+
+  if (ADDR_WITHIN(sreq->hin, hostvma.uva, hostvma.size))
+  {
+    pin_addr[npins] = TO_UL(sreq->hin);
+    pin_sz[npins] = sreq->insize;
+    npins++;
+  }
+
+  if (ADDR_WITHIN(sreq->hout, hostvma.uva, hostvma.size))
+  {
+    pin_addr[npins] = TO_UL(sreq->hout);
+    pin_sz[npins] = sreq->outsize;
+    npins++;
+  }
+
+  if (ADDR_WITHIN(sreq->hdata, hostvma.uva, hostvma.size))
+  {
+    pin_addr[npins] = TO_UL(sreq->hdata);
+    pin_sz[npins] = sreq->datasize;
+    npins++;
+  }
+
+  npins = __merge_ranges(pin_addr, pin_sz, npins);
+  for (i = 0; i < npins; i++)
+  {
+    gpu_unpin_mem((void*)pin_addr[i]);
+  }
+}
+
+int gpu_alloc_stream (struct kgpu_service_request * sreq)
+{
+  int i;
+
+  for (i = 0; i < MAX_STREAM_NR; i++)
+  {
+    if (!streamuses[i])
+    {
+      streamuses[i] = 1;
+      sreq->stream_id = i;
+      sreq->stream = (unsigned long)(streams[i]);
+      return 0;
     }
-    if (ADDR_WITHIN(sreq->hout, hostvma.uva, hostvma.size)) {
-    	pin_addr[npins] = TO_UL(sreq->hout);
-	pin_sz[npins] = sreq->outsize;
-	npins++;
-    }
-    if (ADDR_WITHIN(sreq->hdata, hostvma.uva, hostvma.size)) {
-    	pin_addr[npins] = TO_UL(sreq->hdata);
-	pin_sz[npins] = sreq->datasize;
-	npins++;
-    }
-    
-    npins = __merge_ranges(pin_addr, pin_sz, npins);
-    for (i=0; i<npins; i++) {
-    	gpu_unpin_mem((void*)pin_addr[i]);
+  }
+  return 1;
+}
+
+void gpu_free_stream (struct kgpu_service_request * sreq)
+{
+    if (sreq->stream_id >= 0 && sreq->stream_id < MAX_STREAM_NR)
+    {
+      streamuses[sreq->stream_id] = 0;
     }
 }
 
-int gpu_alloc_stream(struct kgpu_service_request *sreq)
+int default_compute_size (struct kgpu_service_request * sreq)
 {
-    int i;
-
-    for (i=0; i<MAX_STREAM_NR; i++) {
-	if (!streamuses[i]) {
-	    streamuses[i] = 1;
-	    sreq->stream_id = i;
-	    sreq->stream = (unsigned long)(streams[i]);
-	    return 0;
-	}
-    }
-    return 1;
+  sreq->block_x = default_block_size.x;
+  sreq->block_y = default_block_size.y;
+  sreq->grid_x = default_grid_size.x;
+  sreq->grid_y = default_grid_size.y;
+  return 0;
 }
 
-void gpu_free_stream(struct kgpu_service_request *sreq)
+int default_prepare (struct kgpu_service_request * sreq)
 {
-    if (sreq->stream_id >= 0 && sreq->stream_id < MAX_STREAM_NR) {
-	streamuses[sreq->stream_id] = 0;
-    }
+  cudaStream_t s = (cudaStream_t)gpu_get_stream(sreq->stream_id);
+  csc( ah2dcpy( sreq->din, sreq->hin, sreq->insize, s) );
+  return 0;
 }
 
-
-int default_compute_size(struct kgpu_service_request *sreq)
+int default_post(struct kgpu_service_request * sreq)
 {
-    sreq->block_x = default_block_size.x;
-    sreq->block_y = default_block_size.y;
-    sreq->grid_x = default_grid_size.x;
-    sreq->grid_y = default_grid_size.y;
-    return 0;
-}
-
-int default_prepare(struct kgpu_service_request *sreq)
-{
-    cudaStream_t s = (cudaStream_t)gpu_get_stream(sreq->stream_id);
-    csc( ah2dcpy( sreq->din, sreq->hin, sreq->insize, s) );
-    return 0;
-}
-
-int default_post(struct kgpu_service_request *sreq)
-{
-    cudaStream_t s = (cudaStream_t)gpu_get_stream(sreq->stream_id);
-    csc( ad2hcpy( sreq->hout, sreq->dout, sreq->outsize, s) );
-    return 0;
+  cudaStream_t s = (cudaStream_t)gpu_get_stream(sreq->stream_id);
+  csc( ad2hcpy( sreq->hout, sreq->dout, sreq->outsize, s) );
+  return 0;
 }
