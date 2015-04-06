@@ -17,21 +17,26 @@
 #include <linux/slab.h>
 #include <asm/current.h>
 
-struct page* kgpu_v2page(unsigned long v)
+struct page * kgpu_v2page(unsigned long v)
 {
-    struct page *p = NULL;
-    pgd_t *pgd = pgd_offset(current->mm, v);
+    struct page * p = NULL;
+    pgd_t * pgd = pgd_offset(current->mm, v);
 
-    if (!pgd_none(*pgd)) {
-	pud_t *pud = pud_offset(pgd, v);
-	if (!pud_none(*pud)) {
-	    pmd_t *pmd = pmd_offset(pud, v);
-	    if (!pmd_none(*pmd)) {
-		pte_t *pte;
+    if (!pgd_none(*pgd))
+    {
+        pud_t * pud = pud_offset(pgd, v);
+        if (!pud_none(*pud))
+        {
+	    pmd_t * pmd = pmd_offset(pud, v);
+	    if (!pmd_none(*pmd))
+            {
+                pte_t *pte;
 
-		pte = pte_offset_map(pmd, v);
-		if (pte_present(*pte))
+                pte = pte_offset_map(pmd, v);
+                if (pte_present(*pte))
+                {
 		    p = pte_page(*pte);
+                }
 		
 		/*
 		 * although KGPU doesn't support x86_32, but in case
@@ -43,7 +48,10 @@ struct page* kgpu_v2page(unsigned long v)
 	}
     }
     if (!p)
+    {
 	kgpu_log(KGPU_LOG_ALERT, "bad address 0x%lX\n", v);
+    }
+
     return p;
 }
 
