@@ -1,22 +1,23 @@
 obj-m += kgpu.o
+ccflags-y += -I`pwd`/include
 
 all:	kgpu helper
 
 kgpu-objs := main.o kgpu_kutils.o kgpu_log.o
 
 kgpu:
-	make -C /lib/modules/$(shell uname -r)/build M=`pwd` modules
+	make -C /lib/modules/$(shell uname -r)/build M=`pwd` modules ccflags-y=$(ccflags-y)
 	$(if $(BUILD_DIR), cp kgpu.ko $(BUILD_DIR)/ ) 
 
 kgpu_log:
-	gcc -O2 -D__KGPU__ -c kgpu_log.c -o kgpu_log_user.o
+	gcc -O2 -D__KGPU__ -c kgpu_log.c -o kgpu_log_user.o $(ccflags-y)
 	ar -rcs kgpu_log.a kgpu_log_user.o
 	$(if $(BUILD_DIR), cp kgpu_log.a $(BUILD_DIR)/ )
 
 helper: kgpu_log
-	gcc -O2 -D__KGPU__ -c helper.c
-	gcc -O2 -D__KGPU__ -c service.c
-	nvcc -O2 -D__KGPU__ -c -arch=sm_20 gpuops.cu
+	gcc -O2 -D__KGPU__ -c helper.c $(ccflags-y)
+	gcc -O2 -D__KGPU__ -c service.c $(ccflags-y)
+	nvcc -O2 -D__KGPU__ -c -arch=sm_20 gpuops.cu $(ccflags-y)
 	nvcc -link -D__KGPU__ -O2 -arch=sm_20 service.o helper.o kgpu_log_user.o gpuops.o -o helper -ldl
 	$(if $(BUILD_DIR), cp helper $(BUILD_DIR)/ )
 
