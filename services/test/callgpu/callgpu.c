@@ -20,7 +20,7 @@
 #include <linux/uaccess.h>
 #include <asm/page.h>
 
-#include "../../../kgpu/kgpu.h"
+#include "../../../kgpu/include/kgpu.h"
 
 /* customized log function */
 #define g_log(level, ...) kgpu_do_log(level, "calg2", ##__VA_ARGS__)
