@@ -32,15 +32,18 @@
 #include <asm/atomic.h>
 #include "kkgpu.h"
 
+#define START_BITNUMBER 0
+#define ALIGN_MASK 0
+
 // TODO: Understand and comment each element.
 struct _kgpu_mempool
 {
-  unsigned long uva;
-  unsigned long kva;
+  unsigned long uva;      /**< User virtual address.*/
+  unsigned long kva;      /**< Kernel Virtual Address.*/
   struct page ** pages;
   u32 npages;
-  u32 nunits;
-  unsigned long * bitmap;
+  u32 nunits;             /**< The bitmap size in bits.*/
+  unsigned long * bitmap; /**< Base address.*/
   u32 * alloc_sz;
 };
 
@@ -280,18 +283,30 @@ EXPORT_SYMBOL_GPL(kgpu_free_request);
 
 void * kgpu_vmalloc (unsigned long nbytes)
 {
-  unsigned int req_nunits = DIV_ROUND_UP(nbytes, KGPU_BUF_UNIT_SIZE);
+  unsigned int req_nunits = 0;
   void * p = NULL;
   unsigned long idx;
 
-  spin_lock(&kgpudev.gmpool_lock);
-  idx = bitmap_find_next_zero_area(kgpudev.gmpool.bitmap,
-                                    kgpudev.gmpool.nunits, 0, req_nunits, 0);
+  //DIV_ROUND(x, len) (((x) + (len) - 1) / (len))
+  req_nunits = DIV_ROUND_UP(nbytes, KGPU_BUF_UNIT_SIZE);
 
+  spin_lock(&kgpudev.gmpool_lock);
+
+  //bitmap_find_next_zero_area: Find a contiguous aligned zero area
+  idx = bitmap_find_next_zero_area(kgpudev.gmpool.bitmap,
+                                    kgpudev.gmpool.nunits,
+                                    START_BITNUMBER,
+                                    req_nunits, ALIGN_MASK);
+
+  //TODO: REMOVE IT
+  kgpu_log(KGPU_LOG_ERROR, "idx: %ld, nunits: %d, req_nunits: %d\n",
+            idx, kgpudev.gmpool.nunits, req_nunits);
   if (idx < kgpudev.gmpool.nunits)
   {
+    
     bitmap_set(kgpudev.gmpool.bitmap, idx, req_nunits);
-    p = (void*)((unsigned long)(kgpudev.gmpool.kva) + idx*KGPU_BUF_UNIT_SIZE);
+    p = (void *)((unsigned long)(kgpudev.gmpool.kva) +
+        idx * KGPU_BUF_UNIT_SIZE);
     kgpudev.gmpool.alloc_sz[idx] = req_nunits;
   }
   else
@@ -570,7 +585,7 @@ static void fill_ku_request (struct kgpu_ku_request * kureq,
   memcpy (kureq->service_name, req->service_name, KGPU_SERVICE_NAME_SIZE);
 
   if (ADDR_WITHIN(req->in, kgpudev.gmpool.kva,
-      kgpudev.gmpool.npages<<PAGE_SHIFT))
+      kgpudev.gmpool.npages << PAGE_SHIFT))
   {
     kureq->in = (void*)ADDR_REBASE(kgpudev.gmpool.uva, kgpudev.gmpool.kva,
                                     req->in);
@@ -581,7 +596,7 @@ static void fill_ku_request (struct kgpu_ku_request * kureq,
   }
 
   if (ADDR_WITHIN(req->out, kgpudev.gmpool.kva,
-      kgpudev.gmpool.npages<<PAGE_SHIFT))
+      kgpudev.gmpool.npages << PAGE_SHIFT))
   {
     kureq->out = (void*)ADDR_REBASE(kgpudev.gmpool.uva, kgpudev.gmpool.kva,
                                     req->out);
@@ -756,7 +771,7 @@ static int clear_gpu_mempool (void)
 static int set_gpu_mempool (char __user * buf)
 {
   struct kgpu_gpu_mem_info gb;
-  struct _kgpu_mempool * gmp = &kgpudev.gmpool;
+  struct _kgpu_mempool * gpuMemoryPool = &kgpudev.gmpool;
   int i;
   int err = 0;
 
@@ -765,56 +780,68 @@ static int set_gpu_mempool (char __user * buf)
   copy_from_user (&gb, buf, sizeof(struct kgpu_gpu_mem_info));
 
   /* set up pages mem */
-  gmp->uva = (unsigned long)(gb.uva);
-  gmp->npages = gb.size/PAGE_SIZE;
-  if (!gmp->pages)
+  gpuMemoryPool->uva = (unsigned long)(gb.uva);
+  gpuMemoryPool->npages = gb.size / PAGE_SIZE; //gb.size = KGPU_BUF_SIZE
+  //TODO: REMOVE IT
+  kgpu_log(KGPU_LOG_ERROR, "SET_GPU_MEMPOOL:: npages: %d, gb.size: %d \n",
+            gpuMemoryPool->npages, gb.size);
+
+  if (!gpuMemoryPool->pages)
   {
-    gmp->pages = kmalloc(sizeof(struct page*)*gmp->npages, GFP_KERNEL);
-    if (!gmp->pages)
+    gpuMemoryPool->pages = kmalloc(sizeof(struct page*)*gpuMemoryPool->npages,
+                                    GFP_KERNEL);
+    if (!gpuMemoryPool->pages)
     {
-      kgpu_log(KGPU_LOG_ERROR, "run out of memory for gmp pages\n");
+      kgpu_log(KGPU_LOG_ERROR,
+                "SET_GPU_MEMPOOL:: Run out of memory for gmp pages\n");
       err = -ENOMEM;
       goto unlock_and_out;
     }
   }
 
-  for (i = 0; i < gmp->npages; i++)
+  for (i = 0; i < gpuMemoryPool->npages; i++)
   {
-    gmp->pages[i]= kgpu_v2page ((unsigned long)(gb.uva) + i * PAGE_SIZE);
+    gpuMemoryPool->pages[i]= kgpu_v2page ((unsigned long)(gb.uva) +
+                                          i * PAGE_SIZE);
   }
   /* set up bitmap */
-  gmp->nunits = gmp->npages / KGPU_BUF_NR_FRAMES_PER_UNIT;
+  gpuMemoryPool->nunits = gpuMemoryPool->npages / KGPU_BUF_NR_FRAMES_PER_UNIT;
 
-  if (!gmp->bitmap)
+  if (!gpuMemoryPool->bitmap)
   {
-    gmp->bitmap = kmalloc(BITS_TO_LONGS(gmp->nunits) * sizeof(long),
-                          GFP_KERNEL);
-    if (!gmp->bitmap)
+    //BITS_TO_LONGS(nr) DIV_ROUND_UP(nr, BITS_PER_BYTE * sizeof(long))
+    gpuMemoryPool->bitmap = kmalloc(BITS_TO_LONGS(
+                                    gpuMemoryPool->nunits) * sizeof(long),
+                                    GFP_KERNEL);
+    if (!gpuMemoryPool->bitmap)
     {
       kgpu_log(KGPU_LOG_ERROR, "run out of memory for gmp bitmap\n");
       err = -ENOMEM;
       goto unlock_and_out;
     }
   }
-  bitmap_zero(gmp->bitmap, gmp->nunits);
+  bitmap_zero(gpuMemoryPool->bitmap, gpuMemoryPool->nunits);
 
   /* set up allocated memory sizes */
-  if (!gmp->alloc_sz)
+  if (!gpuMemoryPool->alloc_sz)
   {
-    gmp->alloc_sz = kmalloc(gmp->nunits*sizeof(u32), GFP_KERNEL);
-    if (!gmp->alloc_sz)
+    gpuMemoryPool->alloc_sz = kmalloc(gpuMemoryPool->nunits*sizeof(u32),
+                                      GFP_KERNEL);
+    if (!gpuMemoryPool->alloc_sz)
     {
       kgpu_log(KGPU_LOG_ERROR, "run out of memory for gmp alloc_sz\n");
       err = -ENOMEM;
       goto unlock_and_out;
     }
   }
-  memset(gmp->alloc_sz, 0, gmp->nunits);
+  memset(gpuMemoryPool->alloc_sz, 0, gpuMemoryPool->nunits);
 
   /* set up kernel remapping */
-  gmp->kva = (unsigned long)vmap(gmp->pages, gmp->npages, GFP_KERNEL,
-                                  PAGE_KERNEL);
-  if (!gmp->kva)
+  //vmap: create a virtual mapping for the buffer into kernel address space.
+  gpuMemoryPool->kva = (unsigned long) vmap(gpuMemoryPool->pages,
+                                            gpuMemoryPool->npages, GFP_KERNEL,
+                                            PAGE_KERNEL);
+  if (!gpuMemoryPool->kva)
   {
     kgpu_log(KGPU_LOG_ERROR, "map pages into kernel failed\n");
     err = -EFAULT;

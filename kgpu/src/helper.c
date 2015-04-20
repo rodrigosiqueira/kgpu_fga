@@ -81,13 +81,13 @@ static void dump_hex(u8 * p, int rs, int cs)
 static int kh_init(void)
 {
   int  i, len, r;
-  void * p;
+  void * pinnedMemory = 0;
 
   devfd = ssc(open(kgpudev, O_RDWR));
 
   /* alloc GPU Pinned memory buffers */
-  p = (void *) gpu_alloc_pinned_mem(KGPU_BUF_SIZE + PAGE_SIZE);
-  hostbuf.uva = p;
+  pinnedMemory = (void *) gpu_alloc_pinned_mem(KGPU_BUF_SIZE + PAGE_SIZE);
+  hostbuf.uva = pinnedMemory;
   hostbuf.size = KGPU_BUF_SIZE;
   dbg("%p \n", hostbuf.uva);
   memset(hostbuf.uva, 0, KGPU_BUF_SIZE);
