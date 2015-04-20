@@ -10,18 +10,18 @@ typedef int (*kgpu_callback)(struct kgpu_request *req);
 
 struct kgpu_request 
 {
-    int id;
-    void * in;
-    void * out;
-    void * udata;
-    void * kdata;
-    unsigned long insize;
-    unsigned long outsize;
-    unsigned long udatasize;
-    unsigned long kdatasize;
-    char service_name[KGPU_SERVICE_NAME_SIZE];
-    kgpu_callback callback;
-    int errcode;
+  int id;
+  void * in;
+  void * out;
+  void * udata;
+  void * kdata;
+  unsigned long insize;
+  unsigned long outsize;
+  unsigned long udatasize;
+  unsigned long kdatasize;
+  char service_name[KGPU_SERVICE_NAME_SIZE];
+  kgpu_callback callback;
+  int errcode;
 };
 
 extern int kgpu_call_sync (struct kgpu_request * );

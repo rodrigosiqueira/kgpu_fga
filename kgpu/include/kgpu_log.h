@@ -18,8 +18,8 @@
 #define KGPU_LOG_PRINT 5
 
 extern void kgpu_generic_log(
-    int level, const char *module, const char *filename,
-    int lineno, const char *func, const char *fmt, ...);
+  int level, const char * module, const char * filename,
+  int lineno, const char * func, const char * fmt, ...);
 extern int kgpu_log_level;
 
 #ifdef __KGPU_LOG_FULL_FILE_PATH__

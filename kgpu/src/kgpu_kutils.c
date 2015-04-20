@@ -8,6 +8,7 @@
  * KGPU kernel module utilities
  *
  */
+
 #include "kkgpu.h"
 #include <linux/kernel.h>
 #include <linux/sched.h>
@@ -19,39 +20,40 @@
 
 struct page * kgpu_v2page(unsigned long v)
 {
-    struct page * p = NULL;
-    pgd_t * pgd = pgd_offset(current->mm, v);
+  struct page * p = NULL;
+  pgd_t * pgd = pgd_offset(current->mm, v);
 
-    if (!pgd_none(*pgd))
+  if (!pgd_none(* pgd))
+  {
+    pud_t * pud = pud_offset(pgd, v);
+    if (!pud_none(*pud))
     {
-        pud_t * pud = pud_offset(pgd, v);
-        if (!pud_none(*pud))
+      pmd_t * pmd = pmd_offset(pud, v);
+      if (!pmd_none(* pmd))
+      {
+        pte_t * pte;
+
+        pte = pte_offset_map(pmd, v);
+        if (pte_present(*pte))
         {
-	    pmd_t * pmd = pmd_offset(pud, v);
-	    if (!pmd_none(*pmd))
-            {
-                pte_t *pte;
-
-                pte = pte_offset_map(pmd, v);
-                if (pte_present(*pte))
-                {
-		    p = pte_page(*pte);
-                }
+          p = pte_page(*pte);
+        }
 		
-		/*
-		 * although KGPU doesn't support x86_32, but in case
-		 * some day it does, the pte_unmap should not be called
-		 * because we want the pte stay in mem.
-		 */
-		pte_unmap(pte);
-	    }
-	}
+    /*
+    * although KGPU doesn't support x86_32, but in case
+    * some day it does, the pte_unmap should not be called
+    * because we want the pte stay in mem.
+    */
+        pte_unmap(pte);
+      }
     }
-    if (!p)
-    {
-	kgpu_log(KGPU_LOG_ALERT, "bad address 0x%lX\n", v);
-    }
+  }
 
-    return p;
+  if (!p)
+  {
+    kgpu_log(KGPU_LOG_ALERT, "bad address 0x%lX\n", v);
+  }
+
+  return p;
 }
 

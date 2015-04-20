@@ -23,8 +23,8 @@
 
 struct kgpu_gpu_mem_info 
 {
-    void * uva;
-    unsigned long size;
+  void * uva;
+  unsigned long size;
 };
 
 #define KGPU_SERVICE_NAME_SIZE 32

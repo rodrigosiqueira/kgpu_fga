@@ -30,38 +30,38 @@ int kgpu_log_level = __KGPU_LOG_LEVEL__;
 int kgpu_log_level = KGPU_LOG_ALERT;
 #endif
 
-void
-kgpu_generic_log(int level, const char *module, const char *filename,
-		 int lineno, const char *func, const char *fmt, ...)
+void kgpu_generic_log(int level, const char * module, const char * filename,
+                      int lineno, const char *func, const char *fmt, ...)
 {
-    va_list args;
+  va_list args;
     
-    if (level < kgpu_log_level)
-	return;
+  if (level < kgpu_log_level)
+    return;
     
-    switch(level) {
+  switch(level)
+  {
     case KGPU_LOG_INFO:
-	printk("[%s] %s::%d %s() INFO: ", module, filename, lineno, func);
-	break;
+      printk("[%s] %s::%d %s() INFO: ", module, filename, lineno, func);
+      break;
     case KGPU_LOG_DEBUG:
-	printk("[%s] %s::%d %s() DEBUG: ", module, filename, lineno, func);
-	break;
+      printk("[%s] %s::%d %s() DEBUG: ", module, filename, lineno, func);
+      break;
     case KGPU_LOG_ALERT:
-	printk("[%s] %s::%d %s() ALERT: ", module, filename, lineno, func);
-	break;
+      printk("[%s] %s::%d %s() ALERT: ", module, filename, lineno, func);
+      break;
     case KGPU_LOG_ERROR:
-	printk("[%s] %s::%d %s() ERROR: ", module, filename, lineno, func);
-	break;
+      printk("[%s] %s::%d %s() ERROR: ", module, filename, lineno, func);
+      break;
     case KGPU_LOG_PRINT:
-	printk("[%s] %s::%d %s(): ", module, filename, lineno, func);
-	break;
+      printk("[%s] %s::%d %s(): ", module, filename, lineno, func);
+      break;
     default:
-	break;
-    }
-    
-    va_start(args, fmt);	
-    vprintk(fmt, args);
-    va_end(args);
+      break;
+  }
+ 
+  va_start(args, fmt);	
+  vprintk(fmt, args);
+  va_end(args);
 }
 
 #ifdef __KERNEL__
