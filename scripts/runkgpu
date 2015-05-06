@@ -1,5 +1,5 @@
 #!/bin/sh
 
 insmod ./kgpu.ko &&
-insmod ./callgpu.ko &&
 ./helper -l `pwd`
+insmod ./callgpu.ko &&
