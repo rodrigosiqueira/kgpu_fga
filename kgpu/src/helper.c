@@ -78,6 +78,14 @@ static void dump_hex(u8 * p, int rs, int cs)
   }
 }
 
+/**
+* @return
+* <ul>
+*   <li> Allocate pinned memory, base on KGPU_BUF_SIZE. </li>
+*   <li> Filled hostbuf. </li>
+* </ul>
+* Allocate pinned memor
+*/
 static int kh_init(void)
 {
   int  i, len, r;
@@ -85,7 +93,7 @@ static int kh_init(void)
 
   devfd = ssc(open(kgpudev, O_RDWR));
 
-  /* alloc GPU Pinned memory buffers */
+  /* Host buffer: Alloc GPU Pinned memory buffers */
   pinnedMemory = (void *) gpu_alloc_pinned_mem(KGPU_BUF_SIZE + PAGE_SIZE);
   hostbuf.uva = pinnedMemory;
   hostbuf.size = KGPU_BUF_SIZE;
@@ -93,8 +101,9 @@ static int kh_init(void)
   memset(hostbuf.uva, 0, KGPU_BUF_SIZE);
   ssc( mlock(hostbuf.uva, KGPU_BUF_SIZE));
 
-  gpu_init();
+  gpu_init(); //TODO: investigate it. 
 
+  /* Host vma: shared devfd.*/
   hostvma.uva = (void *) mmap(NULL, KGPU_BUF_SIZE,
                               PROT_READ | PROT_WRITE,
                               MAP_SHARED, devfd, 0);
@@ -111,7 +120,7 @@ static int kh_init(void)
     
   len = sizeof(struct kgpu_gpu_mem_info);
 
-  /* tell kernel the buffers */
+  /* Tell kernel the buffers */
   r = ioctl(devfd, KGPU_IOC_SET_GPU_BUFS, (unsigned long)&hostbuf);
   if (r < 0)
   {
@@ -121,7 +130,6 @@ static int kh_init(void)
 
   return 0;
 }
-
 
 static int kh_finit(void)
 {
@@ -418,6 +426,7 @@ int main(int argc, char * argv[])
         kgpudev = optarg;
         break;
       case 'l':
+        //TODO: Check it.
         service_lib_dir = optarg;
         break;
       case 'v':

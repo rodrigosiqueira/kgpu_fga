@@ -140,7 +140,7 @@ int kh_load_all_services(const char * dir)
   char * libpath;
   int e = 0;
 
-  glob_t glb = {0,NULL,0};
+  glob_t glb = {0, NULL,0};
 
   snprintf(path, 256, "%s/%s*", dir, SERVICE_LIB_PREFIX);
   glob(path, 0, NULL, &glb);
