@@ -29,7 +29,7 @@
 * last one is the type of data.
 */
 #define KGPU_IOC_SET_GPU_BUFS \
-  _IOW(KGPU_IOC_MAGIC, 1, struct kgpu_gpu_m:taem_info[KGPU_BUF_NR])
+  _IOW(KGPU_IOC_MAGIC, 1, struct kgpu_gpu_mem_info[KGPU_BUF_NR])
 
 #define KGPU_IOC_GET_GPU_BUFS \
   _IOR(KGPU_IOC_MAGIC, 2, struct kgpu_gpu_mem_info[KGPU_BUF_NR])
