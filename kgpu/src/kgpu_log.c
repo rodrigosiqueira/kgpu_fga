@@ -9,6 +9,8 @@
  */
 #include "kgpu.h"
 
+/*TODO: Notice how bad it is! If you are NOT on kernel, change printf to printk
+  otherwise you ARE in kernel so, use normally printk */
 #ifndef __KERNEL__
 
 #include <stdio.h>
@@ -30,6 +32,16 @@ int kgpu_log_level = __KGPU_LOG_LEVEL__;
 int kgpu_log_level = KGPU_LOG_ALERT;
 #endif
 
+/**
+* @param level Log level can be: info, debug, alert, error, and print.
+* @param module Module whose log was called.
+* @param filename File name.
+* @param lineno Line number.
+* @param func Function name.
+* @param fmt
+* @param ...
+* @brief
+*/
 void kgpu_generic_log(int level, const char * module, const char * filename,
                       int lineno, const char *func, const char *fmt, ...)
 {
