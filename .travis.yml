@@ -28,7 +28,7 @@ before_script:
 - sudo ldconfig -v | grep gtest
 - pwd
 - uname -a
-- cd kgpu && make all
+- make
 
 script:
 - cd build && sudo ./runkgpu

@@ -4,8 +4,9 @@
 
 /* the NR will not be used */
 #define KGPU_BUF_NR 1
+
 // TODO: This kind of configuration should be more "automatically".
-#define KGPU_BUF_SIZE (64*64)
+#define KGPU_BUF_SIZE (128*128*128)
 
 #define KGPU_MMAP_SIZE KGPU_BUF_SIZE
 
