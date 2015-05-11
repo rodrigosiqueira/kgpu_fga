@@ -50,7 +50,7 @@ void gpu_init()
   devbuf4vma.uva = alloc_dev_mem(KGPU_BUF_SIZE);
 
   //TODO: Improve it.
-  puts("GPU INIT.");
+  fprintf(stdout, ">>>>> gpuops.cu: GPU INIT.\n");
 
   for (i = 0; i < MAX_STREAM_NR; i++) 
   {
@@ -66,6 +66,9 @@ void gpu_finit()
   free_dev_mem (devbuf.uva);
   free_dev_mem (devbuf4vma.uva);
 
+  //TODO: Improve it.
+  fprintf(stdout, ">>>>> gpuops.cu: GPU FINIT.\n");
+
   for (i = 0; i < MAX_STREAM_NR; i++) 
   {
     csc( cudaStreamDestroy(streams[i]) );
@@ -75,7 +78,7 @@ void gpu_finit()
 unsigned long gpu_get_stream (int stid)
 {
   //TODO: IMPROVE IT
-  printf("GPU GET STREAM %d\n", stid);
+  fprintf(stdout, ">>>>> gpuops.cu: GPU GET STREAM %d\n", stid);
   if (stid < 0 || stid >= MAX_STREAM_NR)
   {
     return 0;
@@ -86,32 +89,51 @@ unsigned long gpu_get_stream (int stid)
   }
 }
 
+/**
+* @param size Total of bytes to be allocated.
+* @return Device pointer to allocated memory.
+* Allocates size bytes of host memory that is page-locked and accessible to
+* the device.
+* 
+* @see http://developer.download.nvidia.com/compute/cuda/4_1/rel/toolkit/docs/online/group__CUDART__MEMORY_g15a3871f15f8c38f5b7190946845758c.html
+*/
 void * gpu_alloc_pinned_mem(unsigned long size) 
 {
   void * h;
+
+  //TODO: IMPROVE IT
+  fprintf(stdout, ">>>>> gpuops.cu: GPU ALLOC PINNED MEMORY\n");
   csc( cudaHostAlloc(&h, size, 0));//cudaHostAllocWriteCombined) );
   return h;
 }
 
 void gpu_free_pinned_mem (void * p)
 {
+  //TODO: IMPROVE IT
+  fprintf(stdout, ">>>>> gpuops.cu: GPU FREE PINNED MEMORY.\n");
   csc( cudaFreeHost(p) );
 }
 
 void gpu_pin_mem (void * p, size_t sz)
 {
+  //TODO: IMPROVE IT
+  fprintf(stdout, ">>>>> gpuops.cu: GPU PIN MEMORY\n");
   size_t rsz = round_up(sz, PAGE_SIZE);
   csc( cudaHostRegister(p, rsz, cudaHostRegisterPortable) );
 }
 
 void gpu_unpin_mem(void * p)
 {
+  //TODO: IMPROVE IT
+  fprintf(stdout, ">>>>> gpuops.cu: GPU UNPIN MEMORY\n");
   csc( cudaHostUnregister(p) );
 }
 
 static int __check_stream_done (cudaStream_t s)
 {
   cudaError_t e = cudaStreamQuery(s);
+  //TODO: IMPROVE IT
+  fprintf(stdout, ">>>>> gpuops.cu: CHECK STREAM DONE\n");
   if (e == cudaSuccess) 
   {
     return 1;
@@ -128,12 +150,13 @@ int gpu_execution_finished (struct kgpu_service_request * sreq)
 {
   cudaStream_t s = (cudaStream_t) gpu_get_stream (sreq->stream_id);
   //TODO: IMPROVE IT
-  puts("GPU EXECUTION FINISHED.");
+  fprintf(stdout, ">>>>>> gpuops.cu: GPU EXECUTION FINISHED.\n");
   return __check_stream_done(s);
 }
 
 int gpu_post_finished (struct kgpu_service_request * sreq)
 {
+  fprintf(stdout, ">>>>> gpuops.cu: GPU POST FINISHED\n");
   cudaStream_t s = (cudaStream_t)gpu_get_stream(sreq->stream_id);
   return __check_stream_done(s);
 }
@@ -145,6 +168,8 @@ static int __merge_2ranges(unsigned long r1, unsigned long s1,
                             unsigned long r2, unsigned long s2,
                             unsigned long *e, unsigned long *s)
 {
+  //TODO: IMPROVE IT
+  fprintf(stdout, ">>>>> gpuops.cu: MERGE 2 RANGES\n");
   // r1   r2
   if (r1 < r2)
   {
@@ -186,7 +211,7 @@ static int __merge_ranges (unsigned long ad[], unsigned long sz[], int n)
   }
 
   //TODO: IMPROVE IT.
-  puts("Merge ranges.");
+  fprintf(stdout, ">>>>> gpuops.cu: Merge ranges.\n");
 
   switch(n)
   {
@@ -259,7 +284,7 @@ int gpu_alloc_device_mem (struct kgpu_service_request * sreq)
   int npins = 0, i;
 
   //TODO: IMPROVE IT
-  puts("GPU ALLOC DEVICE MEMORY.");
+  fprintf(stdout, ">>>>> gpuops.cu: GPU ALLOC DEVICE MEMORY.\n");
 
   if (ADDR_WITHIN(sreq->hin, hostbuf.uva, hostbuf.size))
   {
@@ -316,7 +341,7 @@ void gpu_free_device_mem (struct kgpu_service_request * sreq)
   sreq->ddata = NULL;
 
   // TODO: Improve it.
-  puts("Free device memory.");
+  fprintf(stdout, ">>>>> gpuops.cu: Free device memory.\n");
 
   if (ADDR_WITHIN(sreq->hin, hostvma.uva, hostvma.size))
   {
@@ -350,6 +375,9 @@ int gpu_alloc_stream (struct kgpu_service_request * sreq)
 {
   int i;
 
+  //TODO: IMPROVE IT
+  fprintf(stdout, ">>>>> gpuops.cu: GPU ALLOC STREAM\n");
+
   for (i = 0; i < MAX_STREAM_NR; i++)
   {
     if (!streamuses[i])
@@ -365,14 +393,20 @@ int gpu_alloc_stream (struct kgpu_service_request * sreq)
 
 void gpu_free_stream (struct kgpu_service_request * sreq)
 {
-    if (sreq->stream_id >= 0 && sreq->stream_id < MAX_STREAM_NR)
-    {
-      streamuses[sreq->stream_id] = 0;
-    }
+  //TODO: IMPROVE IT
+  fprintf(stdout, ">>>>> gpuops.cu: GPU FREE STREAM\n");
+
+  if (sreq->stream_id >= 0 && sreq->stream_id < MAX_STREAM_NR)
+  {
+    streamuses[sreq->stream_id] = 0;
+  }
 }
 
 int default_compute_size (struct kgpu_service_request * sreq)
 {
+  //TODO: IMPROVE IT
+  fprintf(stdout, ">>>>> gpuops.cu: DEFAULT COMPUTE SIZE\n");
+
   sreq->block_x = default_block_size.x;
   sreq->block_y = default_block_size.y;
   sreq->grid_x = default_grid_size.x;
@@ -382,6 +416,9 @@ int default_compute_size (struct kgpu_service_request * sreq)
 
 int default_prepare (struct kgpu_service_request * sreq)
 {
+  //TODO: IMPROVE IT
+  fprintf(stdout, ">>>>> gpuops.cu: DEFAULT PREPARE\n");
+
   cudaStream_t s = (cudaStream_t)gpu_get_stream(sreq->stream_id);
   csc( ah2dcpy( sreq->din, sreq->hin, sreq->insize, s) );
   return 0;
@@ -389,6 +426,9 @@ int default_prepare (struct kgpu_service_request * sreq)
 
 int default_post(struct kgpu_service_request * sreq)
 {
+  //TODO: REMOVE IT
+  fprintf(stdout, ">>>>> gpuops.cu: DEFAULT POST\n");
+
   cudaStream_t s = (cudaStream_t)gpu_get_stream(sreq->stream_id);
   csc( ad2hcpy( sreq->hout, sreq->dout, sreq->outsize, s) );
   return 0;

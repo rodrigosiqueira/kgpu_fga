@@ -35,7 +35,7 @@ static struct _kgpu_sitem * lookup_kgpu_sitem(const char * name)
     return NULL;
 
   //TODO: Improve it
-  fprintf(stderr, "Lookup kgpu sitem\n");
+  fprintf(stdout, "****** service.c: Lookup kgpu sitem\n");
 
   list_for_each(e, &services)
   {
@@ -50,6 +50,10 @@ static struct _kgpu_sitem * lookup_kgpu_sitem(const char * name)
 struct kgpu_service * kh_lookup_service(const char * name)
 {
   struct _kgpu_sitem * i = lookup_kgpu_sitem(name);
+
+  //TODO: IMPROVE IT
+  fprintf(stdout, "***** service.c: LOOKUP SERVICE.\n");
+
   if (!i)
   {
     return NULL;
@@ -69,7 +73,7 @@ int kh_register_service(struct kgpu_service * s, void * libhandle)
   i = (struct _kgpu_sitem *)malloc(sizeof(struct _kgpu_sitem));
 
   //TODO: Improve it
-  fprintf(stderr, "Register service.\n");
+  fprintf(stdout, "***** service.c: Register service.\n");
 
   if (!i)
   {
@@ -87,6 +91,8 @@ int kh_register_service(struct kgpu_service * s, void * libhandle)
 
 static int __unregister_service(struct _kgpu_sitem * i)
 {
+  //TODO: IMPROVE IT
+  fprintf(stdout, "***** service.c: Unregister service.\n");
   if (!i)
   {
     return 1;
@@ -110,7 +116,7 @@ int kh_load_service(const char * libpath)
   char * err;
   int r = 1;
 
-  fprintf(stdout, "LOAD SERVICE."); 
+  fprintf(stdout, "***** service.c: LOAD SERVICE.\n");
   lh = dlopen(libpath, RTLD_LAZY);
   if (!lh)
   {
@@ -147,6 +153,8 @@ int kh_load_all_services(const char * dir)
   char * libpath;
   int e = 0;
 
+  fprintf(stdout, "***** service.c: LOAD ALL SERVICES.\n");
+
   glob_t glb = {0, NULL,0};
 
   snprintf(path, 256, "%s/%s*", dir, SERVICE_LIB_PREFIX);
@@ -167,6 +175,8 @@ static int __unload_service(struct _kgpu_sitem * i)
   void * lh;
   fn_finit_service finit;
   int r = 1;
+
+  fprintf(stdout, "***** service.c: UNLOAD SERVICE.\n");
 
   if (!i)
   {
@@ -207,6 +217,7 @@ static int __unload_service(struct _kgpu_sitem * i)
 
 int kh_unload_service(const char * name)
 {
+  fprintf(stdout, "***** service.c: UNLOAD SERVICE. \n");
   return __unload_service(lookup_kgpu_sitem(name));
 }
 
@@ -214,6 +225,8 @@ int kh_unload_all_services()
 {
   struct list_head * p, * n;
   int e = 0;
+
+  fprintf(stdout, "***** service.c: UNLOAD ALL SERVICE.\n");
 
   list_for_each_safe(p, n, &services)
   {
