@@ -216,6 +216,11 @@ EXPORT_SYMBOL_GPL(kgpu_call_sync);
 int kgpu_next_request_id(void)
 {
   int rt = -1;
+ 
+  //TODO: Change log error next time. 
+  kgpu_log(KGPU_LOG_ERROR, "Main.c: NEXT REQUEST ID: %d\n",
+            kgpudev.rid_sequence + 1);
+
 
   spin_lock(&(kgpudev.ridlock));
 
@@ -270,6 +275,8 @@ struct kgpu_request * kgpu_alloc_request(void)
 {
   struct kgpu_request * request;
 
+  kgpu_log(KGPU_LOG_ERROR, "Main.c: Alloc request.\n");
+
   request = kmem_cache_alloc(kgpu_request_cache, GFP_KERNEL);
   return request;
 }
@@ -287,6 +294,10 @@ void * kgpu_vmalloc (unsigned long nbytes)
   void * p = NULL;
   unsigned long idx;
 
+  //TODO: Improve it as soon as possible.
+  kgpu_log(KGPU_LOG_ERROR, "Main.c: Try to alloc space.\n");
+
+
   //DIV_ROUND(x, len) (((x) + (len) - 1) / (len))
   req_nunits = DIV_ROUND_UP(nbytes, KGPU_BUF_UNIT_SIZE);
 
@@ -298,9 +309,10 @@ void * kgpu_vmalloc (unsigned long nbytes)
                                     START_BITNUMBER,
                                     req_nunits, ALIGN_MASK);
 
-  //TODO: REMOVE IT
-  kgpu_log(KGPU_LOG_ERROR, "idx: %ld, nunits: %d, req_nunits: %d\n",
+  //TODO: IMPROVE IT
+  kgpu_log(KGPU_LOG_ERROR, "Values=> idx: %ld, nunits: %d, req_nunits: %d\n",
             idx, kgpudev.gmpool.nunits, req_nunits);
+
   if (idx < kgpudev.gmpool.nunits)
   {
     
@@ -308,10 +320,12 @@ void * kgpu_vmalloc (unsigned long nbytes)
     p = (void *)((unsigned long)(kgpudev.gmpool.kva) +
         idx * KGPU_BUF_UNIT_SIZE);
     kgpudev.gmpool.alloc_sz[idx] = req_nunits;
+    kgpu_log(KGPU_LOG_ERROR, "Allocated data.\n");
+
   }
   else
   {
-    kgpu_log(KGPU_LOG_ERROR, "out of GPU memory for malloc %lu\n", nbytes);
+    kgpu_log(KGPU_LOG_ERROR, "Out of GPU memory for malloc %lu\n", nbytes);
   }
 
   spin_unlock(&kgpudev.gmpool_lock);
@@ -328,7 +342,7 @@ void kgpu_vfree (void * p)
   if (idx < 0 || idx >= kgpudev.gmpool.nunits)
   {
     kgpu_log(KGPU_LOG_ERROR,
-              "incorrect GPU memory pointer 0x%lX to free\n", p);
+              "Incorrect GPU memory pointer 0x%lX to free\n", p);
     return;
   }
 
@@ -362,10 +376,15 @@ unsigned long kgpu_alloc_mmap_area(unsigned long size)
   unsigned long p = 0;
   unsigned long idx;
 
+  kgpu_log(KGPU_LOG_ERROR, "Try to alloc mmap: %d\n", size);
+
   spin_lock(&kgpudev.vm_lock);
 
   idx = bitmap_find_next_zero_area(kgpudev.vm.bitmap,
                                     kgpudev.vm.npages, 0, n, 0);
+  
+  kgpu_log(KGPU_LOG_ERROR, "Values=> idx: %ld, npages: %d\n",
+            idx, kgpudev.gmpool.nunits);
 
   if (idx < kgpudev.vm.npages)
   {
@@ -375,7 +394,7 @@ unsigned long kgpu_alloc_mmap_area(unsigned long size)
   }
   else
   {
-    kgpu_log(KGPU_LOG_ERROR, "out of mmap area for mapping "
+    kgpu_log(KGPU_LOG_ERROR, "Out of mmap area for mapping "
               "ask for %u page %lu size, idx %lu\n", n, size, idx);
   }
 
@@ -431,7 +450,7 @@ void kgpu_unmap_area (unsigned long addr)
 
   if (idx < 0 || idx >= kgpudev.vm.npages)
   {
-    kgpu_log (KGPU_LOG_ERROR, "incorrect GPU mmap pointer 0x%lX to unmap\n",
+    kgpu_log (KGPU_LOG_ERROR, "Incorrect GPU mmap pointer 0x%lX to unmap\n",
               addr);
   }
   else
@@ -439,11 +458,13 @@ void kgpu_unmap_area (unsigned long addr)
     unsigned int n = kgpudev.vm.alloc_sz[idx];
     if (n > (kgpudev.vm.npages - idx))
     {
-      kgpu_log (KGPU_LOG_ERROR, "incorrect GPU mmap allocation info: "
+      kgpu_log (KGPU_LOG_ERROR, "Incorrect GPU mmap allocation info: "
                 "allocated %u pages at index %u\n", n, idx);
       return;
     }
-    //kgpu_log(KGPU_LOG_PRINT, "unmap %d pages from %p\n", n, addr);
+
+    kgpu_log(KGPU_LOG_PRINT, "Unmap %d pages from %p\n", n, addr);
+
     if (n > 0)
     {
       int ret;
@@ -475,7 +496,7 @@ int kgpu_map_page (struct page * p, unsigned long addr)
   ret = vm_insert_page (kgpudev.vm.vma, addr, p);
   if (unlikely(ret < 0))
   {
-    kgpu_log (KGPU_LOG_ERROR, "can't remap pfn %lu, error %d ct %d\n",
+    kgpu_log (KGPU_LOG_ERROR, "Can't remap pfn %lu, error %d ct %d\n",
               page_to_pfn(p), ret, page_count(p));
   }
   up_write (&kgpudev.vm.vma->vm_mm->mmap_sem);
@@ -542,6 +563,8 @@ static struct _kgpu_request_item * find_request (int id, int offlist)
 
   spin_lock (&(kgpudev.rtdreqlock));
 
+  kgpu_log(KGPU_LOG_ERROR, "Values: %d, %d\n", id, offlist);
+
   list_for_each_entry_safe (pos, n, &(kgpudev.rtdreqs), list)
   {
     if (pos->r->id == id)
@@ -568,6 +591,8 @@ int kgpu_open (struct inode * inode, struct file * filp)
     return -EBUSY;
   }
 
+  kgpu_log(KGPU_LOG_ERROR, "KGPU OPENED.\n");
+
   filp->private_data = &kgpudev;
   return 0;
 }
@@ -575,6 +600,8 @@ int kgpu_open (struct inode * inode, struct file * filp)
 int kgpu_release (struct inode * inode, struct file * file)
 {
   atomic_set(&kgpudev_av, 1);
+  kgpu_log(KGPU_LOG_ERROR, "KGPU RELEASED.\n");
+
   return 0;
 }
 
@@ -583,6 +610,9 @@ static void fill_ku_request (struct kgpu_ku_request * kureq,
 {
   kureq->id = req->id;
   memcpy (kureq->service_name, req->service_name, KGPU_SERVICE_NAME_SIZE);
+
+  kgpu_log(KGPU_LOG_ERROR, "Fill ku request\n");
+
 
   if (ADDR_WITHIN(req->in, kgpudev.gmpool.kva,
       kgpudev.gmpool.npages << PAGE_SHIFT))
@@ -630,6 +660,8 @@ ssize_t kgpu_read(struct file * filp, char __user * buf, size_t c,
   struct list_head * r;
   struct _kgpu_request_item * item;
 
+  kgpu_log(KGPU_LOG_ERROR, "Main.c:KGPU READ\n");
+
   spin_lock(&(kgpudev.reqlock));
   while (list_empty(&(kgpudev.reqs)))
   {
@@ -671,6 +703,7 @@ ssize_t kgpu_read(struct file * filp, char __user * buf, size_t c,
     spin_unlock(&(kgpudev.rtdreqlock));
   }
 
+  kgpu_log(KGPU_LOG_ERROR, "READ: %d\n", ret);
   *fpos += ret;
 
   return ret;
@@ -683,6 +716,8 @@ ssize_t kgpu_write (struct file * filp, const char __user * buf, size_t count,
   struct _kgpu_request_item * item;
   ssize_t ret = 0;
   size_t  realcount;
+
+  kgpu_log(KGPU_LOG_ERROR, "KGPU WRITE\n");
 
   if (count < sizeof (struct kgpu_ku_response))
   {
@@ -775,6 +810,8 @@ static int set_gpu_mempool (char __user * buf)
   int i;
   int err = 0;
 
+  kgpu_log(KGPU_LOG_ERROR, "Set gpu Mempool.\n");
+
   spin_lock (&(kgpudev.gmpool_lock));
 
   copy_from_user (&gb, buf, sizeof(struct kgpu_gpu_mem_info));
@@ -782,6 +819,7 @@ static int set_gpu_mempool (char __user * buf)
   /* set up pages mem */
   gpuMemoryPool->uva = (unsigned long)(gb.uva);
   gpuMemoryPool->npages = gb.size / PAGE_SIZE; //gb.size = KGPU_BUF_SIZE
+
   //TODO: REMOVE IT
   kgpu_log(KGPU_LOG_ERROR, "SET_GPU_MEMPOOL:: npages: %d, gb.size: %d \n",
             gpuMemoryPool->npages, gb.size);
@@ -871,6 +909,8 @@ static int terminate_all_requests(void)
 static long kgpu_ioctl(struct file * filp, unsigned int cmd, unsigned long arg)
 {
   int err = 0;
+
+  kgpu_log(KGPU_LOG_ERROR, "KGPU IOCTL.\n");
 
   if (_IOC_TYPE(cmd) != KGPU_IOC_MAGIC)
   {

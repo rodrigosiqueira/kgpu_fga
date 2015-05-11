@@ -49,6 +49,9 @@ void gpu_init()
   devbuf.uva = alloc_dev_mem(KGPU_BUF_SIZE);
   devbuf4vma.uva = alloc_dev_mem(KGPU_BUF_SIZE);
 
+  //TODO: Improve it.
+  puts("GPU INIT.");
+
   for (i = 0; i < MAX_STREAM_NR; i++) 
   {
     csc( cudaStreamCreate(&streams[i]) );
@@ -71,6 +74,8 @@ void gpu_finit()
 
 unsigned long gpu_get_stream (int stid)
 {
+  //TODO: IMPROVE IT
+  printf("GPU GET STREAM %d\n", stid);
   if (stid < 0 || stid >= MAX_STREAM_NR)
   {
     return 0;
@@ -122,6 +127,8 @@ static int __check_stream_done (cudaStream_t s)
 int gpu_execution_finished (struct kgpu_service_request * sreq)
 {
   cudaStream_t s = (cudaStream_t) gpu_get_stream (sreq->stream_id);
+  //TODO: IMPROVE IT
+  puts("GPU EXECUTION FINISHED.");
   return __check_stream_done(s);
 }
 
@@ -134,9 +141,9 @@ int gpu_post_finished (struct kgpu_service_request * sreq)
 #define min(a,b) (((a)<(b))?(a):(b))
 #define max(a,b) (((a)>(b))?(a):(b))
 
-static int __merge_2ranges(
-  unsigned long r1, unsigned long s1, unsigned long r2, unsigned long s2,
-  unsigned long *e, unsigned long *s)
+static int __merge_2ranges(unsigned long r1, unsigned long s1,
+                            unsigned long r2, unsigned long s2,
+                            unsigned long *e, unsigned long *s)
 {
   // r1   r2
   if (r1 < r2)
@@ -177,6 +184,9 @@ static int __merge_ranges (unsigned long ad[], unsigned long sz[], int n)
     ad[i] = round_down(ad[i], PAGE_SIZE);
     sz[i] = round_up(sz[i], PAGE_SIZE);
   }
+
+  //TODO: IMPROVE IT.
+  puts("Merge ranges.");
 
   switch(n)
   {
@@ -248,6 +258,9 @@ int gpu_alloc_device_mem (struct kgpu_service_request * sreq)
   unsigned long pin_addr[3] = {0,0,0}, pin_sz[3] = {0,0,0};
   int npins = 0, i;
 
+  //TODO: IMPROVE IT
+  puts("GPU ALLOC DEVICE MEMORY.");
+
   if (ADDR_WITHIN(sreq->hin, hostbuf.uva, hostbuf.size))
   {
     sreq->din = (void*)ADDR_REBASE(devbuf.uva, hostbuf.uva, sreq->hin);
@@ -301,6 +314,9 @@ void gpu_free_device_mem (struct kgpu_service_request * sreq)
   sreq->din = NULL;
   sreq->dout = NULL;
   sreq->ddata = NULL;
+
+  // TODO: Improve it.
+  puts("Free device memory.");
 
   if (ADDR_WITHIN(sreq->hin, hostvma.uva, hostvma.size))
   {

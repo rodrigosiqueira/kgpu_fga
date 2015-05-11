@@ -34,6 +34,9 @@ static struct _kgpu_sitem * lookup_kgpu_sitem(const char * name)
   if (!name)
     return NULL;
 
+  //TODO: Improve it
+  fprintf(stderr, "Lookup kgpu sitem\n");
+
   list_for_each(e, &services)
   {
     i = list_entry(e, struct _kgpu_sitem, list);
@@ -64,6 +67,9 @@ int kh_register_service(struct kgpu_service * s, void * libhandle)
   }
 
   i = (struct _kgpu_sitem *)malloc(sizeof(struct _kgpu_sitem));
+
+  //TODO: Improve it
+  fprintf(stderr, "Register service.\n");
 
   if (!i)
   {
@@ -103,7 +109,8 @@ int kh_load_service(const char * libpath)
   fn_init_service init;
   char * err;
   int r = 1;
-    
+
+  fprintf(stdout, "LOAD SERVICE."); 
   lh = dlopen(libpath, RTLD_LAZY);
   if (!lh)
   {

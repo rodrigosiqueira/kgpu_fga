@@ -93,6 +93,8 @@ static int kh_init(void)
 
   devfd = ssc(open(kgpudev, O_RDWR));
 
+  kh_log(KGPU_LOG_PRINT, "KH_INIT\n");
+
   /* Host buffer: Alloc GPU Pinned memory buffers */
   pinnedMemory = (void *) gpu_alloc_pinned_mem(KGPU_BUF_SIZE + PAGE_SIZE);
   hostbuf.uva = pinnedMemory;
@@ -139,6 +141,8 @@ static int kh_finit(void)
   close(devfd);
   gpu_finit();
 
+  kh_log(KGPU_LOG_PRINT, "Free pinned memory.\n");
+
   gpu_free_pinned_mem(hostbuf.uva);
 
   return 0;
@@ -162,6 +166,8 @@ static struct _kgpu_sritem * kh_alloc_service_request()
 {
   struct _kgpu_sritem * s = 0;
   s = (struct _kgpu_sritem *) malloc(sizeof(struct _kgpu_sritem));
+
+  kh_log(KGPU_LOG_PRINT, "Alloc service request.\n");
 
   if (s)
   {
@@ -193,6 +199,9 @@ static void kh_init_service_request(struct _kgpu_sritem * item,
   item->sr.stream_id = -1;
   item->sr.s = kh_lookup_service(kureq->service_name);
 
+  //TODO: Improve it.
+  kh_log(KGPU_LOG_PRINT, "Initialize service request.\n");
+
   if (!item->sr.s)
   {
     dbg("can't find service\n");
@@ -220,7 +229,7 @@ static int kh_get_next_service_request(void)
   pfd.revents = 0;
 
   err = poll(&pfd, 1, list_empty(&all_reqs)? -1 : 0);
-
+  kh_log(KGPU_LOG_PRINT, "GET NEXT SERVICE\n");
   if (err == 0 || (err && !(pfd.revents & POLLIN)))
   {
     return -1;
@@ -270,7 +279,10 @@ static int kh_get_next_service_request(void)
 static int kh_request_alloc_mem(struct _kgpu_sritem * sreq)
 {
   int r = gpu_alloc_device_mem(&sreq->sr);
-  
+
+  //TODO: Improve it.
+  kh_log(KGPU_LOG_PRINT, "Request alloc memory\n");
+ 
   if (r)
   {
 	  return -1;
@@ -313,6 +325,8 @@ static int kh_prepare_exec(struct _kgpu_sritem * sreq)
 static int kh_launch_exec(struct _kgpu_sritem * sreq)
 {
   int r = sreq->sr.s->launch(&sreq->sr);
+
+  kh_log(KGPU_LOG_PRINT, "LAUNCH.");
 
   if (r)
   {
@@ -369,7 +383,9 @@ static int kh_service_done(struct _kgpu_sritem * sreq)
 
   resp.id = sreq->sr.id;
   resp.errcode = sreq->sr.errcode;
-    
+
+  kh_log(KGPU_LOG_PRINT, "SERVICE DONE!\n");
+ 
   kh_send_response(&resp);
     
   list_del(&sreq->list);
@@ -398,7 +414,9 @@ static int __kh_process_request(int (*op)(struct _kgpu_sritem *),
 }
 
 static int kh_main_loop()
-{    
+{
+  kh_log(KGPU_LOG_PRINT, "Main loop.\n");
+
   while (kh_loop_continue)
   {
     __kh_process_request(kh_service_done, &done_reqs, 0);
