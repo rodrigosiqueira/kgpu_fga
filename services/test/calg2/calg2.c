@@ -26,7 +26,6 @@
 #define g_log(level, ...) kgpu_do_log(level, "calg2", ##__VA_ARGS__)
 #define dbg(...) g_log(KGPU_LOG_DEBUG, ##__VA_ARGS__)
 
-
 int mycb(struct kgpu_request * pRequest)
 {
   g_log(KGPU_LOG_PRINT, "REQUEST ID: %d, RESPONSE CODE: %d, %d\n", 

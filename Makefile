@@ -1,20 +1,47 @@
-SUBDIRS = kgpu services scripts
+# This makefile aim to call another subproject and put all together in the
+# same folder.
 
-all: $(SUBDIRS)
+BINFOLDER := build/
+SUBPROJECT := kgpu services scripts
 
+VISUALSEPARATOR := "------------------------------------------"
 
-.PHONY: $(SUBDIRS)
+all: $(SUBPROJECT)
+.PHONY: $(SUBPROJECT)
 
-$(SUBDIRS): mkbuilddir
+# Call Makefile inside each folder.
+$(SUBPROJECT): prepare
+	@echo
+	@echo $(VISUALSEPARATOR) $@ $(VISUALSEPARATOR)
+	@echo
 	$(MAKE) -C $@ $(TARGET) kv=$(kv) BUILD_DIR=`pwd`/build
 
-mkbuilddir:
+# Cuda
+kgpucuda: prepare cudaCompile services scripts
+
+cudaCompile:
+	@echo $(VISUALSEPARATOR) $@ $(VISUALSEPARATOR)
+	$(MAKE) -C kgpu kgpu_cuda kv=$(kv) BUILD_DIR=`pwd`/build
+
+# OpenCL
+kgpuopencl: prepare openclCompile services scripts
+
+openclCompile:
+	@echo $(VISUALSEPARATOR) $@ $(VISUALSEPARATOR)
+	$(MAKE) -C kgpu kgpu_opencl kv=$(kv) BUILD_DIR=`pwd`/build
+
+# Preparation for compile
+
+prepare:
 	mkdir -p build
+	mkdir -p build/module
+	mkdir -p build/scripts
 
 services: kgpu
 
+# Clean rules
 distclean:
 	$(MAKE) all kv=$(kv) TARGET=clean
 
 clean: distclean
-	rm -rf build
+	rm -rf build/*

@@ -2,6 +2,8 @@ SRCFOLDER := src/
 INCLUDEFOLDER := inc/
 OBJFOLDER := obj/
 
+KGPUVISUALSEPARATOR = ">>>>>>>>>>>>>>>>>>>"
+
 SRCFILES := $(wildcard src/*.c)
 CUDAFILES := $(wildcard src/*.cu)
 
@@ -17,13 +19,23 @@ all: src/kgpu src/helper
 
 src/kgpu:
 	make -C /lib/modules/$(shell uname -r)/build M=`pwd` modules ccflags-y=$(ccflags-y)
-	$(if $(BUILD_DIR), cp kgpu.ko $(BUILD_DIR)/ ) 
+	$(if $(BUILD_DIR), cp kgpu.ko $(BUILD_DIR)/ )
+
+kgpu_cuda: src/kgpu src/helper
+	@echo $(KGPUVISUALSEPARATOR) "CUDA" $(KGPUVISUALSEPARATOR)
+	$(NVIDIA) $(KGPUFLAGS) -c -arch=sm_20 src/cudaOperations.cu $(ccflags-y)
+	$(NVIDIA) -link $(KGPUFLAGS) -arch=sm_20 service.o helper.o kgpu_log_user.o cudaOperations.o -o helper -ldl
+
+kgpu_opencl:
+	@echo $(KGPUVISUALSEPARATOR) "OPENCL" $(KGPUVISUALSEPARATOR)
+	$(CC) $(KGPUFLAGS) -c src/openCLOperations.c $(ccflags-y)
+	$(CC) $(KGPUFLAGS) service.o helper.o kgpu_log_user.o openCLOperations.o -o helper -ldl -lOpenCL
 
 src/helper: src/kgpu_log
 	$(CC) $(KGPUFLAGS) -c src/helper.c $(ccflags-y)
 	$(CC) $(KGPUFLAGS) -c src/service.c $(ccflags-y)
-	$(NVIDIA) $(KGPUFLAGS) -c -arch=sm_20 src/gpuops.cu $(ccflags-y)
-	$(NVIDIA) -link $(KGPUFLAGS) -arch=sm_20 service.o helper.o kgpu_log_user.o gpuops.o -o helper -ldl
+	$(NVIDIA) $(KGPUFLAGS) -c -arch=sm_20 src/cudaOperations.cu $(ccflags-y)
+	$(NVIDIA) -link $(KGPUFLAGS) -arch=sm_20 service.o helper.o kgpu_log_user.o cudaOperations.o -o helper -ldl
 	$(if $(BUILD_DIR), cp helper $(BUILD_DIR)/ )
 
 src/kgpu_log:
