@@ -1,1 +1,1 @@
-Makefile.cuda
+Makefile.opencl

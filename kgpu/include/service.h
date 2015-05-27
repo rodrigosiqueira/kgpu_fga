@@ -10,6 +10,8 @@
 #ifndef __SERVICE_H__
 #define __SERVICE_H__
 
+#include "kgpu.h"
+
 struct kgpu_service 
 {
   char name[KGPU_SERVICE_NAME_SIZE];

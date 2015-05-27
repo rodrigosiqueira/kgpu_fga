@@ -13,8 +13,7 @@ obj-m += kgpu.o
 ccflags-y += -I`pwd`/include
 kgpu-objs := src/main.o src/kgpu_kutils.o src/kgpu_log.o
 
-all:
-	@echo "Aqui"
+all: src/kgpu src/helper
 
 src/kgpu:
 	make -C /lib/modules/$(shell uname -r)/build M=`pwd` modules ccflags-y=$(ccflags-y)
@@ -23,8 +22,8 @@ src/kgpu:
 src/helper: src/kgpu_log
 	$(CC) $(KGPUFLAGS) -c src/helper.c $(ccflags-y)
 	$(CC) $(KGPUFLAGS) -c src/service.c $(ccflags-y)
-	$(NVIDIA) $(KGPUFLAGS) -c -arch=sm_20 src/gpuops.cu $(ccflags-y)
-	$(NVIDIA) -link $(KGPUFLAGS) -arch=sm_20 service.o helper.o kgpu_log_user.o gpuops.o -o helper -ldl
+	$(CC) $(KGPUFLAGS) -c src/openCLOperations.c $(ccflags-y)
+	$(CC) $(KGPUFLAGS) service.o helper.o kgpu_log_user.o openCLOperations.o -o helper -ldl -lOpenCL
 	$(if $(BUILD_DIR), cp helper $(BUILD_DIR)/ )
 
 src/kgpu_log:
