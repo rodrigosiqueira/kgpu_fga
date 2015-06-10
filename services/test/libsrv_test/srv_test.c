@@ -10,17 +10,23 @@ void empty_kernel(void)
 
 static int empty_cs(struct kgpu_service_request * sr)
 {
-  sr->block_x = 1;
-  sr->grid_x = 1;
-  sr->block_y = 1;
-  sr->grid_y = 1;
-
+  //  sr->block_x = 1;
+  //  sr->grid_x = 1;
+  //  sr->block_y = 1;
+  //  sr->grid_y = 1;
+  
+  size_t indexSpaceSize[3] = {1024, 1, 1};
+  size_t workGroupSize[3] = {64, 1, 1};
   return 0;
 }
 
 static int empty_launch(struct kgpu_service_request * sr)
 {
-  //TODO
+  // empty_kernel<<< dim3(sr->grid_x, sr->grid_y), 
+  //                dim3(sr->block_x, sr->block_y), 0,
+  //                (cudaStream_t)(sr->stream)>>>();
+  empty_kernel();
+
   return 0;
 }
 

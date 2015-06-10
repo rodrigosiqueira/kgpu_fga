@@ -9,13 +9,12 @@
  */
 #include "kgpu.h"
 
-/*TODO: Notice how bad it is! If you are NOT on kernel, change printf to printk
-  otherwise you ARE in kernel so, use normally printk */
 #ifndef __KERNEL__
 
 #include <stdio.h>
 #include <stdarg.h>
 
+// TODO: NOT GOOD!
 #define printk printf
 #define vprintk vprintf
 
@@ -26,53 +25,52 @@
 
 #endif /* __KERNEL__ */
 
+// Configure log level.
+// TODO: Try to put all this "setup" stuff on the same place.
 #ifdef __KGPU_LOG_LEVEL__
-int kgpu_log_level = __KGPU_LOG_LEVEL__;
+  int kgpu_log_level = __KGPU_LOG_LEVEL__;
 #else
-int kgpu_log_level = KGPU_LOG_ALERT;
+  int kgpu_log_level = KGPU_LOG_DEBUG;
 #endif
 
-/**
-* @param level Log level can be: info, debug, alert, error, and print.
-* @param module Module whose log was called.
-* @param filename File name.
-* @param lineno Line number.
-* @param func Function name.
-* @param fmt
-* @param ...
-* @brief
-*/
-void kgpu_generic_log(int level, const char * module, const char * filename,
-                      int lineno, const char *func, const char *fmt, ...)
+void kgpu_generic_log(int pLevel, const char * pModule,
+                              const char * pFilename, int pLineno,
+                              const char * pFunction, const char * pFormat,
+                              ...)
 {
   va_list args;
     
-  if (level < kgpu_log_level)
+  if (pLevel < kgpu_log_level)
     return;
     
-  switch(level)
+  switch(pLevel)
   {
     case KGPU_LOG_INFO:
-      printk("[%s] %s::%d %s() INFO: ", module, filename, lineno, func);
+      printk("[%s] %s::%d %s() INFO: ", pModule, pFilename,
+                                        pLineno, pFunction);
       break;
     case KGPU_LOG_DEBUG:
-      printk("[%s] %s::%d %s() DEBUG: ", module, filename, lineno, func);
+      printk("[%s] %s::%d %s() DEBUG: ", pModule, pFilename,
+                                         pLineno, pFunction);
       break;
     case KGPU_LOG_ALERT:
-      printk("[%s] %s::%d %s() ALERT: ", module, filename, lineno, func);
+      printk("[%s] %s::%d %s() ALERT: ", pModule, pFilename,
+                                         pLineno, pFunction);
       break;
     case KGPU_LOG_ERROR:
-      printk("[%s] %s::%d %s() ERROR: ", module, filename, lineno, func);
+      printk("[%s] %s::%d %s() ERROR: ", pModule, pFilename,
+                                         pLineno, pFunction);
       break;
     case KGPU_LOG_PRINT:
-      printk("[%s] %s::%d %s(): ", module, filename, lineno, func);
+      printk("[%s] %s::%d %s(): ", pModule, pFilename,
+                                   pLineno, pFunction);
       break;
     default:
       break;
   }
  
-  va_start(args, fmt);	
-  vprintk(fmt, args);
+  va_start(args, pFormat);	
+  vprintk(pFormat, args);
   va_end(args);
 }
 

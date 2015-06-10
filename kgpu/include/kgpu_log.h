@@ -21,9 +21,20 @@
 #define KGPU_LOG_ERROR 4
 #define KGPU_LOG_PRINT 5
 
-extern void kgpu_generic_log(int level, const char * module,
-                              const char * filename, int lineno,
-                              const char * func, const char * fmt, ...);
+/**
+* @param pLevel Log level can be: info, debug, alert, error, and print.
+* @param pModule Module Module whose log was called.
+* @param pFilename Filename File name.
+* @param pLineno lineno Line number.
+* @param pFunction Function name.
+* @param pFormat
+* @brief
+*/
+extern void kgpu_generic_log(int pLevel, const char * pModule,
+                              const char * pFilename, int pLineno,
+                              const char * pFunction, const char * pFormat,
+                              ...);
+
 extern int kgpu_log_level;
 
 #ifdef __KGPU_LOG_FULL_FILE_PATH__
