@@ -4,42 +4,46 @@
 
 #include <stdlib.h>
 
+#define MAX_STREAM_NR 8
+//Translation: cudaStream_t -> cl_command_queue
+cl_command_queue streams[MAX_STREAM_NR];
+static int streamuses[MAX_STREAM_NR];
+//Translation: dim3 -> size_t[3]
+static const size_t default_block_size[3]; // 32, 1
+static const size_t default_grid_size[3]; // 512, 1
+
+struct kgpu_gpu_mem_info devbuf;
+struct kgpu_gpu_mem_info devbuf4vma;
+
 void gpu_init()
 {
+  int i;
+
+  devbuf.uva = alloc_dev_mem(KGPU_BUF_SIZE);
+//  devbuf4vma.uva = alloc_dev_mem(KGPU_BUF_SIZE);
+
+  //TODO: Improve it.
+//  fprintf(stdout, ">>>>> gpuops.cu: GPU INIT.\n");
+
+//  for (i = 0; i < MAX_STREAM_NR; i++) 
+//  {
+//    csc( cudaStreamCreate(&streams[i]) );
+//    streamuses[i] = 0;
+//  }
+
+
+//OPENCL AREA
   static int initialized = 0;
   if (initialized)
   {
     return;
   }
-  cl_platform_id platformId = NULL;
-  cl_device_id deviceId = NULL;   
-  cl_uint retNumDevices;
-  cl_uint retNumPlatforms;
-  cl_int platformID;
-  cl_int deviceID;
 
-  //platformID = clGetPlatformIDs(1, &platform_id, &ret_num_platforms);
-  //deviceID = clGetDeviceIDs( platformID, CL_DEVICE_TYPE_ALL, 1,
-  //                             &deviceId, retNumDevices);
+  // Alloc memory.
+  devbuf.uva = malloc(KGPU_BUF_SIZE);
+  devbuf4vma.uva = malloc(KGPU_BUF_SIZE);
+  // Creates a new asynchronous stream. cudaStreaCreate
 
- //1 - Alocar memória para troca de informações.
- //2 - Carregar arquivo "openCL":
- // a) Abrir o arquivo .cl
- //   - fopen (arquivo.cl)
- // fopen("kernelOpenCL.cl)
- // b) Alocar memória para salvar o arquivo .cl
- //   - malloc(DEFINIR UM TAMANHO MÁXIMO)
- // c) Ler o arquivo .cl e salvar na memória
- //   - fread, memcpy, qualquer coisa que copia
-
-  //3 - Coletar dados da plataforma:
-  //* Para coletar dados da plataforma, o openCL precisa seguir alguns passos:
-  //a) cl_platform_id platform_id
-  //  b) cl_device_id device_id
-  //  c) cl_uint ret_num_devices
-  //  d) cl_uint ret_num_platforms
-  //  e) clGetPlatformIDs()
-  //  f) clGetDeviceIDs()
   initialized = 1;
 }
 

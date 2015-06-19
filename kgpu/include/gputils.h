@@ -32,6 +32,7 @@ static cudaError_t _cuda_safe_call (cudaError_t e, const char * file, int line)
 static void *alloc_dev_mem(unsigned long size)
 {
   void *h;
+  //Not good... I have to change it
   csc( cudaMalloc(&h, size) );
   return h;
 }
