@@ -1,8 +1,10 @@
 #ifndef _GPU_OPERATION_H_
 #define _GPU_OPERATION_H_
 
-#include "no_kernel.h"
 #include <stdlib.h>
+
+#include <CL/cl.h>
+#include "no_kernel.h"
 
 /*
 typedef struct _Gpu_operations
@@ -14,11 +16,23 @@ typedef struct _Gpu_operations
 extern Gpu_operations gpuOperations;
 */
 
+#ifndef PAGE_SIZE
+#define PAGE_SIZE 4096
+#endif
+
+typedef struct _openCLRuntimeData
+{
+  cl_context  context;
+  cl_device_id * devices;
+}openCLRuntimeData;
+
+extern openCLRuntimeData * openCLData;
+
 extern void gpu_init();
 extern void gpu_finit();
 
-extern void * gpu_alloc_pinned_mem (unsigned long size);
-extern void gpu_free_pinned_mem (void * p);
+extern cl_mem gpu_alloc_pinned_mem (unsigned long size);
+extern void gpu_free_pinned_mem (cl_mem memory);
 
 extern void gpu_pin_mem (void * p, size_t sz);
 extern void gpu_unpin_mem (void * p);

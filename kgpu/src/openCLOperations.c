@@ -3,8 +3,11 @@
 #include <CL/cl.h>
 
 #include <stdlib.h>
+#include <stdio.h>
 
 #define MAX_STREAM_NR 8
+
+openCLRuntimeData * openCLData = NULL;
 
 //Translation: cudaStream_t -> cl_command_queue
 cl_command_queue streams[MAX_STREAM_NR];
@@ -17,18 +20,74 @@ static const size_t default_grid_size[3]; // 512, 1
 struct kgpu_gpu_mem_info devbuf;
 struct kgpu_gpu_mem_info devbuf4vma;
 
+static int initializePlatform()
+{
+  if (openCLData)
+  {
+    free(openCLData);
+  }
+
+  openCLData = (openCLRuntimeData *) malloc(sizeof(openCLRuntimeData));
+  if (!openCLData)
+  {
+    //TODO: HANDLE IT IN THE RIGHT WAY
+    return -1;
+  }
+
+  // Retrieve the number of platforms
+  cl_uint numPlatforms = 0;
+  cl_int status = clGetPlatformIDs(0, NULL, &numPlatforms);
+  // Allocate enough space for each platform
+  cl_platform_id * platforms = NULL;
+  platforms = (cl_platform_id *) malloc(numPlatforms * sizeof(cl_platform_id));
+  //Fill in the platforms
+  status = clGetPlatformIDs(numPlatforms, platforms, NULL);
+
+  //DEVICES
+  //Retrieve the number of devices
+  cl_uint numDevices = 0;
+  status = clGetDeviceIDs(platforms[0], 
+                          CL_DEVICE_TYPE_ALL, 0, NULL, &numDevices);
+  //Allocate 
+  openCLData->devices = (cl_device_id *) 
+                        malloc(numDevices * sizeof(cl_device_id));
+
+  //Fill in the devices
+  status = clGetDeviceIDs(platforms[0], CL_DEVICE_TYPE_ALL, numDevices,
+                          openCLData->devices, NULL);
+
+  // Create a context and associate with the device
+  openCLData->context = clCreateContext(NULL, numDevices,
+                                        openCLData->devices, NULL,
+                                        NULL, &status);
+  //TODO: HANDLING THE ERRORS.
+  return 0;
+}
+
 void gpu_init()
 {
   int i = 0;
+  static int initialized = 0;
+  if (!initialized)
+  {
+    initializePlatform();
+    initialized = 1;
+  }
 
   //Alloc_dev_mem -> calls cudaMalloc. Change it.
   //Translation: cudaMalloc -> clCreateBuffer
   //devbuf.uva = alloc_dev_mem(KGPU_BUF_SIZE);
-  cl_mem userVirtualAddress = clCreateBuffer(context, CL_MEM_READ_WRITE,
-                                            datasize, NULL, &status);
+  cl_int status = 0;
+  cl_mem userVirtualAddress = clCreateBuffer (openCLData->context, 
+                                             CL_MEM_READ_WRITE,
+                                             KGPU_BUF_SIZE, NULL,
+                                             &status);
+  
   //devbuf4vma.uva = alloc_dev_mem(KGPU_BUF_SIZE);
-  cl_mem devBuf_uva = clCreateBuffer(context, CL_MEM_READ_WRITE,
-                                            datasize, NULL, &status);
+  cl_mem devBuf_uva = clCreateBuffer (openCLData->context,
+                                      CL_MEM_READ_WRITE,
+                                      KGPU_BUF_SIZE, NULL,
+                                      &status);
 
 
   //TODO: Improve it.
@@ -36,8 +95,10 @@ void gpu_init()
   for (i = 0; i < MAX_STREAM_NR; i++) 
   {
     //Translation: cudaStreamCreate -> clCreateCommandQueue
-    streams[i] = clCreateCommandQueue(context, device,
-                    CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE , NULL);
+    streams[i] = clCreateCommandQueue(openCLData->context, 
+                                      openCLData->devices[0],
+                                      CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE,
+                                      NULL);
     streamuses[i] = 0;
   }
 }
@@ -74,25 +135,23 @@ unsigned long gpu_get_stream (int stid)
   }
 }
 
-
-void * gpu_alloc_pinned_mem (unsigned long size)
+cl_mem gpu_alloc_pinned_mem (unsigned long size)
 {
-  void * host = 0;
-
+  cl_int status;
+  //TODO: VERIFY POINTER IN CONTEXT.
   fprintf(stdout, ">>>>> openCLOperation.c: GPU ALLOC.\n");
   //cudaHostAlloc(void ** pHost, size_t    size, unsigned int flagsa
-  cl_mem host = clCreateBuffer(context, CL_MEM_ALLOC_HOST_PTR,
-                                datasize, NULL, &status);
-  //TODO: NOT GOOD! IT IS WRONG THE DATATYPE.
+  cl_mem host = clCreateBuffer(openCLData->context, 
+                              CL_MEM_ALLOC_HOST_PTR,
+                                size, NULL, &status);
   return host;
 }
 
 //TODO: It is wrong the parameter. Fix IT!
-void gpu_free_pinned_mem (void * p)
+void gpu_free_pinned_mem (cl_mem memory)
 {
-  cl_mem host;
   fprintf(stdout, ">>>>> openCLOperation.c: GPU FREE PINNED MEMORY.\n");
-  clReleaseMemObject(host);
+  clReleaseMemObject(memory);
 }
 
 //TODO: HUGE PROBLEM! I DON'T KNOW HOW TO CONVERT cudaHostRegister
@@ -122,8 +181,47 @@ int gpu_alloc_device_mem (struct kgpu_service_request * sreq)
 
   if (ADDR_WITHIN(sreq->hin, hostbuf.uva, hostbuf.size))
   {
-    
+    sreq->din = (void*)ADDR_REBASE(devbuf.uva, hostbuf.uva, sreq->hin);
   }
+  else
+  {
+    sreq->din = (void*)ADDR_REBASE (devbuf4vma.uva, hostvma.uva, sreq->hin);
+    pin_addr[npins] = TO_UL(sreq->hin);
+    pin_sz[npins] = sreq->insize;
+    npins++;
+  }
+
+  if (ADDR_WITHIN(sreq->hout, hostbuf.uva, hostbuf.size))
+  {
+    sreq->dout = (void*)ADDR_REBASE(devbuf.uva, hostbuf.uva, sreq->hout);
+  }
+  else
+  {
+    sreq->dout = (void*)ADDR_REBASE(devbuf4vma.uva, hostvma.uva, sreq->hout);
+    pin_addr[npins] = TO_UL(sreq->hout);
+    pin_sz[npins] = sreq->outsize;
+    npins++;
+  }
+
+  if (ADDR_WITHIN(sreq->hdata, hostbuf.uva, hostbuf.size))
+  {
+    sreq->ddata = (void*)ADDR_REBASE(devbuf.uva, hostbuf.uva, sreq->hdata);
+  }
+  else if (ADDR_WITHIN(sreq->hdata, hostvma.uva, hostvma.size))
+  {
+    sreq->ddata = (void*)ADDR_REBASE(devbuf4vma.uva, hostvma.uva, sreq->hdata);
+    pin_addr[npins] = TO_UL(sreq->hdata);
+    pin_sz[npins] = sreq->datasize;
+    npins++;
+  }
+
+  npins = __merge_ranges(pin_addr, pin_sz, npins);
+  for (i = 0; i < npins; i++)
+  {
+    gpu_pin_mem((void*)pin_addr[i], pin_sz[i]);
+  }
+
+  return 0;
 }
 
 void gpu_free_device_mem (struct kgpu_service_request * sreq)
