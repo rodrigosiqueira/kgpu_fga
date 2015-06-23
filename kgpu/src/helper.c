@@ -20,6 +20,8 @@
 #include <errno.h>
 #include <string.h>
 #include <poll.h>
+
+#include "dataType.h"
 #include "list.h"
 #include "helper.h"
 

@@ -26,12 +26,36 @@ typedef struct _openCLRuntimeData
   cl_device_id * devices;
 }openCLRuntimeData;
 
+typedef struct 
+{
+  cl_mem userVirtualAddress;
+}kgpuOpenCLGpuMemoryInfo;
+
 extern openCLRuntimeData * openCLData;
 
+/**
+* @brief Initialize OpenCL and KGPU resources.
+*/
 extern void gpu_init();
+
+/**
+* @brief Release openCL resources.
+*/
 extern void gpu_finit();
 
-extern cl_mem gpu_alloc_pinned_mem (unsigned long size);
+/**
+* @param pSid
+* @return 
+* @brief
+*/
+extern unsigned long gpu_get_stream (int pSid);
+
+/**
+* @param pSize Memory size.
+* @return Return an cl_mem reference.
+* @brief Allocates page-locked memory on the host. 
+*/
+extern cl_mem gpu_alloc_pinned_mem (unsigned long pSize);
 extern void gpu_free_pinned_mem (cl_mem memory);
 
 extern void gpu_pin_mem (void * p, size_t sz);
@@ -45,6 +69,5 @@ extern void gpu_free_stream (struct kgpu_service_request * sreq);
 extern int gpu_execution_finished (struct kgpu_service_request * sreq);
 extern int gpu_post_finished (struct kgpu_service_request * sreq);
 
-extern unsigned long gpu_get_stream (int sid);
 
 #endif

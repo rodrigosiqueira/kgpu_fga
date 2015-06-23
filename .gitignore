@@ -41,6 +41,10 @@ kgpu/helper
 kgpu/modules.order
 tags
 
+services/**/*.cmd
+services/**/*.order
+
+
 #Paths
 /other
 kgpu/.tmp_versions/

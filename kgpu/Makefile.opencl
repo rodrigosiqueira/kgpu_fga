@@ -22,7 +22,7 @@ src/kgpu:
 src/helper: src/kgpu_log
 	$(CC) $(KGPUFLAGS) -c src/helper.c $(ccflags-y)
 	$(CC) $(KGPUFLAGS) -c src/service.c $(ccflags-y)
-	$(CC) $(KGPUFLAGS) -c src/openCLOperations.c $(ccflags-y)
+	$(CC) $(KGPUFLAGS) -c src/openCLOperations.c $(ccflags-y) -lOpenCL
 	$(CC) $(KGPUFLAGS) service.o helper.o kgpu_log_user.o openCLOperations.o -o helper -ldl -lOpenCL
 	$(if $(BUILD_DIR), cp helper $(BUILD_DIR)/ )
 
