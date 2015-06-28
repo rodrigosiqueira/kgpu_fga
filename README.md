@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/rodrigosiqueira/kgpu_fga.png?label=ready&title=Ready)](https://waffle.io/rodrigosiqueira/kgpu_fga)
 [![Build Status](https://travis-ci.org/rodrigosiqueira/kgpu_fga.svg?branch=travis)](https://travis-ci.org/rodrigosiqueira/kgpu_fga)
 
 # KGPU - Augmenting Linux with GPUs
