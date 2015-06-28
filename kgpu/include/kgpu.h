@@ -66,7 +66,7 @@ struct kgpu_ku_response
  * For helper and service providers
  */
 #if defined __KERNEL__ || defined __KGPU__
-    #include "kernel_code.h"
+    #include "kgpuConfiguration.h"
 #endif
 
 #if defined __KERNEL__
