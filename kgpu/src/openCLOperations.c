@@ -6,6 +6,7 @@
 #include "gpuOperations.h"
 #include "no_kernel.h"
 #include "dataType.h"
+#include "utils/error.h"
 
 #define MAX_STREAM_NR 8
 
@@ -36,8 +37,8 @@ static int initializePlatform()
   openCLData = (openCLRuntimeData *) malloc(sizeof(openCLRuntimeData));
   if (!openCLData)
   {
-    //TODO: HANDLE IT IN THE RIGHT WAY
-    return -1;
+    printErrorMessage(NO_SPACE_ON_HOST);
+    return NO_SPACE_ON_HOST;
   }
 
   /* PLATFORM */
@@ -46,7 +47,7 @@ static int initializePlatform()
   cl_int status = clGetPlatformIDs(0, NULL, &numPlatforms);
   if (status == CL_INVALID_VALUE)
   {
-    //TODO: HANDLE IT IN THE RIGHT WAY
+    printErrorMessage(status);
     return -1;
   }
 
@@ -54,14 +55,16 @@ static int initializePlatform()
   platforms = (cl_platform_id *) malloc(numPlatforms * sizeof(cl_platform_id));
   if (!platforms)
   {
-    return -1;
+    printErrorMessage(NO_SPACE_ON_HOST);
+    return NO_SPACE_ON_HOST;
   }
 
   //Fill in the platforms
   status = clGetPlatformIDs(numPlatforms, platforms, NULL);
   if (status == CL_INVALID_VALUE)
   {
-    return -1;
+    printErrorMessage(status);
+    return status;
   }
 
   /* DEVICES */
@@ -72,7 +75,8 @@ static int initializePlatform()
   // CL_INVALID_PLATFORM, CL_INVALID_DEVICE_TYPE
   if (status == CL_INVALID_VALUE)
   {
-    return -1;
+    printErrorMessage(status);
+    return status;
   }
 
   //Allocate 
@@ -80,22 +84,32 @@ static int initializePlatform()
                         malloc(numDevices * sizeof(cl_device_id));
   if (!openCLData->devices)
   {
-    return -1;
+    printErrorMessage(NO_SPACE_ON_HOST);
+    return NO_SPACE_ON_HOST;
   }
 
   //Fill in the devices
   status = clGetDeviceIDs(platforms[0], CL_DEVICE_TYPE_ALL, numDevices,
                           openCLData->devices, NULL);
+  if (status !=  CL_SUCCESS)
+  {
+    printErrorMessage(status);
+    return status;
+  } 
 
   /* 3 - Create context*/
   // Create a context and associate with the device
   openCLData->context = clCreateContext(NULL, numDevices,
                                         openCLData->devices, NULL,
                                         NULL, &status);
-  //CL_INVALID_PLATFORM, CL_INVALID_VALUE, CL_INVALID_DEVICE,
-  // CL_DEVICE_NOT_AVAILABLE, CL_OUT_OF_HOST_MEMORY
-  //TODO: HANDLING THE ERRORS.
+  if (status != CL_SUCCESS)
+  {
+    printErrorMessage(status);
+    return status;
+  }
+
   return 0;
+
 }
 
 void gpu_init()
@@ -109,8 +123,6 @@ void gpu_init()
     initialized = 1;
   }
 
-  //Translation: cudaMalloc -> clCreateBuffer
-  //devbuf.uva = alloc_dev_mem(KGPU_BUF_SIZE);
   cl_int status = 0;
   //TODO: CL_INVALID_CONTEXT, CL_INVALID_VALUE, CL_INVALID_BUFFER_SIZE
   //CL_INVALID_HOST_PTR, CL_MEM_OBJECT_ALLOCATION_FAILURE,
@@ -119,11 +131,23 @@ void gpu_init()
                                                     CL_MEM_READ_WRITE,
                                                     KGPU_BUF_SIZE, NULL,
                                                     &status);
+
+  if (status != CL_SUCCESS)
+  {
+    printErrorMessage(status);
+    return status;
+  }
   
   deviceBufferForVMA.userVirtualAddress = clCreateBuffer (openCLData->context,
                                                           CL_MEM_READ_WRITE,
                                                           KGPU_BUF_SIZE, NULL,
                                                           &status);
+
+  if (status != CL_SUCCESS)
+  {
+    printErrorMessage(status);
+    return status;
+  }
 
   //TODO: Improve it.
   fprintf(stdout, ">>>>> openCLOperations: GPU INIT.\n");
