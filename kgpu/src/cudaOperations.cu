@@ -268,6 +268,7 @@ int gpu_alloc_device_mem (struct kgpu_service_request * sreq)
   //TODO: IMPROVE IT
   fprintf(stdout, ">>>>> gpuops.cu: GPU ALLOC DEVICE MEMORY.\n");
 
+  //sreq->hin is in hostbuf?
   if (ADDR_WITHIN(sreq->hin, hostbuf.uva, hostbuf.size))
   {
     sreq->din = (void*)ADDR_REBASE(devbuf.uva, hostbuf.uva, sreq->hin);

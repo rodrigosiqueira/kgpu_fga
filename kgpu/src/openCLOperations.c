@@ -218,42 +218,47 @@ void gpu_unpin_mem (void * p)
   //csc( cudaHostUnregister(p) );
 }
 
-//static int __check_stream_done (cudaStream_t s)
-//{
-//  cudaError_t e = cudaStreamQuery(s);
-//  //TODO: IMPROVE IT
-//  fprintf(stdout, ">>>>> gpuops.cu: CHECK STREAM DONE\n");
-//  if (e == cudaSuccess) 
-//  {
-//    return 1;
-//  }
-//  else if (e != cudaErrorNotReady)
-//  {
-//    csc(e);
-//  }
-//
-//  return 0;
-//}
-//
-//int gpu_execution_finished (struct kgpu_service_request * sreq)
-//{
-//  cudaStream_t s = (cudaStream_t) gpu_get_stream (sreq->stream_id);
-//  //TODO: IMPROVE IT
-//  fprintf(stdout, ">>>>>> gpuops.cu: GPU EXECUTION FINISHED.\n");
-//  return __check_stream_done(s);
-//}
-//
-//int gpu_post_finished (struct kgpu_service_request * sreq)
-//{
-//  fprintf(stdout, ">>>>> gpuops.cu: GPU POST FINISHED\n");
-//  cudaStream_t s = (cudaStream_t)gpu_get_stream(sreq->stream_id);
-//  return __check_stream_done(s);
-//}
-//
+static int __check_stream_done (cl_command_queue stream)
+{
+  //TODO: TRANSLATE IT
+  //cudaError_t e = cudaStreamQuery(s);
+  //TODO: IMPROVE IT
+  fprintf(stdout, ">>>>> gpuops.cu: CHECK STREAM DONE\n");
+  //if (e == cudaSuccess) 
+  //{
+  //  return 1;
+  //}
+  //else if (e != cudaErrorNotReady)
+  //{
+  //  csc(e);
+  //}
+
+  return 0;
+}
+
+int gpu_execution_finished (struct kgpu_service_request * sreq)
+{
+  //TODO: TRANSLATE IT
+  //cudaStream_t s = (cudaStream_t) gpu_get_stream (sreq->stream_id);
+  cl_command_queue s;
+  //TODO: IMPROVE IT
+  fprintf(stdout, ">>>>>> gpuops.cu: GPU EXECUTION FINISHED.\n");
+  return __check_stream_done(s);
+}
+
+int gpu_post_finished (struct kgpu_service_request * sreq)
+{
+  fprintf(stdout, ">>>>> gpuops.cu: GPU POST FINISHED\n");
+  //TODO: TRANSLATE IT
+  //cudaStream_t s = (cudaStream_t)gpu_get_stream(sreq->stream_id);
+  cl_command_queue s;
+  return __check_stream_done(s);
+}
+
 #define min(a,b) (((a)<(b))?(a):(b))
 #define max(a,b) (((a)>(b))?(a):(b))
 
-static int __merge_2ranges(unsigned long r1, unsigned long s1,
+static int __merge_2ranges (unsigned long r1, unsigned long s1,
                             unsigned long r2, unsigned long s2,
                             unsigned long *e, unsigned long *s)
 {
@@ -352,54 +357,64 @@ static int __merge_ranges (unsigned long ad[], unsigned long sz[], int n)
     // should never reach here
     //return 0;
 }
-//
-// ....
+
 int gpu_alloc_device_mem (struct kgpu_service_request * sreq)
 {
   //TODO
   unsigned long pinAddress[3] = {0, 0, 0}, pinSize[3] = {0, 0, 0};
   int npins = 0, i = 0;
+  void * deviceBufferTmp = 0, * deviceBufferForVMATmp = 0;
+  cl_int status;
+
+  status = clGetMemObjectInfo (deviceBuffer.userVirtualAddress,
+                               CL_MEM_HOST_PTR,
+                               sizeof(void *),
+                               deviceBufferTmp, NULL);
+
+  status = clGetMemObjectInfo (deviceBufferForVMA.userVirtualAddress,
+                               CL_MEM_HOST_PTR,
+                               sizeof(void *),
+                               deviceBufferForVMATmp, NULL);
 
   fprintf(stdout, ">>>>>> openCLOperations.c: GPU ALLOC DEVICE MEMORY.\n");
-
+  //INPUT
   if (ADDR_WITHIN(sreq->hin, hostbuf.uva, hostbuf.size))
   {
-    //sreq->din = (void*)ADDR_REBASE(devbuf.uva, hostbuf.uva, sreq->hin);
-    //deviceBuffer.userVirtualAddress
+    sreq->din = (void*)ADDR_REBASE(deviceBufferTmp, hostbuf.uva, sreq->hin);
   }
   else
   {
-    //sreq->din = (void*)ADDR_REBASE (devbuf4vma.uva, hostvma.uva, sreq->hin);
-    //deviceBufferForVMA.userVirtualAddress, deviceBuffer.userVirtualAddress
+    sreq->din = (void*)ADDR_REBASE (deviceBufferForVMATmp,
+                                    hostvma.uva, sreq->hin);
     pinAddress[npins] = TO_UL(sreq->hin);
     pinSize[npins] = sreq->insize;
     npins++;
   }
 
+  //OUTPUT
   if (ADDR_WITHIN(sreq->hout, hostbuf.uva, hostbuf.size))
   {
-    //sreq->dout = (void*)ADDR_REBASE(devbuf.uva, hostbuf.uva, sreq->hout);
-    //deviceBuffer.userVirtualAddress
+    sreq->dout = (void*)ADDR_REBASE(deviceBufferTmp, hostbuf.uva, sreq->hout);
   }
   else
   {
-    //sreq->dout = (void*)ADDR_REBASE(devbuf4vma.uva, hostvma.uva, sreq->hout);
-    //deviceBufferForVMA
+    sreq->dout = (void*)ADDR_REBASE(deviceBufferForVMATmp,
+                                    hostvma.uva, sreq->hout);
     pinAddress[npins] = TO_UL(sreq->hout);
     pinSize[npins] = sreq->outsize;
     npins++;
   }
 
+  //DATA
   if (ADDR_WITHIN(sreq->hdata, hostbuf.uva, hostbuf.size))
   {
-    //sreq->ddata = (void*)ADDR_REBASE(devbuf.uva, hostbuf.uva, sreq->hdata);
-    //deviceBuffer.userVirtualAddress
+    sreq->ddata = (void*)ADDR_REBASE(deviceBufferTmp,
+                                     hostbuf.uva, sreq->hdata);
   }
   else if (ADDR_WITHIN(sreq->hdata, hostvma.uva, hostvma.size))
   {
-    //sreq->ddata = 
-    //(void*)ADDR_REBASE(devbuf4vma.uva, hostvma.uva, sreq->hdata);
-    //deviceBufferForVMA.userVirtualAddress
+    sreq->ddata = (void*)ADDR_REBASE(deviceBufferForVMATmp,
+                                     hostvma.uva, sreq->hdata);
     pinAddress[npins] = TO_UL(sreq->hdata);
     pinSize[npins] = sreq->datasize;
     npins++;
@@ -416,27 +431,71 @@ int gpu_alloc_device_mem (struct kgpu_service_request * sreq)
 
 void gpu_free_device_mem (struct kgpu_service_request * sreq)
 {
-  //TODO
+  unsigned long pin_addr[3] = {0,0,0}, pin_sz[3] = {0,0,0};
+  int npins = 0, i;
+
+  sreq->din = NULL;
+  sreq->dout = NULL;
+  sreq->ddata = NULL;
+
+  // TODO: Improve it.
+  fprintf(stdout, ">>>>> gpuops.cu: Free device memory.\n");
+
+  if (ADDR_WITHIN(sreq->hin, hostvma.uva, hostvma.size))
+  {
+    pin_addr[npins] = TO_UL(sreq->hin);
+    pin_sz[npins] = sreq->insize;
+    npins++;
+  }
+
+  if (ADDR_WITHIN(sreq->hout, hostvma.uva, hostvma.size))
+  {
+    pin_addr[npins] = TO_UL(sreq->hout);
+    pin_sz[npins] = sreq->outsize;
+    npins++;
+  }
+
+  if (ADDR_WITHIN(sreq->hdata, hostvma.uva, hostvma.size))
+  {
+    pin_addr[npins] = TO_UL(sreq->hdata);
+    pin_sz[npins] = sreq->datasize;
+    npins++;
+  }
+
+  npins = __merge_ranges(pin_addr, pin_sz, npins);
+  for (i = 0; i < npins; i++)
+  {
+    gpu_unpin_mem((void*)pin_addr[i]);
+  }
 }
 
 int gpu_alloc_stream (struct kgpu_service_request * sreq)
 {
-  //TODO
+  int i;
+
+  //TODO: IMPROVE IT
+  fprintf(stdout, ">>>>> gpuops.cu: GPU ALLOC STREAM\n");
+
+  for (i = 0; i < MAX_STREAM_NR; i++)
+  {
+    if (!streamuses[i])
+    {
+      streamuses[i] = 1;
+      sreq->stream_id = i;
+      sreq->stream = (unsigned long)(streams[i]);
+      return 0;
+    }
+  }
+  return 1;
 }
 
 void gpu_free_stream (struct kgpu_service_request * sreq)
 {
-  //TODO
+  //TODO: IMPROVE IT
+  fprintf(stdout, ">>>>> gpuops.cu: GPU FREE STREAM\n");
+
+  if (sreq->stream_id >= 0 && sreq->stream_id < MAX_STREAM_NR)
+  {
+    streamuses[sreq->stream_id] = 0;
+  }
 }
-
-
-int gpu_execution_finished (struct kgpu_service_request * sreq)
-{
-  //TODO
-}
-
-int gpu_post_finished (struct kgpu_service_request * sreq)
-{
-  //TODO
-}
-

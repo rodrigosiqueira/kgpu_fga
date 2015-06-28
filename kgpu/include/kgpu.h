@@ -14,12 +14,20 @@
 
 #define TO_UL(v) ((unsigned long)(v))
 
+/**
+* @def ADDR_WITHIN
+* @brief This macro, just check if pointer is in the correct range.
+*/
 #define ADDR_WITHIN(pointer, base, size)      \
   (TO_UL(pointer) >= TO_UL(base) &&			      \
   (TO_UL(pointer) < TO_UL(base)+TO_UL(size)))
 
+/**
+* @def ADDR_REBASE
+* @brief Rebase pointer.
+*/
 #define ADDR_REBASE(dst_base, src_base, pointer)  \
-  (TO_UL(dst_base) + (TO_UL(pointer)-TO_UL(src_base)))
+  (TO_UL(dst_base) + (TO_UL(pointer) - TO_UL(src_base)))
 
 struct kgpu_gpu_mem_info 
 {

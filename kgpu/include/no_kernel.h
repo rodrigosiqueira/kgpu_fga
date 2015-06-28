@@ -3,16 +3,20 @@
 
 struct kgpu_service;
 
-// TODO: Understand and comment each element.
+/**
+* @struct kgpu_service_request
+* @brief This structure is one of the core in KGPU. Here, we have the reference
+*        between host and device.
+*/
 struct kgpu_service_request 
 {
   int id;
-  void * hin;
-  void * hout;
-  void * hdata;
-  void * din;
-  void * dout; 
-  void * ddata;
+  void * hin;               /**< Host memory input.*/
+  void * hout;              /**< Host memory output.*/
+  void * hdata;             /**< Host data.*/
+  void * din;               /**< Device memory input.*/
+  void * dout;              /**< Device memory output.*/
+  void * ddata;             /**< Device data*/
   unsigned long insize;
   unsigned long outsize;
   unsigned long datasize;
