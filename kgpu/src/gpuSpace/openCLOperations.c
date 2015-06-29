@@ -233,9 +233,8 @@ void gpu_finit()
 }
 
 //cl_command_queue gpu_get_stream (int pStreamId)
-unsigned long gpu_get_stream (int pStreamId)
+cl_command_queue gpu_get_stream (int pStreamId)
 {
-  //TODO: IMPROVE IT
   fprintf(stdout, ">>>>> openCLOperation.c: GPU GET STREAM %d\n", pStreamId);
   if (pStreamId < 0 || pStreamId >= MAX_STREAM_NR)
   {
@@ -244,7 +243,7 @@ unsigned long gpu_get_stream (int pStreamId)
   else
   {
     //TODO: PROBLEM HERE!!! streams is cl_command_stream
-    return (unsigned long) streams[pStreamId];
+    return streams[pStreamId];
   }
 }
 
@@ -285,6 +284,7 @@ void gpu_pin_mem (void * p, size_t sz)
 {
   fprintf(stdout, ">>>>> openCLOperations.c: GPU PIN MEMORY\n");
   size_t rsz = round_up(sz, PAGE_SIZE);
+
   //csc( cudaHostRegister(p, rsz, cudaHostRegisterPortable) );
 }
 

@@ -48,7 +48,7 @@ extern void gpu_finit();
 * @return 
 * @brief
 */
-extern unsigned long gpu_get_stream (int pSid);
+extern cl_command_queue gpu_get_stream (int pSid);
 
 /**
 * @param pSize Memory size.
