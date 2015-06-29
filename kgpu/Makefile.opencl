@@ -11,7 +11,11 @@ KGPUFLAGS := -O2 -D__KGPU__
 
 obj-m += kgpu.o
 ccflags-y += -I`pwd`/include
-kgpu-objs := src/main.o src/kgpu_kutils.o src/kgpu_log.o
+ccflags-y += -I`pwd`/include/gpuSpace
+ccflags-y += -I`pwd`/include/kernelSpace
+ccflags-y += -I`pwd`/include/userSpace
+ccflags-y += -I`pwd`/include/utils
+kgpu-objs := src/kernelSpace/main.o src/kgpu_kutils.o src/kgpu_log.o
 
 all: src/kgpu src/helper
 
@@ -20,9 +24,9 @@ src/kgpu:
 	$(if $(BUILD_DIR), cp kgpu.ko $(BUILD_DIR)/ ) 
 
 src/helper: src/kgpu_log
-	$(CC) $(KGPUFLAGS) -c src/helper.c $(ccflags-y)
-	$(CC) $(KGPUFLAGS) -c src/service.c $(ccflags-y)
-	$(CC) $(KGPUFLAGS) -c src/openCLOperations.c $(ccflags-y) -lOpenCL
+	$(CC) $(KGPUFLAGS) -c src/userSpace/helper.c $(ccflags-y)
+	$(CC) $(KGPUFLAGS) -c src/userSpace/service.c $(ccflags-y)
+	$(CC) $(KGPUFLAGS) -c src/gpuSpace/openCLOperations.c $(ccflags-y) -lOpenCL
 	$(CC) $(KGPUFLAGS) -c src/utils/errorOpenCl.c $(ccflags-y) -lOpenCL
 	$(CC) $(KGPUFLAGS) service.o helper.o kgpu_log_user.o openCLOperations.o errorOpenCl.o -o helper -ldl -lOpenCL
 	$(if $(BUILD_DIR), cp helper $(BUILD_DIR)/ )
