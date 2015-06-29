@@ -12,11 +12,9 @@
 
 openCLRuntimeData * openCLData = NULL;
 
-//Translation: cudaStream_t -> cl_command_queue
 cl_command_queue streams[MAX_STREAM_NR];
 static int streamuses[MAX_STREAM_NR];
 
-//Translation: dim3 -> size_t[3]
 static const size_t default_block_size[3]; // 32, 1
 static const size_t default_grid_size[3]; // 512, 1
 
@@ -201,12 +199,22 @@ void gpu_init()
 void gpu_finit()
 {
   int i = 0;
+  cl_int status = 0;
 
-  //free_dev_mem (devbuf.uva);
-  //free_dev_mem (devbuf.uva);
   //CL_INVALID_MEM_OBJECT
-  clReleaseMemObject(deviceBuffer.userVirtualAddress);
-  clReleaseMemObject(deviceBufferForVMA.userVirtualAddress);
+  status = clReleaseMemObject(deviceBuffer.userVirtualAddress);
+  if (status != CL_SUCCESS)
+  {
+    printErrorMessage(status);
+    return;
+  }
+
+  status = clReleaseMemObject(deviceBufferForVMA.userVirtualAddress);
+  if (status != CL_SUCCESS)
+  {
+    printErrorMessage(status);
+    return;
+  }
 
   //TODO: Improve it.
   fprintf(stdout, ">>>>> openCLOperations.c: GPU FINIT.\n");
@@ -214,8 +222,14 @@ void gpu_finit()
   for (i = 0; i < MAX_STREAM_NR; i++)
   {
     //TODO: CL_INVALID_COMMAND_QUEUE
-    clReleaseCommandQueue(streams[i]);
+    status = clReleaseCommandQueue(streams[i]);
+    if (status != CL_SUCCESS)
+    {
+      printErrorMessage(status);
+    }
   }
+
+  free(openCLData);
 }
 
 //cl_command_queue gpu_get_stream (int pStreamId)
@@ -240,6 +254,7 @@ cl_mem gpu_alloc_pinned_mem (unsigned long pSize)
   cl_mem host;
 
   fprintf(stdout, ">>>>> openCLOperation.c: GPU ALLOC.\n");
+
   //cudaHostAlloc(void ** pHost, size_t size, unsigned int flagsa
   if (!openCLData->context)
   {
@@ -249,10 +264,12 @@ cl_mem gpu_alloc_pinned_mem (unsigned long pSize)
   host = clCreateBuffer (openCLData->context, 
                          CL_MEM_ALLOC_HOST_PTR,
                          pSize, NULL, &status);
+  if (status != CL_SUCCESS)
+  {
+    printErrorMessage(status);
+    return host;
+  }
 
-  //TODO: CL_INVALID_CONTEXT, CL_INVALID_VALUE, CL_INVALID_BUFFER_SIZE,
-  //CL_DEVICE_MAX_MEM_ALLOC_SIZE, CL_INVALID_HOST_PTR,
-  //CL_MEM_OBJECT_ALLOCATION_FAILURE, CL_OUT_OF_HOST_MEMORY
   return host;
 }
 
@@ -260,7 +277,7 @@ cl_mem gpu_alloc_pinned_mem (unsigned long pSize)
 void gpu_free_pinned_mem (cl_mem memory)
 {
   fprintf(stdout, ">>>>> openCLOperation.c: GPU FREE PINNED MEMORY.\n");
-  clReleaseMemObject(memory);
+  cl_int status = clReleaseMemObject(memory);
 }
 
 //TODO: HUGE PROBLEM! I DON'T KNOW HOW TO CONVERT cudaHostRegister
