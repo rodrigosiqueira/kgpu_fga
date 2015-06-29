@@ -13,7 +13,12 @@ KGPUFLAGS := -O2 -D__KGPU__
 
 obj-m += kgpu.o
 ccflags-y += -I`pwd`/include
-kgpu-objs := src/main.o src/kgpu_kutils.o src/kgpu_log.o
+ccflags-y += -I`pwd`/include/gpuSpace
+ccflags-y += -I`pwd`/include/kernelSpace
+ccflags-y += -I`pwd`/include/userSpace
+ccflags-y += -I`pwd`/include/utils
+kgpu-objs := src/kernelSpace/main.o src/kgpu_kutils.o src/kgpu_log.o
+
 
 all: src/kgpu src/helper
 
@@ -32,9 +37,9 @@ kgpu_opencl:
 	$(CC) $(KGPUFLAGS) service.o helper.o kgpu_log_user.o openCLOperations.o -o helper -ldl -lOpenCL
 
 src/helper: src/kgpu_log
-	$(CC) $(KGPUFLAGS) -c src/helper.c $(ccflags-y)
-	$(CC) $(KGPUFLAGS) -c src/service.c $(ccflags-y)
-	$(NVIDIA) $(KGPUFLAGS) -c -arch=sm_20 src/cudaOperations.cu $(ccflags-y)
+	$(CC) $(KGPUFLAGS) -c src/userSpace/helper.c $(ccflags-y)
+	$(CC) $(KGPUFLAGS) -c src/userSpace/service.c $(ccflags-y)
+	$(NVIDIA) $(KGPUFLAGS) -c -arch=sm_20 src/gpuSpace/cudaOperations.cu $(ccflags-y)
 	$(NVIDIA) -link $(KGPUFLAGS) -arch=sm_20 service.o helper.o kgpu_log_user.o cudaOperations.o -o helper -ldl
 	$(if $(BUILD_DIR), cp helper $(BUILD_DIR)/ )
 

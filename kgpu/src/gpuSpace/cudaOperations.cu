@@ -13,6 +13,7 @@
 #include "helper.h"
 #include "gputils.h"
 #include "cudaOps.h"
+#include "dataType.h"
 
 #define MAX_STREAM_NR 8
 static cudaStream_t streams[MAX_STREAM_NR];

@@ -1,7 +1,16 @@
 CC := nvcc
+FULLPATH := ../../../kgpu/include
+
+ccflags-y += -I$(FULLPATH)
+ccflags-y += -I$(FULLPATH)/gpuSpace
+ccflags-y += -I$(FULLPATH)/kernelSpace
+ccflags-y += -I$(FULLPATH)/userSpace
+ccflags-y += -I$(FULLPATH)/utils
+
+OPENCLMESSAGE := "-------------------- CUDA -----------------"
 
 all:
-	$(CC) --shared --compiler-options '-fPIC' -o libsrv_test.so srv_test.cu -lOpenCL
+	$(CC) --shared --compiler-options '-fPIC' -o libsrv_test.so srv_test.cu
 	$(if $(BUILD_DIR), cp libsrv_test.so $(BUILD_DIR)/ )
 
 clean:
