@@ -9,26 +9,18 @@ VISUALSEPARATOR := "------------------------------------------"
 all: $(SUBPROJECT)
 .PHONY: $(SUBPROJECT)
 
+kgpucuda:
+	@$(MAKE) $(SUBPROJECT)
+
+kgpuopencl:
+	@$(MAKE) $(SUBPROJECT)
+
 # Call Makefile inside each folder.
 $(SUBPROJECT): prepare
 	@echo
 	@echo $(VISUALSEPARATOR) $@ $(VISUALSEPARATOR)
 	@echo
 	$(MAKE) -C $@ $(TARGET) kv=$(kv) BUILD_DIR=`pwd`/build
-
-# Cuda
-kgpucuda: prepare cudaCompile services scripts
-
-cudaCompile:
-	@echo $(VISUALSEPARATOR) $@ $(VISUALSEPARATOR)
-	$(MAKE) -C kgpu kgpu_cuda kv=$(kv) BUILD_DIR=`pwd`/build
-
-# OpenCL
-kgpuopencl: prepare openclCompile services scripts
-
-openclCompile:
-	@echo $(VISUALSEPARATOR) $@ $(VISUALSEPARATOR)
-	$(MAKE) -C kgpu kgpu_opencl kv=$(kv) BUILD_DIR=`pwd`/build
 
 # Preparation for compile
 
