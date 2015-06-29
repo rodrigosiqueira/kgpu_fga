@@ -27,8 +27,79 @@ static const size_t default_grid_size[3]; // 512, 1
 kgpuOpenCLGpuMemoryInfo deviceBuffer;
 kgpuOpenCLGpuMemoryInfo deviceBufferForVMA;
 
-static int initializePlatform()
+static int initializePlatform(cl_platform_id * platforms)
 {
+  cl_uint numPlatforms = 0;
+  cl_int status = clGetPlatformIDs(0, NULL, &numPlatforms);
+  if (status != CL_SUCCESS)
+  {
+    return status;
+  }
+
+  platforms = (cl_platform_id *) malloc(numPlatforms * sizeof(cl_platform_id));
+  if (!platforms)
+  {
+    return NO_SPACE_ON_HOST;
+  }
+
+  //Fill in the platforms
+  status = clGetPlatformIDs(numPlatforms, platforms, NULL);
+  if (status != CL_SUCCESS)
+  {
+    return status;
+  }
+
+  return status;
+}
+
+static int initializeDevice(cl_platform_id * platforms,
+                            openCLRuntimeData * openCLData,
+                            cl_uint * pNumDevices)
+{
+  cl_uint numDevices = 0;
+  cl_int status = clGetDeviceIDs(platforms[0], CL_DEVICE_TYPE_ALL,
+                          0, NULL, &numDevices);
+  // CL_INVALID_PLATFORM, CL_INVALID_DEVICE_TYPE
+  if (status != CL_SUCCESS)
+  {
+    return status;
+  }
+
+  //Allocate 
+  openCLData->devices = (cl_device_id *) 
+                        malloc(numDevices * sizeof(cl_device_id));
+  if (!openCLData->devices)
+  {
+    status = NO_SPACE_ON_HOST;
+    return status;
+  }
+
+  //Fill in the devices
+  status = clGetDeviceIDs(platforms[0], CL_DEVICE_TYPE_ALL, numDevices,
+                          openCLData->devices, NULL);
+  if (status != CL_SUCCESS)
+  {
+    return status;
+  }
+
+  *pNumDevices = numDevices;
+  return status;
+}
+
+static int initializeContext(openCLRuntimeData * openCLData, cl_uint pDevices)
+{
+  // Create a context and associate with the device
+  cl_int status = 0;
+  openCLData->context = clCreateContext(NULL, pDevices,
+                                        openCLData->devices, NULL,
+                                        NULL, &status);
+  return status;
+}
+
+static int initializeOpenCL()
+{
+  cl_int status = 0;
+
   if (openCLData)
   {
     free(openCLData);
@@ -41,92 +112,58 @@ static int initializePlatform()
     return NO_SPACE_ON_HOST;
   }
 
-  /* PLATFORM */
-  /* 1 -  Retrieve the number of platforms */
-  cl_uint numPlatforms = 0;
-  cl_int status = clGetPlatformIDs(0, NULL, &numPlatforms);
-  if (status == CL_INVALID_VALUE)
-  {
-    printErrorMessage(status);
-    return -1;
-  }
-
   cl_platform_id * platforms = NULL;
-  platforms = (cl_platform_id *) malloc(numPlatforms * sizeof(cl_platform_id));
-  if (!platforms)
+
+  status = initializePlatform(platforms);
+  if(status != CL_SUCCESS)
   {
-    printErrorMessage(NO_SPACE_ON_HOST);
-    return NO_SPACE_ON_HOST;
+    goto firstLevelOfClean;
   }
 
-  //Fill in the platforms
-  status = clGetPlatformIDs(numPlatforms, platforms, NULL);
-  if (status == CL_INVALID_VALUE)
-  {
-    printErrorMessage(status);
-    return status;
-  }
-
-  /* DEVICES */
-  /* 2 - Retrieve the number of devices */
   cl_uint numDevices = 0;
-  status = clGetDeviceIDs(platforms[0], CL_DEVICE_TYPE_ALL,
-                          0, NULL, &numDevices);
-  // CL_INVALID_PLATFORM, CL_INVALID_DEVICE_TYPE
-  if (status == CL_INVALID_VALUE)
-  {
-    printErrorMessage(status);
-    return status;
-  }
-
-  //Allocate 
-  openCLData->devices = (cl_device_id *) 
-                        malloc(numDevices * sizeof(cl_device_id));
-  if (!openCLData->devices)
-  {
-    printErrorMessage(NO_SPACE_ON_HOST);
-    return NO_SPACE_ON_HOST;
-  }
-
-  //Fill in the devices
-  status = clGetDeviceIDs(platforms[0], CL_DEVICE_TYPE_ALL, numDevices,
-                          openCLData->devices, NULL);
-  if (status !=  CL_SUCCESS)
-  {
-    printErrorMessage(status);
-    return status;
-  } 
-
-  /* 3 - Create context*/
-  // Create a context and associate with the device
-  openCLData->context = clCreateContext(NULL, numDevices,
-                                        openCLData->devices, NULL,
-                                        NULL, &status);
+  status = initializeDevice(platforms, openCLData, &numDevices);
   if (status != CL_SUCCESS)
   {
-    printErrorMessage(status);
-    return status;
+    goto secondLevelOfClean;
   }
 
-  return 0;
+  status = initializeContext(openCLData, numDevices);
+  if (status != CL_SUCCESS)
+  {
+    goto thirdLevelOfClean;
+  }
 
+  return status;
+
+  thirdLevelOfClean:
+    free(openCLData->devices);
+
+  secondLevelOfClean:
+    free(platforms);
+
+  firstLevelOfClean:
+    free(openCLData);
+  
+  printErrorMessage(status);
+  return status;
 }
 
 void gpu_init()
 {
   int i = 0;
   static int initialized = 0;
+  cl_int status = 0;
 
   if (!initialized)
   {
-    initializePlatform();
+    status = initializeOpenCL();
+    if (status != CL_SUCCESS)
+    {
+      return;
+    }
     initialized = 1;
   }
 
-  cl_int status = 0;
-  //TODO: CL_INVALID_CONTEXT, CL_INVALID_VALUE, CL_INVALID_BUFFER_SIZE
-  //CL_INVALID_HOST_PTR, CL_MEM_OBJECT_ALLOCATION_FAILURE,
-  //CL_OUT_OF_HOST_MEMORY
   deviceBuffer.userVirtualAddress = clCreateBuffer (openCLData->context, 
                                                     CL_MEM_READ_WRITE,
                                                     KGPU_BUF_SIZE, NULL,
@@ -135,7 +172,7 @@ void gpu_init()
   if (status != CL_SUCCESS)
   {
     printErrorMessage(status);
-    return status;
+    return;
   }
   
   deviceBufferForVMA.userVirtualAddress = clCreateBuffer (openCLData->context,
@@ -146,11 +183,9 @@ void gpu_init()
   if (status != CL_SUCCESS)
   {
     printErrorMessage(status);
-    return status;
+    return;
   }
 
-  //TODO: Improve it.
-  fprintf(stdout, ">>>>> openCLOperations: GPU INIT.\n");
   for (i = 0; i < MAX_STREAM_NR; i++) 
   {
     //Translation: cudaStreamCreate -> clCreateCommandQueue
