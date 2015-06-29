@@ -156,7 +156,7 @@ void gpu_init()
 
   if (!initialized)
   {
-    status = initializeOpenCL();
+    status = initializeOpenCL ();
     if (status != CL_SUCCESS)
     {
       return;
@@ -164,7 +164,7 @@ void gpu_init()
     initialized = 1;
   }
 
-  deviceBuffer.userVirtualAddress = clCreateBuffer (openCLData->context, 
+  deviceBuffer.userVirtualAddress = clCreateBuffer (openCLData->context,
                                                     CL_MEM_READ_WRITE,
                                                     KGPU_BUF_SIZE, NULL,
                                                     &status);
@@ -174,7 +174,7 @@ void gpu_init()
     printErrorMessage(status);
     return;
   }
-  
+
   deviceBufferForVMA.userVirtualAddress = clCreateBuffer (openCLData->context,
                                                           CL_MEM_READ_WRITE,
                                                           KGPU_BUF_SIZE, NULL,
@@ -188,13 +188,14 @@ void gpu_init()
 
   for (i = 0; i < MAX_STREAM_NR; i++) 
   {
-    //Translation: cudaStreamCreate -> clCreateCommandQueue
-    streams[i] = clCreateCommandQueue (openCLData->context, 
+    streams[i] = clCreateCommandQueue (openCLData->context,
                                        openCLData->devices[0],
                                        CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE,
                                        NULL);
     streamuses[i] = 0;
   }
+
+  return;
 }
 
 void gpu_finit()
