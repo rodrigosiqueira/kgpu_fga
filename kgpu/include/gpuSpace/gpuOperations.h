@@ -55,7 +55,7 @@ extern cl_command_queue gpu_get_stream (int pSid);
 * @return Return an cl_mem reference.
 * @brief Allocates page-locked memory on the host. 
 */
-extern cl_mem gpu_alloc_pinned_mem (unsigned long pSize);
+extern void * gpu_alloc_pinned_mem (unsigned long pSize);
 extern void gpu_free_pinned_mem (cl_mem memory);
 
 extern void gpu_pin_mem (void * p, size_t sz);

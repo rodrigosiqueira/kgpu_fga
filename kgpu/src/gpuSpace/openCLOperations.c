@@ -22,26 +22,30 @@ static const size_t default_grid_size[3]; // 512, 1
 //struct kgpu_gpu_mem_info devbuf;
 //struct kgpu_gpu_mem_info devbuf4vma;
 
+static int initialized = 0;
+
 kgpuOpenCLGpuMemoryInfo deviceBuffer;
 kgpuOpenCLGpuMemoryInfo deviceBufferForVMA;
 
-static int initializePlatform(cl_platform_id * platforms)
+static int initializePlatform(cl_platform_id ** platforms)
 {
+  
   cl_uint numPlatforms = 0;
   cl_int status = clGetPlatformIDs(0, NULL, &numPlatforms);
+
   if (status != CL_SUCCESS)
   {
     return status;
   }
 
-  platforms = (cl_platform_id *) malloc(numPlatforms * sizeof(cl_platform_id));
-  if (!platforms)
+  *platforms = (cl_platform_id *)malloc(numPlatforms * sizeof(cl_platform_id));
+  if (!*platforms)
   {
     return NO_SPACE_ON_HOST;
   }
 
   //Fill in the platforms
-  status = clGetPlatformIDs(numPlatforms, platforms, NULL);
+  status = clGetPlatformIDs(numPlatforms, *platforms, NULL);
   if (status != CL_SUCCESS)
   {
     return status;
@@ -57,13 +61,13 @@ static int initializeDevice(cl_platform_id * platforms,
   cl_uint numDevices = 0;
   cl_int status = clGetDeviceIDs(platforms[0], CL_DEVICE_TYPE_ALL,
                           0, NULL, &numDevices);
-  // CL_INVALID_PLATFORM, CL_INVALID_DEVICE_TYPE
+
   if (status != CL_SUCCESS)
   {
     return status;
   }
 
-  //Allocate 
+  //Allocate
   openCLData->devices = (cl_device_id *) 
                         malloc(numDevices * sizeof(cl_device_id));
   if (!openCLData->devices)
@@ -112,7 +116,7 @@ static int initializeOpenCL()
 
   cl_platform_id * platforms = NULL;
 
-  status = initializePlatform(platforms);
+  status = initializePlatform(&platforms);
   if(status != CL_SUCCESS)
   {
     goto firstLevelOfClean;
@@ -149,7 +153,6 @@ static int initializeOpenCL()
 void gpu_init()
 {
   int i = 0;
-  static int initialized = 0;
   cl_int status = 0;
 
   if (!initialized)
@@ -247,29 +250,47 @@ cl_command_queue gpu_get_stream (int pStreamId)
   }
 }
 
-cl_mem gpu_alloc_pinned_mem (unsigned long pSize)
+void * gpu_alloc_pinned_mem (unsigned long pSize)
+
 {
   cl_int status;
   cl_mem host;
+  void * hostPointer = 0;
 
-  fprintf(stdout, ">>>>> openCLOperation.c: GPU ALLOC.\n");
-
-  //cudaHostAlloc(void ** pHost, size_t size, unsigned int flagsa
-  if (!openCLData->context)
+  if (!openCLData)
   {
-    return host;
+    if (!initialized)
+    {
+      status = initializeOpenCL ();
+      if (status != CL_SUCCESS)
+      {
+        return;
+      }
+      initialized = 1;
+    }
   }
 
   host = clCreateBuffer (openCLData->context, 
                          CL_MEM_ALLOC_HOST_PTR,
                          pSize, NULL, &status);
+
   if (status != CL_SUCCESS)
   {
     printErrorMessage(status);
     return host;
   }
 
-  return host;
+  status = clGetMemObjectInfo (host,
+                               CL_MEM_HOST_PTR,
+                               sizeof(void *),
+                               hostPointer, NULL);
+  if (status != CL_SUCCESS)
+  {
+    printErrorMessage(status);
+    return NULL;
+  }
+
+  return hostPointer;
 }
 
 //TODO: It is wrong the parameter. Fix IT!

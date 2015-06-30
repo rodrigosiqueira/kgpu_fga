@@ -32,31 +32,31 @@
 #define PAGE_SIZE 4096
 #endif
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-  void gpu_init(void);
-  void gpu_finit(void);
-
-  void *gpu_alloc_pinned_mem(unsigned long size);
-  void gpu_free_pinned_mem(void * p);
-
-  void gpu_pin_mem(void * p, size_t sz);
-  void gpu_unpin_mem(void * p);
-
-  int gpu_alloc_device_mem(struct kgpu_service_request * sreq);
-  void gpu_free_device_mem(struct kgpu_service_request * sreq);
-  int gpu_alloc_stream(struct kgpu_service_request * sreq);
-  void gpu_free_stream(struct kgpu_service_request * sreq);
-
-  int gpu_execution_finished(struct kgpu_service_request * sreq);
-  int gpu_post_finished(struct kgpu_service_request * sreq);
-
-  unsigned long gpu_get_stream(int sid);
-
-#ifdef __cplusplus
-}
-#endif
+//#ifdef __cplusplus
+//extern "C" {
+//#endif
+//
+//  void gpu_init(void);
+//  void gpu_finit(void);
+//
+//  void *gpu_alloc_pinned_mem(unsigned long size);
+//  void gpu_free_pinned_mem(void * p);
+//
+//  void gpu_pin_mem(void * p, size_t sz);
+//  void gpu_unpin_mem(void * p);
+//
+//  int gpu_alloc_device_mem(struct kgpu_service_request * sreq);
+//  void gpu_free_device_mem(struct kgpu_service_request * sreq);
+//  int gpu_alloc_stream(struct kgpu_service_request * sreq);
+//  void gpu_free_stream(struct kgpu_service_request * sreq);
+//
+//  int gpu_execution_finished(struct kgpu_service_request * sreq);
+//  int gpu_post_finished(struct kgpu_service_request * sreq);
+//
+//  unsigned long gpu_get_stream(int sid);
+//
+//#ifdef __cplusplus
+//}
+//#endif
    
 #endif

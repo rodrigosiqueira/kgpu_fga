@@ -24,6 +24,7 @@
 #include "dataType.h"
 #include "list.h"
 #include "helper.h"
+#include "gpuOperations.h"
 
 struct _kgpu_sritem
 {
