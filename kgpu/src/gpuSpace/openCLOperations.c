@@ -12,6 +12,8 @@
 
 openCLRuntimeData * openCLData = NULL;
 
+float tmp_memory_test[KGPU_BUF_SIZE * 2];
+
 cl_command_queue streams[MAX_STREAM_NR];
 static int streamuses[MAX_STREAM_NR];
 
@@ -270,25 +272,52 @@ void * gpu_alloc_pinned_mem (unsigned long pSize)
     }
   }
 
+  //TODO: Change tmp_memory_test
   host = clCreateBuffer (openCLData->context, 
-                         CL_MEM_ALLOC_HOST_PTR,
-                         pSize, NULL, &status);
-
+                          CL_MEM_READ_WRITE | CL_MEM_USE_HOST_PTR,
+                         sizeof(tmp_memory_test), tmp_memory_test, &status);
   if (status != CL_SUCCESS)
   {
-    printErrorMessage(status);
+    puts("ERRORRRR 1");
+    switch(status)
+    {
+      case CL_INVALID_CONTEXT:
+        puts ("context is not a valid context..");
+        break;
+      case CL_INVALID_VALUE:
+        puts ("Values specified in flags are not valid.");
+        break;
+      case CL_INVALID_BUFFER_SIZE:
+        puts ("size is 0 or is greater than CL_DEVICE_MAX_MEM_ALLOC_SIZE");
+        break;
+      case CL_INVALID_HOST_PTR:
+        puts("host_ptr is NULL and CL_MEM_USE_HOST_PTR or CL_MEM_COPY_HOST_PTR");
+        break;
+      case CL_MEM_OBJECT_ALLOCATION_FAILURE:
+        puts ("if there is a failure to allocate memory for buffer object.");
+        break;
+      case CL_OUT_OF_HOST_MEMORY:
+        puts("OUT OF HOST");
+        break;
+      default:
+        puts("What?");
+    }
+    //printErrorMessage(status);
     return host;
   }
 
   status = clGetMemObjectInfo (host,
                                CL_MEM_HOST_PTR,
-                               sizeof(void *),
-                               hostPointer, NULL);
+                               sizeof(hostPointer),
+                               &hostPointer, NULL);
   if (status != CL_SUCCESS)
   {
+    puts("ERRORRRR 2");
     printErrorMessage(status);
     return NULL;
   }
+
+  printf("Before return: %p\n", hostPointer);
 
   return hostPointer;
 }

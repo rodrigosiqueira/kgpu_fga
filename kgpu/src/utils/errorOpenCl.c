@@ -25,6 +25,7 @@ static ERROR errorMessages[] =
 int printErrorMessage(int pCode)
 {
   int i = 0;
+  fprintf(stderr, "Error code: %d\n", pCode);
   for (i = 0; errorMessages[i].errorMessage; i++)
   {
     if (errorMessages[i].errorCode == pCode)

@@ -99,14 +99,19 @@ static int kh_init(void)
   kh_log(KGPU_LOG_PRINT, "KH_INIT\n");
 
   /* Host buffer: Alloc GPU Pinned memory buffers */
+  puts ("________  1  _______________");
   pinnedMemory = (void *) gpu_alloc_pinned_mem(KGPU_BUF_SIZE + PAGE_SIZE);
+  puts ("________  2  _______________");
+  printf("pinnedMemory: %p\n", pinnedMemory);
   hostbuf.uva = pinnedMemory;
   hostbuf.size = KGPU_BUF_SIZE;
-  dbg("%p \n", hostbuf.uva);
+  dbg("-->%p \n", hostbuf.uva);
+  puts ("_________ 3 _______________");
   memset(hostbuf.uva, 0, KGPU_BUF_SIZE);
   ssc( mlock(hostbuf.uva, KGPU_BUF_SIZE));
 
-  gpu_init(); //TODO: investigate it. 
+  gpu_init();
+  puts ("_________ 4 _______________");
 
   /* Host vma: shared devfd.*/
   hostvma.uva = (void *) mmap(NULL, KGPU_BUF_SIZE,
