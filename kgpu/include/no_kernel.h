@@ -40,6 +40,6 @@ struct kgpu_service_request
 #define KGPU_REQ_POST_EXEC 5
 #define KGPU_REQ_DONE 6
 
-#include "service.h"
+#include "userSpace/service.h"
 
 #endif

@@ -20,6 +20,18 @@ extern Gpu_operations gpuOperations;
 #define PAGE_SIZE 4096
 #endif
 
+/**
+* @def min
+* @brief Verify the minimum value, and return it.
+*/
+#define min(a,b) (((a)<(b))?(a):(b))
+
+/**
+* @def max
+* @brief Verify the maximum value, and return it.
+*/
+#define max(a,b) (((a)>(b))?(a):(b))
+
 typedef struct _openCLRuntimeData
 {
   cl_context  context;
@@ -68,6 +80,5 @@ extern void gpu_free_stream (struct kgpu_service_request * sreq);
 
 extern int gpu_execution_finished (struct kgpu_service_request * sreq);
 extern int gpu_post_finished (struct kgpu_service_request * sreq);
-
 
 #endif

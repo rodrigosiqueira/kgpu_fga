@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <cuda.h>
 #include "../../../kgpu/include/kgpu.h"
-#include "../../../kgpu/include/gputils.h"
+#include "../../../kgpu/include/gpuSpace/gputils.h"
 
 __global__ void empty_kernel(void)
 {

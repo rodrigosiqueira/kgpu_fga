@@ -20,10 +20,6 @@ static int streamuses[MAX_STREAM_NR];
 static const size_t default_block_size[3]; // 32, 1
 static const size_t default_grid_size[3]; // 512, 1
 
-//ATTENTION: FIND A WAY TO DEFINE THIS STRUCTURE HERE, IT IS IMPORTANT
-//struct kgpu_gpu_mem_info devbuf;
-//struct kgpu_gpu_mem_info devbuf4vma;
-
 static int initialized = 0;
 
 kgpuOpenCLGpuMemoryInfo deviceBuffer;
@@ -221,9 +217,6 @@ void gpu_finit()
     return;
   }
 
-  //TODO: Improve it.
-  fprintf(stdout, ">>>>> openCLOperations.c: GPU FINIT.\n");
-
   for (i = 0; i < MAX_STREAM_NR; i++)
   {
     //TODO: CL_INVALID_COMMAND_QUEUE
@@ -237,10 +230,8 @@ void gpu_finit()
   free(openCLData);
 }
 
-//cl_command_queue gpu_get_stream (int pStreamId)
 cl_command_queue gpu_get_stream (int pStreamId)
 {
-  fprintf(stdout, ">>>>> openCLOperation.c: GPU GET STREAM %d\n", pStreamId);
   if (pStreamId < 0 || pStreamId >= MAX_STREAM_NR)
   {
     return 0;
@@ -332,7 +323,6 @@ void gpu_free_pinned_mem (cl_mem memory)
 //TODO: HUGE PROBLEM! I DON'T KNOW HOW TO CONVERT cudaHostRegister
 void gpu_pin_mem (void * p, size_t sz)
 {
-  fprintf(stdout, ">>>>> openCLOperations.c: GPU PIN MEMORY\n");
   size_t rsz = round_up(sz, PAGE_SIZE);
 
   //csc( cudaHostRegister(p, rsz, cudaHostRegisterPortable) );
@@ -381,9 +371,6 @@ int gpu_post_finished (struct kgpu_service_request * sreq)
   cl_command_queue s;
   return __check_stream_done(s);
 }
-
-#define min(a,b) (((a)<(b))?(a):(b))
-#define max(a,b) (((a)>(b))?(a):(b))
 
 static int __merge_2ranges (unsigned long r1, unsigned long s1,
                             unsigned long r2, unsigned long s2,
@@ -487,7 +474,6 @@ static int __merge_ranges (unsigned long ad[], unsigned long sz[], int n)
 
 int gpu_alloc_device_mem (struct kgpu_service_request * sreq)
 {
-  //TODO
   unsigned long pinAddress[3] = {0, 0, 0}, pinSize[3] = {0, 0, 0};
   int npins = 0, i = 0;
   void * deviceBufferTmp = 0, * deviceBufferForVMATmp = 0;
