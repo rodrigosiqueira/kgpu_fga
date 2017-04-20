@@ -982,6 +982,7 @@ static void kgpu_vm_close (struct vm_area_struct * vma)
   // nothing we can do now
 }
 
+#if LINUX_VERSION_CODE <= KERNEL_VERSION(4,10,0)
 static int kgpu_vm_fault (struct vm_area_struct * vma, struct vm_fault * vmf)
 {
   /*static struct page *p = NULL;
@@ -1018,6 +1019,16 @@ static int kgpu_vm_fault (struct vm_area_struct * vma, struct vm_fault * vmf)
   vmf->flags |= VM_FAULT_NOPAGE|VM_FAULT_ERROR;
   return VM_FAULT_SIGBUS;
 }
+#else
+static int kgpu_vm_fault (struct vm_fault * vmf)
+{
+  kgpu_log(KGPU_LOG_ERROR,
+          "kgpu mmap area being accessed without pre-mapping 0x%lX (0x%lX)\n",
+          (unsigned long)vmf->address, (unsigned long)vmf->vma->vm_start);
+  vmf->flags |= VM_FAULT_NOPAGE|VM_FAULT_ERROR;
+  return VM_FAULT_SIGBUS;
+}
+#endif
 
 static struct vm_operations_struct kgpu_vm_ops = 
 {
