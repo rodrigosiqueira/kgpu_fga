@@ -29,6 +29,7 @@
 #include <linux/slab.h>
 #include <linux/bitmap.h>
 #include <linux/device.h>
+#include <linux/version.h>
 #include <asm/atomic.h>
 #include "kkgpu.h"
 
@@ -987,9 +988,15 @@ static int kgpu_vm_fault (struct vm_area_struct * vma, struct vm_fault * vmf)
     if (!p) {
       p = alloc_page(GFP_KERNEL);
       if (p) {
+      #if LINUX_VERSION_CODE >= KERNEL_VERSION(4,10,0)
+        kgpu_log(KGPU_LOG_PRINT,
+                  "first page fault, 0x%lX (0x%lX)\n",
+                  TO_UL(vmf->address), TO_UL(vma->vm_start));
+      #else
         kgpu_log(KGPU_LOG_PRINT,
                   "first page fault, 0x%lX (0x%lX)\n",
                   TO_UL(vmf->virtual_address), TO_UL(vma->vm_start));
+      #endif
         vmf->page = p;
         return 0;
       }
@@ -999,9 +1006,15 @@ static int kgpu_vm_fault (struct vm_area_struct * vma, struct vm_fault * vmf)
       }
     }*/
   /* should never call this */
+  #if LINUX_VERSION_CODE >= KERNEL_VERSION(4,10,0)
+  kgpu_log(KGPU_LOG_ERROR,
+          "kgpu mmap area being accessed without pre-mapping 0x%lX (0x%lX)\n",
+          (unsigned long)vmf->address, (unsigned long)vma->vm_start);
+  #else
   kgpu_log(KGPU_LOG_ERROR,
           "kgpu mmap area being accessed without pre-mapping 0x%lX (0x%lX)\n",
           (unsigned long)vmf->virtual_address, (unsigned long)vma->vm_start);
+  #endif
   vmf->flags |= VM_FAULT_NOPAGE|VM_FAULT_ERROR;
   return VM_FAULT_SIGBUS;
 }
